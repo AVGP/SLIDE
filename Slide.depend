@@ -1,0 +1,63 @@
+# depslib dependency file v1.0
+1287084210 source:/home/martin/Dev/C_C++/WM/Slide/Logger.cpp
+	"Logger.h"
+
+1287083696 /home/martin/Dev/C_C++/WM/Slide/Logger.h
+	<fstream>
+
+1287084252 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
+	"Slide.h"
+
+1287090058 /home/martin/Dev/C_C++/WM/Slide/Slide.h
+	"Global.h"
+	"Slideconfig.h"
+	"Slidecommserver.h"
+	"Logger.h"
+
+1287090787 /home/martin/Dev/C_C++/WM/Slide/Global.h
+	<cstdlib>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<X11/Xresource.h>
+	<X11/Xatom.h>
+	"Logger.h"
+
+1287090088 /home/martin/Dev/C_C++/WM/Slide/Slideconfig.h
+	"Global.h"
+	<vector>
+	<cstring>
+
+1287090754 /home/martin/Dev/C_C++/WM/Slide/Slidecommserver.h
+	<list>
+	<cstdio>
+	"Slideconnection.h"
+	"Global.h"
+
+1287247918 /home/martin/Dev/C_C++/WM/Slide/Slideconnection.h
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<sys/un.h>
+	<cstdio>
+	<signal.h>
+	<netdb.h>
+	"Logger.h"
+
+1287090267 source:/home/martin/Dev/C_C++/WM/Slide/Slidecommserver.cpp
+	"Slidecommserver.h"
+
+1287090037 source:/home/martin/Dev/C_C++/WM/Slide/Slideconfig.cpp
+	"Slideconfig.h"
+
+1287084228 source:/home/martin/Dev/C_C++/WM/Slide/main.cpp
+	"Slide.h"
+
+1287247930 source:/home/martin/Dev/C_C++/WM/Slide/Slideconnection.cpp
+	"Slideconnection.h"
+
+1287247992 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindow.cpp
+	"Slidewindow.h"
+
+1287197027 /home/martin/Dev/C_C++/WM/Slide/Slidewindow.h
+	"Global.h"
+
