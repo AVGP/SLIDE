@@ -8,6 +8,7 @@
 #include "Global.h"
 #include "Slideconfig.h"
 #include "Slidecommserver.h"
+#include "Slidewindowmanager.h"
 #include "Logger.h"
 
 /**
@@ -25,7 +26,7 @@ class Slide
     * to obtain the instance. A new instance is created internally
     * if there hasn't been one before.
     */
-    static const Slide *getInstance();
+    static Slide *getInstance();
 
     /**
     * Is called from main to start the Environment. Blocks.

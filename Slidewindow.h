@@ -8,6 +8,8 @@
 
 #include "Global.h"
 
+#define RGB(r,g,b) (r << 16 | g << 8 | b)
+
 /**
 * @class SlideWindow
 * This class handles the concept of a window in the WindowManager-Component
@@ -25,7 +27,7 @@ class SlideWindow
         * @param (Optional) If the window should be sticky (i.e. present on all virtual desks)
         * @param (Optional) Which virtual desk the window should be created. Defaults to the current one.
         */
-        SlideWindow(Window w, int group = 0, bool sticky = false, unsigned char desk = 0);
+        SlideWindow(Display *d,Window w,Window parent, int group = 0, bool sticky = false, unsigned char desk = 0);
 
         /**
         * Moves the window to the given new coordinates
@@ -80,6 +82,7 @@ class SlideWindow
         */
         void makeUnsticky();
     private:
+        Display *disp;
         Window wndWindow;
         Window wndDecoration;
         unsigned short groupID;

@@ -10,6 +10,8 @@
 #include "./Slidewindow.h"
 #include <vector>
 
+#define RGB(r,g,b) (r << 16 | g << 8 | b)
+
 /**
 * @class SlideWindowManager
 * This class encapsules the WindowManager for Slide.
@@ -20,8 +22,9 @@ class SlideWindowManager
     public:
         /**
         * Creates a new instance of the SlideWindowManager
+        * @param Specifies, if we're in debug-mode. Defaults to false
         */
-        SlideWindowManager();
+        SlideWindowManager(bool debug = false);
 
         /**
         * Runs the WindowManager - includes the event- and CtrlComm-Loop
@@ -39,7 +42,8 @@ class SlideWindowManager
         std::vector<SlideWindow *> windows;
         Display *disp;
         Screen *screen;
-        Window *desktop;
+        Window desktop;
+        unsigned int screenWidth,screenHeight;
 };
 
 #endif // SlideWINDOWMANAGER_H_INCLUDED

@@ -2,6 +2,8 @@
 
 int main(int argc, char **argv)
 {
-    const Slide *environment = Slide::getInstance();
+    Slide *environment = Slide::getInstance();
+    environment->startUp(true);
+    environment->run();
     return 0;
 }

@@ -14,9 +14,10 @@ Logger *Logger::getInstance()
 void Logger::log(char *msg)
 {
     std::ofstream logFile(LOG_PATH,std::ios_base::app);
-    if(!logFile)
+    if(logFile.is_open())
     {
-        logFile << msg << std::endl;
+        logFile << msg << "\n";
     }
+    logFile.flush();
     logFile.close();
 }

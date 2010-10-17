@@ -6,7 +6,7 @@
 #define LOGGER_H_INCLUDED
 
 #include <fstream>
-#define LOG_PATH "/tmp/Slide_debug.log"
+#define LOG_PATH "/home/master/Slide_debug.log"
 
 /**
 * @class Logger
