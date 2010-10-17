@@ -1,16 +1,16 @@
-#include <FL/Fl.H>
-#include <FL/Fl_Window.H>
-#include <FL/Fl_Box.H>
+#include "main.h"
+#include "starter.h"
 
-int main(int argc, char **argv)
+IMPLEMENT_APP(StarterApp);
+
+bool StarterApp::OnInit()
 {
-    Fl_Window *window = new Fl_Window(300,180);
-    Fl_Box *box = new Fl_Box(5,5,290,170,"Hello, World!");
-    box->box(FL_UP_BOX);
-    box->labelsize(36);
-    box->labelfont(FL_BOLD+FL_ITALIC);
-    box->labeltype(FL_SHADOW_LABEL);
-    window->end();
-    window->show(argc, argv);
-    return Fl::run();
+    if(argc < 3) return false;
+
+    int w = atoi(argv[1]);
+    int h = atoi(argv[2]);
+
+    Starter *s = new Starter(w,h,"Starter");
+    s->Show(true);
+    return true;
 }
