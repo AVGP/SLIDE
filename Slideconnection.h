@@ -33,10 +33,11 @@ class SlideConnection
     /**
     * Constructs a new SlideConnection, which is basically a UNIX-Domain socket
     * connected to a running server-process (SlideIPCServer)
-    * @param Path of the socket to be created on
     * @param Path of the server to connect to
+    * @param Path of the socket to create on (locally)
+    * @param (Optional) If the local socket shoud be bound, thus turning it to a local server, defaults to false
     */
-    SlideConnection(const char *serverPath,const char *clientPath);
+    SlideConnection(const char *remotePath,const char *localPath,bool bindTo = false);
 
     /**
     * Get the current content of the message buffer or an empty buffer.
@@ -77,8 +78,8 @@ class SlideConnection
     int sock;
     char *inBuffer;
     char *outBuffer;
-    char *serverPath;
-    char *clientPath;
+    char *remotePath;
+    char *localPath;
 };
 
 #endif

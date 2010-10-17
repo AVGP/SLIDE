@@ -7,6 +7,7 @@
 #define SlideWINDOW_H_INCLUDED
 
 #include "Global.h"
+#include <cstring>
 
 #define RGB(r,g,b) (r << 16 | g << 8 | b)
 

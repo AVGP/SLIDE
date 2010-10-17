@@ -15,7 +15,9 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
     Logger::getInstance()->log(msg);
 
     this->wndWindow     = w;
-    this->wndDecoration = XCreateSimpleWindow(d,
+    if(strncmp(t_name,"__SLIDE__",9) != 0)
+    {
+        this->wndDecoration = XCreateSimpleWindow(d,
                                                 DefaultRootWindow(d),
                                                 attr.x,
                                                 attr.y,
@@ -24,18 +26,28 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
                                                 1,
                                                 RGB(180,180,180),
                                                 RGB(240,240,240));
+        this->width         = attr.width+2;
+        this->height        = attr.height+22;
+
+        XSetStandardProperties(d,wndDecoration,t_name,t_name,None,NULL,0,NULL);
+        XReparentWindow(d,w,wndDecoration,0,20);
+        XMapRaised(d,wndDecoration);
+
+    }
+    else
+    {
+        this->wndDecoration = None;
+        this->width         = attr.width;
+        this->height        = attr.height;
+    }
+
     this->groupID       = group;
     this->sticky        = sticky;
     this->desk          = desk;
     this->disp          = d;
     this->x             = attr.x;
     this->y             = attr.y;
-    this->width         = attr.width+2;
-    this->height        = attr.height+22;
 
-    XSetStandardProperties(d,wndDecoration,t_name,t_name,None,NULL,0,NULL);
-    XReparentWindow(d,w,wndDecoration,0,20);
-    XMapRaised(d,wndDecoration);
     XMapRaised(d,w);
 
 }

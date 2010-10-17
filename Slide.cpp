@@ -53,7 +53,7 @@ bool Slide::startUp(bool debug)
 
     //Now the Client-Components
 
-    if(fork() == 0) execl("/usr/bin/SlideApps/Desk","SlideComponent","800","600","/usr/share/Slide/bg.jpg",(char *)0);//(char *)config->getConfigValue("DesktopApp",&len),"SlideComponent","800","600",(char *)config->getConfigValue("DesktopWallpaper",&len),(char *)0);
+    if(fork() == 0) execl((char *)config->getConfigValue("DesktopApp",&len),"SlideComponent","800","600",(char *)config->getConfigValue("DesktopWallpaper",&len),(char *)0);
 
     Logger::getInstance()->log("STATUS: AWESOME STARTUP.");
 

@@ -1,6 +1,6 @@
 #include "Slideconnection.h"
 
-SlideConnection::SlideConnection(const char *serverPath,const char *clientPath)
+SlideConnection::SlideConnection(const char *remotePath,const char *localPath,bool bindTo)
 {
 
 }

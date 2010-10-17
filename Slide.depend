@@ -56,11 +56,12 @@
 1287247930 source:/home/martin/Dev/C_C++/WM/Slide/Slideconnection.cpp
 	"Slideconnection.h"
 
-1287276969 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindow.cpp
+1287345439 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindow.cpp
 	"Slidewindow.h"
 
-1287276481 /home/martin/Dev/C_C++/WM/Slide/Slidewindow.h
+1287345449 /home/martin/Dev/C_C++/WM/Slide/Slidewindow.h
 	"Global.h"
+	<cstring>
 
 1287276607 /home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.h
 	"Global.h"

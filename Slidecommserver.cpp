@@ -49,5 +49,8 @@ bool SlideCommServer::setup(const char *path)
 
 bool SlideCommServer::run()
 {
+    while(true)
+    {
 
+    }
 }
