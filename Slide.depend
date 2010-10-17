@@ -5,7 +5,7 @@
 1287263043 /home/martin/Dev/C_C++/WM/Slide/Logger.h
 	<fstream>
 
-1287271931 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
+1287333933 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
 	"Slide.h"
 
 1287260433 /home/martin/Dev/C_C++/WM/Slide/Slide.h
@@ -23,7 +23,7 @@
 	<X11/Xatom.h>
 	"Logger.h"
 
-1287090088 /home/martin/Dev/C_C++/WM/Slide/Slideconfig.h
+1287332475 /home/martin/Dev/C_C++/WM/Slide/Slideconfig.h
 	"Global.h"
 	<vector>
 	<cstring>
@@ -47,7 +47,7 @@
 1287090267 source:/home/martin/Dev/C_C++/WM/Slide/Slidecommserver.cpp
 	"Slidecommserver.h"
 
-1287090037 source:/home/martin/Dev/C_C++/WM/Slide/Slideconfig.cpp
+1287332531 source:/home/martin/Dev/C_C++/WM/Slide/Slideconfig.cpp
 	"Slideconfig.h"
 
 1287263289 source:/home/martin/Dev/C_C++/WM/Slide/main.cpp

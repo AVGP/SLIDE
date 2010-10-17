@@ -2,16 +2,18 @@
 
 SlideConfig::SlideConfig()
 {
+    Logger::getInstance()->log("Starting config.");
     configValues.clear();
-    std::ifstream conf("Slide.conf");
-    if(conf)
+    std::ifstream conf("/etc/Slide.conf");
+    if(conf.is_open())
     {
+        Logger::getInstance()->log("Reading...");
         CONFIGVALUE val;
         while(!conf.eof())
         {
             conf >> val.identifier;
             conf >> val.valueSize;
-            val.value = malloc(val.valueSize);
+            val.value = (char *)malloc(val.valueSize);
             conf >> val.value;
             configValues.push_back(val);
         }
@@ -26,7 +28,7 @@ void *SlideConfig::getConfigValue(char *identifier,unsigned int *returnSize)
         if(strncmp(configValues[i].identifier,identifier,strlen(identifier)) == 0)
         {
             *returnSize = configValues[i].valueSize;
-            return configValues[i].value;
+            return (void *)configValues[i].value;
         }
     }
 }

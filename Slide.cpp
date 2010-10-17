@@ -22,8 +22,9 @@ bool Slide::startUp(bool debug)
 {
     Logger::getInstance()->log("Starting up.");
     //Reading the config:
-    //config = new SlideConfig();
+    config = new SlideConfig();
 
+    unsigned int len;
     //Starting up the components:
     //First we start the CommServer
     componentPIDs[0] = fork();
@@ -51,8 +52,8 @@ bool Slide::startUp(bool debug)
     }
 
     //Now the Client-Components
-    if(fork() == 0) execl("/usr/bin/SlideStarter","SlideComponent",(char *)0);
 
+    if(fork() == 0) execl("/usr/bin/SlideApps/Desk","SlideComponent","800","600","/usr/share/Slide/bg.jpg",(char *)0);//(char *)config->getConfigValue("DesktopApp",&len),"SlideComponent","800","600",(char *)config->getConfigValue("DesktopWallpaper",&len),(char *)0);
 
     Logger::getInstance()->log("STATUS: AWESOME STARTUP.");
 

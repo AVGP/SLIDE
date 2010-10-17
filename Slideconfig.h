@@ -14,7 +14,7 @@ typedef struct
 {
     char identifier[50];
     unsigned int valueSize;
-    void *value;
+    char *value;
 } CONFIGVALUE;
 #pragma pack(1)
 
