@@ -7,7 +7,6 @@
 
 #include "Global.h"
 #include "Slideconfig.h"
-#include "Slidecommserver.h"
 #include "Slidewindowmanager.h"
 #include "Logger.h"
 
@@ -54,7 +53,7 @@ class Slide
     static Slide *instance;
     SlideConnection *ctrlConnection;
     SlideConfig *config;
-    pid_t componentPIDs[2]; // Indices: 0 = CommServer, 1 = WM
+    pid_t componentPIDs[3]; // Indices: 0 = WM, 1 = Desktop, 2 = Tray
 };
 
 #endif

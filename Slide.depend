@@ -8,10 +8,9 @@
 1287400850 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
 	"Slide.h"
 
-1287260433 /home/martin/Dev/C_C++/WM/Slide/Slide.h
+1287408435 /home/martin/Dev/C_C++/WM/Slide/Slide.h
 	"Global.h"
 	"Slideconfig.h"
-	"Slidecommserver.h"
 	"Slidewindowmanager.h"
 	"Logger.h"
 
