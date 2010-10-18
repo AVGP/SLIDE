@@ -5,7 +5,7 @@
 1287263043 /home/martin/Dev/C_C++/WM/Slide/Logger.h
 	<fstream>
 
-1287333933 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
+1287400850 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
 	"Slide.h"
 
 1287260433 /home/martin/Dev/C_C++/WM/Slide/Slide.h
@@ -15,8 +15,10 @@
 	"Slidewindowmanager.h"
 	"Logger.h"
 
-1287090787 /home/martin/Dev/C_C++/WM/Slide/Global.h
+1287408016 /home/martin/Dev/C_C++/WM/Slide/Global.h
 	<cstdlib>
+	<cstdio>
+	<sys/un.h>
 	<X11/Xlib.h>
 	<X11/Xutil.h>
 	<X11/Xresource.h>
@@ -28,23 +30,24 @@
 	<vector>
 	<cstring>
 
-1287090754 /home/martin/Dev/C_C++/WM/Slide/Slidecommserver.h
+1287350765 /home/martin/Dev/C_C++/WM/Slide/Slidecommserver.h
 	<list>
 	<cstdio>
 	"Slideconnection.h"
 	"Global.h"
 
-1287247918 /home/martin/Dev/C_C++/WM/Slide/Slideconnection.h
-	<sys/types.h>
-	<sys/socket.h>
-	<netinet/in.h>
-	<sys/un.h>
+1287406424 /home/martin/Dev/C_C++/WM/Slide/Slideconnection.h
 	<cstdio>
 	<signal.h>
 	<netdb.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<sys/types.h>
+	<fcntl.h>
 	"Logger.h"
+	"Global.h"
 
-1287090267 source:/home/martin/Dev/C_C++/WM/Slide/Slidecommserver.cpp
+1287399478 source:/home/martin/Dev/C_C++/WM/Slide/Slidecommserver.cpp
 	"Slidecommserver.h"
 
 1287332531 source:/home/martin/Dev/C_C++/WM/Slide/Slideconfig.cpp
@@ -53,7 +56,7 @@
 1287263289 source:/home/martin/Dev/C_C++/WM/Slide/main.cpp
 	"Slide.h"
 
-1287247930 source:/home/martin/Dev/C_C++/WM/Slide/Slideconnection.cpp
+1287407331 source:/home/martin/Dev/C_C++/WM/Slide/Slideconnection.cpp
 	"Slideconnection.h"
 
 1287345439 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindow.cpp
@@ -69,7 +72,7 @@
 	"./Slidewindow.h"
 	<vector>
 
-1287277092 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.cpp
+1287407819 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.cpp
 	"Slidewindowmanager.h"
 
 1287266771 source:/home/martin/Dev/C_C++/WM/Slide/Apps/Starter/main.cpp
