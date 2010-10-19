@@ -20,7 +20,7 @@ Slide *Slide::getInstance()
 
 bool Slide::startUp(bool debug)
 {
-    Logger::getInstance()->log("Starting up.");
+    Logger::getInstance()->log((std::string)"Starting up.");
     //Reading the config:
     config = new SlideConfig();
 
@@ -33,19 +33,19 @@ bool Slide::startUp(bool debug)
         SlideWindowManager *wm = new SlideWindowManager(true);
         if(!wm->run() && debug)
         {
-            Logger::getInstance()->log("FAULT: Windowmanager failed!");
+            Logger::getInstance()->log((std::string)"FAULT: Windowmanager failed!");
             exit(EXIT_FAILURE);
         }
     }
 
     //Setup the local socket:
-    ctrlConnection = new SlideConnection("/tmp/Slide_core.sock",COMP_CORE);
+    ctrlConnection = new SlideConnection((char *)"/tmp/Slide_core.sock",COMP_CORE);
 
     //Get resolution from the WM:
     CTRLMSG msg;
     msg.type = GEOMETRYREQUEST;
     msg.len  = 0;
-    ctrlConnection->sendMessage(&msg,"/tmp/Slide_wm.sock");
+    ctrlConnection->sendMessage(&msg,(char *)"/tmp/Slide_wm.sock");
     struct sockaddr_un addr;
     msg = ctrlConnection->getMessage(&addr);
     char dbg_out[100];
@@ -63,17 +63,17 @@ bool Slide::startUp(bool debug)
     componentPIDs[1] = fork();
     if(componentPIDs[1] == 0)
     {
-        execl((char *)config->getConfigValue("DesktopApp",&len),"SlideComponent",sw,sh,(char *)config->getConfigValue("DesktopWallpaper",&len),(char *)0);
+        execl((char *)config->getConfigValue((char *)"DesktopApp",&len),(char *)"SlideComponent",sw,sh,(char *)config->getConfigValue((char *)"DesktopWallpaper",&len),(char *)0);
     }
 
-    Logger::getInstance()->log("STATUS: AWESOME STARTUP.");
+    Logger::getInstance()->log((std::string)"STATUS: AWESOME STARTUP.");
 
     return true;
 }
 
 bool Slide::shutDown()
 {
-
+    return true;
 }
 
 

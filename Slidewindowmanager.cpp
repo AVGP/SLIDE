@@ -2,7 +2,7 @@
 
 SlideWindowManager::SlideWindowManager(bool debug)
 {
-    ctrl = new SlideConnection("/tmp/Slide_wm.sock",COMP_WM);
+    ctrl = new SlideConnection((char *)"/tmp/Slide_wm.sock",COMP_WM);
     disp         = XOpenDisplay(NULL);
     screen       = DefaultScreenOfDisplay(disp);
     screenWidth  = WidthOfScreen(screen);
@@ -30,7 +30,7 @@ bool SlideWindowManager::run()
             switch(event.type)
             {
                 case MapRequest:
-                    Logger::getInstance()->log("MapNotify");
+                    Logger::getInstance()->log((std::string)"MapNotify");
                     XFetchName(disp,event.xmaprequest.window,&dbg_name);
                     sprintf(msg,"Window-Title: %s",dbg_name);
                     Logger::getInstance()->log(msg);

@@ -8,7 +8,7 @@ SlideConnection::SlideConnection(char *localPath,SlideComponent component,bool b
     sock = socket(AF_UNIX,SOCK_DGRAM,0);
     if(sock < 0)
     {
-        Logger::getInstance()->log("Cannot setup socket for CommServer");
+        Logger::getInstance()->log((std::string)"Cannot setup socket for CommServer");
         return;
     }
 
@@ -24,7 +24,7 @@ SlideConnection::SlideConnection(char *localPath,SlideComponent component,bool b
         sprintf(localAddr.sun_path,localPath);
         if(bind(sock,(struct sockaddr *)&localAddr,sizeof(localAddr)) < 0)
         {
-            Logger::getInstance()->log("Cannot setup bind socket of CommServer to the given path.");
+            Logger::getInstance()->log((std::string)"Cannot setup bind socket of CommServer to the given path.");
             return;
         }
         listen(sock,2);
@@ -33,7 +33,7 @@ SlideConnection::SlideConnection(char *localPath,SlideComponent component,bool b
 
 unsigned int SlideConnection::bytesReadable()
 {
-
+    return 0;
 }
 
 void SlideConnection::sendMessage(CTRLMSG *msg,char *to)

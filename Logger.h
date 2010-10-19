@@ -6,6 +6,7 @@
 #define LOGGER_H_INCLUDED
 
 #include <fstream>
+#include <string>
 #define LOG_PATH "/home/master/Slide_debug.log"
 
 /**
@@ -23,11 +24,19 @@ class Logger
     * @return An instance of Logger.
     */
     static Logger *getInstance();
+
     /**
     * Writes the message into the logfile.
     * @param The Message to write out to the log file.
     */
     void log(char *msg);
+
+    /**
+    * Writes a C++ std::string into the logfile.
+    * @param The message to write out to the log file.
+    */
+    void log(std::string msg);
+
   private:
     Logger();
     ~Logger();

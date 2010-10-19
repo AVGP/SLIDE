@@ -39,6 +39,7 @@ class Slide
     * Shuts down the instance of Slide. Usually this is triggered from the internal event-loop
     * on behalf of a SHUTDOWNREQUEST-message received via the connection to the CommServer.
     * @return Returns true, if the shutdown was successfully completed.
+    * @todo Just a stub yet
     */
     bool shutDown();
 

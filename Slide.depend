@@ -1,14 +1,15 @@
 # depslib dependency file v1.0
-1287263231 source:/home/martin/Dev/C_C++/WM/Slide/Logger.cpp
+1287464194 source:/home/martin/Dev/C_C++/WM/Slide/Logger.cpp
 	"Logger.h"
 
-1287263043 /home/martin/Dev/C_C++/WM/Slide/Logger.h
+1287464164 /home/martin/Dev/C_C++/WM/Slide/Logger.h
 	<fstream>
+	<string>
 
-1287408418 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
+1287464358 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
 	"Slide.h"
 
-1287408435 /home/martin/Dev/C_C++/WM/Slide/Slide.h
+1287464370 /home/martin/Dev/C_C++/WM/Slide/Slide.h
 	"Global.h"
 	"Slideconfig.h"
 	"Slidewindowmanager.h"
@@ -35,7 +36,7 @@
 	"Slideconnection.h"
 	"Global.h"
 
-1287406424 /home/martin/Dev/C_C++/WM/Slide/Slideconnection.h
+1287464545 /home/martin/Dev/C_C++/WM/Slide/Slideconnection.h
 	<cstdio>
 	<signal.h>
 	<netdb.h>
@@ -49,7 +50,7 @@
 1287399478 source:/home/martin/Dev/C_C++/WM/Slide/Slidecommserver.cpp
 	"Slidecommserver.h"
 
-1287332531 source:/home/martin/Dev/C_C++/WM/Slide/Slideconfig.cpp
+1287464433 source:/home/martin/Dev/C_C++/WM/Slide/Slideconfig.cpp
 	"Slideconfig.h"
 
 1287263289 source:/home/martin/Dev/C_C++/WM/Slide/main.cpp
@@ -71,7 +72,7 @@
 	"./Slidewindow.h"
 	<vector>
 
-1287407819 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.cpp
+1287463947 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.cpp
 	"Slidewindowmanager.h"
 
 1287266771 source:/home/martin/Dev/C_C++/WM/Slide/Apps/Starter/main.cpp

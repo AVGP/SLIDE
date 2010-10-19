@@ -21,3 +21,14 @@ void Logger::log(char *msg)
     logFile.flush();
     logFile.close();
 }
+
+void Logger::log(std::string msg)
+{
+    std::ofstream logFile(LOG_PATH,std::ios_base::app);
+    if(logFile.is_open())
+    {
+        logFile << msg << "\n";
+    }
+    logFile.flush();
+    logFile.close();
+}

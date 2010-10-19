@@ -60,6 +60,7 @@ class SlideConnection
 
     /**
     * Returns the number of bytes currently readable from the socket.
+    * @todo Currently only a stub, returns 0 anyway.
     */
     unsigned int bytesReadable();
 
