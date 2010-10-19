@@ -14,7 +14,6 @@ SlideWindowManager::SlideWindowManager(bool debug)
         XSynchronize(disp,True);
     }
 
-
     XSelectInput(disp, DefaultRootWindow(disp), SubstructureNotifyMask | SubstructureRedirectMask | PropertyChangeMask);
     XGrabButton(disp,1,AnyModifier,DefaultRootWindow(disp),True,ButtonPressMask,GrabModeAsync,GrabModeAsync,None,None);
 }
@@ -37,6 +36,8 @@ bool SlideWindowManager::run()
                     Logger::getInstance()->log(msg);
                     createWindow(&event);
                     break;
+                case MotionNotify:
+
                 default:
                     sprintf(msg,"Event %i ocurred.",event.type);
                     Logger::getInstance()->log(msg);
@@ -76,7 +77,32 @@ void SlideWindowManager::focusWindow(XEvent *e)
 {}
 
 void SlideWindowManager::moveWindow(XEvent *e)
-{}
+{
+    char *wndName;
+    if(e->xmotion.window != None)
+    {
+        //Hier unbedingt (!!) den ClassHint benutzen!
+        XFetchName(disp,e->xmotion.window,&wndName);
+        if(strncmp("TWM__Decoration",wndName,15) == 0)
+        {
+            XWindowAttributes attr;
+            XGetWindowAttributes(disp,e->xmotion.window,&attr);
+            XGrabPointer(disp, e->xmotion.window, False, PointerMotionMask|ButtonReleaseMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime);
+            int start_x = e->xmotion.x_root;
+            int start_y = e->xmotion.y_root;
+            do
+            {
+                XNextEvent(disp,e);
+                int diff_x = e->xmotion.x_root - start_x;
+                int diff_y = e->xmotion.y_root - start_y;
+                XMoveWindow(disp,e->xmotion.window,attr.x+diff_x,attr.y+diff_y);
+            }
+            while(e->type == MotionNotify);
+            XUngrabPointer(disp, CurrentTime);
+        }
+    }
+
+}
 
 void SlideWindowManager::resizeWindow(XEvent *e)
 {}

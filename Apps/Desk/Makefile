@@ -10,5 +10,5 @@ default: $(OBJS)
 	$(CXX) -o $(BINNAME) $(LIBS) $(OBJS)
 main.o:
 	$(CXX) $(CXXFLAGS) -c main.cpp
-starter.o:
+desk.o:
 	$(CXX) $(CXXFLAGS) -c desk.cpp

@@ -6,14 +6,12 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
     char *t_name;
 
     XGetWindowAttributes(d,w,&attr);
-    Logger::getInstance()->log("INTO IT");
     XFetchName(d,w,&t_name);
-
+//Debug
     char msg[255];
     sprintf(msg,"Mapping Request for %s",t_name);
-
     Logger::getInstance()->log(msg);
-
+//
     this->wndWindow     = w;
     if(strncmp(t_name,"__SLIDE__",9) != 0)
     {
@@ -30,6 +28,7 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
         this->height        = attr.height+22;
 
         XSetStandardProperties(d,wndDecoration,t_name,t_name,None,NULL,0,NULL);
+//        XClassHint classHint;
         XReparentWindow(d,w,wndDecoration,0,20);
         XMapRaised(d,wndDecoration);
 

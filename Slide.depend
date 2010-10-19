@@ -5,7 +5,7 @@
 1287263043 /home/martin/Dev/C_C++/WM/Slide/Logger.h
 	<fstream>
 
-1287400850 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
+1287408418 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
 	"Slide.h"
 
 1287408435 /home/martin/Dev/C_C++/WM/Slide/Slide.h
@@ -58,7 +58,7 @@
 1287407331 source:/home/martin/Dev/C_C++/WM/Slide/Slideconnection.cpp
 	"Slideconnection.h"
 
-1287345439 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindow.cpp
+1287463494 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindow.cpp
 	"Slidewindow.h"
 
 1287345449 /home/martin/Dev/C_C++/WM/Slide/Slidewindow.h
