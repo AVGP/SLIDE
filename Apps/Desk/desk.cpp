@@ -1,14 +1,14 @@
 #include "desk.h"
 
-Desk::Desk(int width, int height,wxString bgFile) : wxFrame(NULL,wxID_ANY,wxT("__SLIDE__Desktop"),wxPoint(0,0),wxSize(width,height))
+Desk::Desk(int width, int height,wxString bgFile) : wxFrame(NULL,wxID_ANY,wxT("__SLIDE__Desktop"),wxPoint(0,40),wxSize(width,height-40))
 {
-    this->width = width;
+    this->width = width-40;
     this->height = height;
     bg.AddHandler(new wxXPMHandler());
     bg.AddHandler(new wxJPEGHandler());
     bg.AddHandler(new wxPNGHandler());
     bg.LoadFile(bgFile);
-    bg.Rescale(width,height);
+    bg.Rescale(width,height-40);
 }
 
 void Desk::OnPaint(wxPaintEvent& WXUNUSED(event))

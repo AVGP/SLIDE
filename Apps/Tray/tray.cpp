@@ -1,23 +1,17 @@
 #include "tray.h"
 
-Tray::Tray(int width, int height) : wxFrame(NULL,wxID_ANY,wxT("__SLIDE__Tray"),wxPoint(0,0),wxSize(width,height))
+Tray::Tray(int width, int height) : wxFrame(NULL,wxID_ANY,wxT("__SLIDE__Tray"),wxPoint(0,0),wxSize(width,40))
 {
     this->width = width;
-    this->height = height;
-    bg.AddHandler(new wxXPMHandler());
-    bg.AddHandler(new wxJPEGHandler());
-    bg.AddHandler(new wxPNGHandler());
-    bg.LoadFile(bgFile);
-    bg.Rescale(width,height);
+    this->startButton = new wxButton(this,wxID_ANY,wxT("Start"),wxPoint(0,0),wxSize(100,40),wxBU_EXACTFIT);
+    Connect(wxEVT_COMMAND_BUTTON_CLICKED,wxCommandEventHandler(Tray::OnClickStart));
 }
 
-void Tray::OnPaint(wxPaintEvent& WXUNUSED(event))
+void Tray::OnClickStart(wxCommandEvent& WXUNUSED(event))
 {
-    wxPaintDC dc(this);
-    wxBitmap bm(bg);
-    dc.DrawBitmap(bm,0,0,false);
+    if(fork() == 0)
+    {
+        execl("/usr/bin/SlideApps/Starter","Starter",(char *)0);
+    }
 }
 
-BEGIN_EVENT_TABLE(Tray, wxFrame)
-    EVT_PAINT(Tray::OnPaint)
-END_EVENT_TABLE()

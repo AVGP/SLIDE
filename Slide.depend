@@ -6,7 +6,7 @@
 	<fstream>
 	<string>
 
-1287464358 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
+1287587766 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
 	"Slide.h"
 
 1287464370 /home/martin/Dev/C_C++/WM/Slide/Slide.h
@@ -56,7 +56,7 @@
 1287263289 source:/home/martin/Dev/C_C++/WM/Slide/main.cpp
 	"Slide.h"
 
-1287407331 source:/home/martin/Dev/C_C++/WM/Slide/Slideconnection.cpp
+1287464477 source:/home/martin/Dev/C_C++/WM/Slide/Slideconnection.cpp
 	"Slideconnection.h"
 
 1287463494 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindow.cpp
@@ -72,7 +72,7 @@
 	"./Slidewindow.h"
 	<vector>
 
-1287463947 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.cpp
+1287464500 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.cpp
 	"Slidewindowmanager.h"
 
 1287266771 source:/home/martin/Dev/C_C++/WM/Slide/Apps/Starter/main.cpp

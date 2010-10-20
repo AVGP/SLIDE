@@ -7,10 +7,9 @@ class Tray : public wxFrame
 {
     public:
         Tray(int width, int height);
-        void OnPaint(wxPaintEvent& WXUNUSED(event));
+        void OnClickStart(wxCommandEvent& WXUNUSED(event));
     private:
-        wxImage bg;
-        DECLARE_EVENT_TABLE();
+        wxButton *startButton;
         int width,height;
 };
 #endif // Tray_H_INCLUDED

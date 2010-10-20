@@ -66,6 +66,12 @@ bool Slide::startUp(bool debug)
         execl((char *)config->getConfigValue((char *)"DesktopApp",&len),(char *)"SlideComponent",sw,sh,(char *)config->getConfigValue((char *)"DesktopWallpaper",&len),(char *)0);
     }
 
+    componentPIDs[2] = fork();
+    if(componentPIDs[2] == 0)
+    {
+        execl((char *)config->getConfigValue((char *)"TrayApp",&len),(char *)"SlideComponent",sw,sh,(char *)0);
+    }
+
     Logger::getInstance()->log((std::string)"STATUS: AWESOME STARTUP.");
 
     return true;
