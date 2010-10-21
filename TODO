@@ -1,0 +1,26 @@
+WindowManager
+- Allow Client-Apps to get a list of windows
+- Allow Client-Apps to get notified on new window creation
+- Allow Client-Apps to get notified on window destroy
+- Allow ALT+TAB Behaviour
+- Virtual Desks (aka workspaces)
+- Switch between virtual desks using CTRL+Left Arrow/Right Arrow
+- CTRL+TAB tiles all windows
+- Titlebar buttons + text
+- More awesome window deco
+- taking over teh world!
+
+Desk
+- Have icons
+- Allow creation of folders on the desk
+- Create interface for applets on the desk
+
+Tray
+- Have a systray (for small icons)
+- Have a quickstart-area
+
+Starter
+- Categories for apps
+- Text under icons
+- Search field
+

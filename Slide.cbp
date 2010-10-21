@@ -45,6 +45,7 @@
 		<Unit filename="Slideconnection.cpp" />
 		<Unit filename="Slideconnection.h" />
 		<Unit filename="Slidewindow.cpp" />
+		<Unit filename="Slidewindow.h" />
 		<Unit filename="Slidewindowmanager.cpp" />
 		<Unit filename="Slidewindowmanager.h" />
 		<Unit filename="main.cpp" />

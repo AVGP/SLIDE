@@ -14,7 +14,8 @@ SlideWindowManager::SlideWindowManager(bool debug)
         XSynchronize(disp,True);
     }
 
-    XSelectInput(disp, DefaultRootWindow(disp), SubstructureNotifyMask );
+    XSelectInput(disp, DefaultRootWindow(disp), SubstructureNotifyMask | KeyPressMask );
+    XGrabKey(disp,0x17,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+TAB
 //    XGrabButton(disp,1,AnyModifier,DefaultRootWindow(disp),True,ButtonPressMask,GrabModeAsync,GrabModeAsync,None,None);
 }
 
@@ -29,6 +30,14 @@ bool SlideWindowManager::run()
             char msg[255],*wnd_name;
             switch(event.type)
             {
+                case KeyPress:
+                    switch(event.xkey.keycode)
+                    {
+                        case 0x17: //TAB
+                            tileWindows();
+                            break;
+                    }
+                    break;
                 case ButtonRelease:
                     focusWindow(&event);
                     break;
@@ -81,9 +90,13 @@ void SlideWindowManager::closeWindow(XEvent *e)
 
 void SlideWindowManager::createWindow(XEvent *e)
 {
-
+    char *wndName;
+    XFetchName(disp,e->xmap.window,&wndName);
     SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop);
-    windows.push_back(w);
+    if(strncmp(t_name,"__SLIDE__",9) != 0)
+    {
+        windows.push_back(w);
+    }
 }
 
 void SlideWindowManager::focusWindow(XEvent *e)
@@ -98,7 +111,7 @@ void SlideWindowManager::moveWindow(XEvent *e)
     if(e->xmotion.window != None)
     {
         XFetchName(disp,e->xmotion.window,&wndName);
-        if(strncmp("SlideCmp",wndName,8) == 0)
+        if(strncmp("SlideDeco",wndName,9) == 0)
         {
             XWindowAttributes attr;
             XGetWindowAttributes(disp,e->xmotion.window,&attr);
@@ -116,6 +129,11 @@ void SlideWindowManager::moveWindow(XEvent *e)
             XUngrabButton(disp,1,AnyModifier,DefaultRootWindow(disp));
         }
     }
+
+}
+
+void SlideWindowManager::tileWindows()
+{
 
 }
 
