@@ -82,6 +82,8 @@ class SlideWindow
         * Remove "stickyness" from a window - i.e. make it appear only on its virtual desk.
         */
         void makeUnsticky();
+
+        Window getWindow();
     private:
         Display *disp;
         Window wndWindow;

@@ -101,3 +101,8 @@ void SlideWindow::setGroup(int groupID)
 
 void SlideWindow::show(bool maximized)
 {}
+
+Window SlideWindow::getWindow()
+{
+    return wndDecoration;
+}

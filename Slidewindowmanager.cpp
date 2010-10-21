@@ -49,6 +49,10 @@ bool SlideWindowManager::run()
                         {
                             closeWindow(&event);
                         }
+                        else if(strncmp(wnd_name,"SlideMaxi",9) == 0)
+                        {
+                            maximizeWindow(&event);
+                        }
                         else
                         {
                             focusWindow(&event);
@@ -150,6 +154,19 @@ void SlideWindowManager::moveWindow(XEvent *e)
         }
     }
 
+}
+
+void SlideWindowManager::maximizeWindow(XEvent *e)
+{
+    for(unsigned int i=0;i<windows.size();i++)
+    {
+        if(e->xbutton.window == windows[i]->getWindow())
+        {
+            windows[i]->move(0,40);
+            windows[i]->resize(screenWidth,screenHeight-40);
+            focusWindow(e);
+        }
+    }
 }
 
 void SlideWindowManager::tileWindows()

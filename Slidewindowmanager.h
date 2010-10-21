@@ -38,6 +38,7 @@ class SlideWindowManager
         void closeWindow(XEvent *e);
         void moveWindow(XEvent *e);
         void resizeWindow(XEvent *e);
+        void maximizeWindow(XEvent *e);
         void tileWindows();
 
         SlideConnection *ctrl;
