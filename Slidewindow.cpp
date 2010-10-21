@@ -27,7 +27,7 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
         this->width         = attr.width+2;
         this->height        = attr.height+22;
 
-        XSetStandardProperties(d,wndDecoration,"SlideCmp","SlideCmp",None,NULL,0,NULL);
+        XSetStandardProperties(d,wndDecoration,"SlideDeco","SlideDeco",None,NULL,0,NULL);
         XSelectInput(d,wndDecoration, ButtonPressMask | Button1MotionMask | ButtonReleaseMask);
         XSelectInput(d,w,ButtonReleaseMask);
 
@@ -56,10 +56,14 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
 }
 
 void SlideWindow::move(int newX, int newY)
-{}
+{
+    XMoveWindow(disp,wndDecoration,newX,newY);
+}
 
 void SlideWindow::resize(int w, int h)
-{}
+{
+    XResizeWindow(disp,wndDecoration,w,h);
+}
 
 void SlideWindow::putOnDesk(unsigned char newDesk)
 {}
