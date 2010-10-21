@@ -12,3 +12,7 @@ main.o:
 	$(CXX) $(CXXFLAGS) -c main.cpp
 tray.o:
 	$(CXX) $(CXXFLAGS) -c tray.cpp
+
+clean:
+	rm -f $(OBJS)
+

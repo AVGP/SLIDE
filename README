@@ -1,5 +1,5 @@
 Slide - Simple lightweight intuitive desktop environment
---------------------------------------------------------
+-----------------------------------------------------------------------------------
 
 The name already says it - this is a desktop environment.
 Currently its a VERY basic one. You're welcome to adapt it
@@ -7,7 +7,7 @@ to your needs or create apps for it.
 It uses wxWidgets as GUI-Toolkit and bases directly on X11
 
 If you want to try it already, you should do the following:
-* Compile wxWidgets 2.8 using the --with-X11 switch on configure.
+* Compile wxWidgets 2.8 using the --with-x11 switch on configure.
 * Create a /etc/Slide.conf (see the Slide.conf in the repo for
   example.
 * Create a ~/.slidestarter for the Starter-App (see the one in
@@ -15,3 +15,4 @@ If you want to try it already, you should do the following:
 * Put "Slide" in your ~/.xinitrc
 
 If you have any questions, just write me a message.
+

@@ -12,3 +12,7 @@ main.o:
 	$(CXX) $(CXXFLAGS) -c main.cpp
 desk.o:
 	$(CXX) $(CXXFLAGS) -c desk.cpp
+
+clean:
+	rm -f $(OBJS)
+
