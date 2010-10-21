@@ -83,7 +83,7 @@ class SlideWindow
         */
         void makeUnsticky();
 
-        Window getWindow();
+        Window getWindow(bool subwindow=false);
     private:
         Display *disp;
         Window wndWindow;

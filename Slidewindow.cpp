@@ -16,7 +16,7 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
     if(strncmp(t_name,"__SLIDE__",9) != 0)
     {
         this->wndDecoration = XCreateSimpleWindow(d,
-                                                DefaultRootWindow(d),
+                                                parent,
                                                 attr.x,
                                                 attr.y,
                                                 attr.width+2,
@@ -29,7 +29,7 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
 
         XSetStandardProperties(d,wndDecoration,"SlideDeco","SlideDeco",None,NULL,0,NULL);
         XSelectInput(d,wndDecoration, ButtonPressMask | Button1MotionMask | ButtonReleaseMask);
-        XSelectInput(d,w,ButtonReleaseMask);
+        XSelectInput(d,w, ButtonReleaseMask | SubstructureNotifyMask);
 
         wndClose = XCreateSimpleWindow(d,wndDecoration,attr.width-16,2,14,14,1,RGB(200,0,0),RGB(255,100,100));
         XSetStandardProperties(d,wndClose,"SlideClose","SlideClose",None,NULL,0,NULL);
@@ -102,7 +102,8 @@ void SlideWindow::setGroup(int groupID)
 void SlideWindow::show(bool maximized)
 {}
 
-Window SlideWindow::getWindow()
+Window SlideWindow::getWindow(bool subwindow)
 {
-    return wndDecoration;
+    if(wndDecoration != None && subwindow) return wndDecoration;
+    else return wndWindow;
 }

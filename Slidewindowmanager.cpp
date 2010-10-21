@@ -7,6 +7,7 @@ SlideWindowManager::SlideWindowManager(bool debug)
     screen       = DefaultScreenOfDisplay(disp);
     screenWidth  = WidthOfScreen(screen);
     screenHeight = HeightOfScreen(screen);
+    desktop      = DefaultRootWindow(disp);
 
 //Just as long as we're debugging!
     if(debug)
@@ -15,7 +16,8 @@ SlideWindowManager::SlideWindowManager(bool debug)
     }
 
     XSelectInput(disp, DefaultRootWindow(disp), SubstructureNotifyMask | KeyPressMask );
-    XGrabKey(disp,0x17,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+TAB
+    XGrabKey(disp,0x17,AnyModifier,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+TAB & ALT+TAB
+//    XGrabKey(disp,AnyKey,Mod1Mask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync);
 //    XGrabButton(disp,1,AnyModifier,DefaultRootWindow(disp),True,ButtonPressMask,GrabModeAsync,GrabModeAsync,None,None);
 }
 
@@ -34,7 +36,18 @@ bool SlideWindowManager::run()
                     switch(event.xkey.keycode)
                     {
                         case 0x17: //TAB
-                            tileWindows();
+                            if(event.xkey.state & ControlMask)
+                            {
+                                tileWindows();
+                            }
+                            else if(event.xkey.state & Mod1Mask)
+                            {
+                                XCirculateSubwindows(disp,desktop,RaiseLowest);
+                            }
+                            break;
+                        default:
+                            sprintf(msg,"Keycode: %i",event.xkey.keycode);
+                            Logger::getInstance()->log(msg);
                             break;
                     }
                     break;
@@ -64,19 +77,38 @@ bool SlideWindowManager::run()
                     }
                     break;
                 case MapNotify:
-
+                    //if(event.xmap.event != None) break;
                     Logger::getInstance()->log((std::string)"MapNotify");
                     XFetchName(disp,event.xmap.window,&wnd_name);
                     sprintf(msg,"Window-Title: %s",wnd_name);
                     Logger::getInstance()->log(msg);
 
-                    if(strncmp(wnd_name,"SlideDeco",9) != 0)
+                    if(strncmp(wnd_name,"Slide",5) != 0)
                     {
                         createWindow(&event);
                     }
                     break;
                 case DestroyNotify:
-                    if(event.xdestroywindow.event != None) XDestroyWindow(disp,event.xdestroywindow.event);
+                    Logger::getInstance()->log("Destroy me");
+
+//                    XFetchName(disp,event.xdestroywindow.event,&wnd_name);
+                    sprintf(msg,"[Destroy] Window-ID: %i %i",event.xdestroywindow.window,event.xdestroywindow.event);
+                    Logger::getInstance()->log(msg);
+
+/*                    if(event.xdestroywindow.window != None)
+                    {
+                        if(strncmp(wnd_name,"Slide",5) != 0)
+                        {
+                            Window root,parent,**child;
+                            XQueryTree(disp,event.xdestroywindow.window,&root,&parent,child,0);
+                            XDestroyWindow(disp,parent);
+                        }
+                        XDestroyWindow(disp,event.xdestroywindow.window);
+                    }
+                    else //the application already destroyed the window >:(
+                    {*/
+                    closeWindow(&event);
+//                    }
                     break;
                 case MotionNotify:
                     Logger::getInstance()->log("Motion!");
@@ -109,17 +141,53 @@ bool SlideWindowManager::run()
 
 void SlideWindowManager::closeWindow(XEvent *e)
 {
-    XDestroyWindow(disp,e->xbutton.window);
+    if(e->type == ButtonRelease || e->type == ButtonPress)
+    {
+        std::vector<SlideWindow *>::iterator iter = windows.begin();
+        while(iter != windows.end())
+        {
+            if((*iter)->getWindow(true) == e->xbutton.window)
+            {
+                (*iter)->close();
+                windows.erase(iter);
+                break;
+            }
+            iter++;
+        }
+    }
+    else
+    {
+                        std::vector<SlideWindow *>::iterator iter = windows.begin();
+                        while(iter != windows.end())
+                        {
+                            if((*iter)->getWindow() == e->xdestroywindow.event)
+                            {
+                                (*iter)->close();
+                                windows.erase(iter);
+                                break;
+                            }
+                            iter++;
+                        }
+    }
 }
 
 void SlideWindowManager::createWindow(XEvent *e)
 {
     char *wndName;
     XFetchName(disp,e->xmap.window,&wndName);
-    SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop);
     if(strncmp(wndName,"__SLIDE__",9) != 0)
     {
+        SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop);
         windows.push_back(w);
+    }
+    else if(strncmp(wndName,"__SLIDE__Desktop",16) == 0)
+    {
+        SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop);
+        desktop = w->getWindow();
+    }
+    else
+    {
+//        SlideWindow *w = new SlideWindow(disp,e->xmap.window,DefaultRootWindow(disp));
     }
 }
 
@@ -162,7 +230,7 @@ void SlideWindowManager::maximizeWindow(XEvent *e)
     {
         if(e->xbutton.window == windows[i]->getWindow())
         {
-            windows[i]->move(0,40);
+            windows[i]->move(0,0);
             windows[i]->resize(screenWidth,screenHeight-40);
             focusWindow(e);
         }
@@ -171,7 +239,7 @@ void SlideWindowManager::maximizeWindow(XEvent *e)
 
 void SlideWindowManager::tileWindows()
 {
-    int x=0,y=40;
+    int x=0,y=0;
     int widthPerWindow  = screenWidth/(windows.size() < 4 ? windows.size() : 4);
     int screenpart = ceil(windows.size()/4);
     int heightPerWindow = (screenHeight-40)/(screenpart == 0 ? 1 : screenpart);
