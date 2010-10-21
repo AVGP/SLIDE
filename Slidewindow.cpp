@@ -31,8 +31,18 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
         XSelectInput(d,wndDecoration, ButtonPressMask | Button1MotionMask | ButtonReleaseMask);
         XSelectInput(d,w,ButtonReleaseMask);
 
+        wndClose = XCreateSimpleWindow(d,wndDecoration,attr.width-16,2,14,14,1,RGB(200,0,0),RGB(255,100,100));
+        XSetStandardProperties(d,wndClose,"SlideClose","SlideClose",None,NULL,0,NULL);
+        XSelectInput(d,wndClose,ButtonReleaseMask);
+
+        wndMaximize = XCreateSimpleWindow(d,wndDecoration,attr.width-36,2,14,14,1,RGB(0,200,0),RGB(100,255,100));
+        XSetStandardProperties(d,wndMaximize,"SlideMaxi","SlideMaxi",None,NULL,0,NULL);
+        XSelectInput(d,wndMaximize,ButtonReleaseMask);
+
         XReparentWindow(d,w,wndDecoration,0,20);
         XMapRaised(d,wndDecoration);
+        XMapRaised(d,wndClose);
+        XMapRaised(d,wndMaximize);
         XSetInputFocus(d,w,RevertToNone,CurrentTime);
 
     }
@@ -63,6 +73,10 @@ void SlideWindow::move(int newX, int newY)
 void SlideWindow::resize(int w, int h)
 {
     XResizeWindow(disp,wndDecoration,w,h);
+    XResizeWindow(disp,wndWindow,w,h-20);
+
+    XMoveWindow(disp,wndClose,w-18,2);
+    XMoveWindow(disp,wndMaximize,w-40,2);
 }
 
 void SlideWindow::putOnDesk(unsigned char newDesk)

@@ -9,6 +9,7 @@
 #include "Slideconnection.h"
 #include "./Slidewindow.h"
 #include <vector>
+#include <cmath>
 
 #define RGB(r,g,b) (r << 16 | g << 8 | b)
 

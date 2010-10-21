@@ -39,7 +39,25 @@ bool SlideWindowManager::run()
                     }
                     break;
                 case ButtonRelease:
-                    focusWindow(&event);
+                    if(event.xbutton.subwindow != None)
+                    {
+                        XFetchName(disp,event.xbutton.subwindow,&wnd_name);
+                        sprintf(msg,"[Press] Window-Title: %s",wnd_name);
+                        Logger::getInstance()->log(msg);
+
+                        if(strncmp(wnd_name,"SlideClose",10) == 0)
+                        {
+                            closeWindow(&event);
+                        }
+                        else
+                        {
+                            focusWindow(&event);
+                        }
+                    }
+                    else
+                    {
+                        focusWindow(&event);
+                    }
                     break;
                 case MapNotify:
 
@@ -48,7 +66,7 @@ bool SlideWindowManager::run()
                     sprintf(msg,"Window-Title: %s",wnd_name);
                     Logger::getInstance()->log(msg);
 
-                    if(strncmp(wnd_name,"SlideCmp",8) != 0)
+                    if(strncmp(wnd_name,"SlideDeco",9) != 0)
                     {
                         createWindow(&event);
                     }
@@ -86,14 +104,16 @@ bool SlideWindowManager::run()
 }
 
 void SlideWindowManager::closeWindow(XEvent *e)
-{}
+{
+    XDestroyWindow(disp,e->xbutton.window);
+}
 
 void SlideWindowManager::createWindow(XEvent *e)
 {
     char *wndName;
     XFetchName(disp,e->xmap.window,&wndName);
     SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop);
-    if(strncmp(t_name,"__SLIDE__",9) != 0)
+    if(strncmp(wndName,"__SLIDE__",9) != 0)
     {
         windows.push_back(w);
     }
@@ -134,7 +154,21 @@ void SlideWindowManager::moveWindow(XEvent *e)
 
 void SlideWindowManager::tileWindows()
 {
-
+    int x=0,y=40;
+    int widthPerWindow  = screenWidth/(windows.size() < 4 ? windows.size() : 4);
+    int screenpart = ceil(windows.size()/4);
+    int heightPerWindow = (screenHeight-40)/(screenpart == 0 ? 1 : screenpart);
+    for(unsigned int i=0;i<windows.size();i++)
+    {
+        windows[i]->resize(widthPerWindow,heightPerWindow);
+        windows[i]->move(x,y);
+        x += widthPerWindow;
+        if(x >= screenWidth)
+        {
+            x  = 0;
+            y += heightPerWindow;
+        }
+    }
 }
 
 void SlideWindowManager::resizeWindow(XEvent *e)

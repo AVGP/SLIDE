@@ -86,6 +86,9 @@ class SlideWindow
         Display *disp;
         Window wndWindow;
         Window wndDecoration;
+        Window wndClose;
+        Window wndMaximize;
+        Window wndMinimize;
         unsigned short groupID;
         int x,y,width,height;
         bool sticky; //Shows up on all desks
