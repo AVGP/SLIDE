@@ -14,8 +14,8 @@ SlideWindowManager::SlideWindowManager(bool debug)
         XSynchronize(disp,True);
     }
 
-    XSelectInput(disp, DefaultRootWindow(disp), SubstructureNotifyMask | SubstructureRedirectMask | PropertyChangeMask);
-    XGrabButton(disp,1,AnyModifier,DefaultRootWindow(disp),True,ButtonPressMask,GrabModeAsync,GrabModeAsync,None,None);
+    XSelectInput(disp, DefaultRootWindow(disp), SubstructureNotifyMask );
+//    XGrabButton(disp,1,AnyModifier,DefaultRootWindow(disp),True,ButtonPressMask,GrabModeAsync,GrabModeAsync,None,None);
 }
 
 bool SlideWindowManager::run()
@@ -26,18 +26,31 @@ bool SlideWindowManager::run()
         if(XPending(disp) > 0)
         {
             XNextEvent(disp,&event);
-            char msg[255],*dbg_name;
+            char msg[255],*wnd_name;
             switch(event.type)
             {
-                case MapRequest:
+                case ButtonRelease:
+                    focusWindow(&event);
+                    break;
+                case MapNotify:
+
                     Logger::getInstance()->log((std::string)"MapNotify");
-                    XFetchName(disp,event.xmaprequest.window,&dbg_name);
-                    sprintf(msg,"Window-Title: %s",dbg_name);
+                    XFetchName(disp,event.xmap.window,&wnd_name);
+                    sprintf(msg,"Window-Title: %s",wnd_name);
                     Logger::getInstance()->log(msg);
-                    createWindow(&event);
+
+                    if(strncmp(wnd_name,"SlideCmp",8) != 0)
+                    {
+                        createWindow(&event);
+                    }
+                    break;
+                case DestroyNotify:
+                    if(event.xdestroywindow.event != None) XDestroyWindow(disp,event.xdestroywindow.event);
                     break;
                 case MotionNotify:
-
+                    Logger::getInstance()->log("Motion!");
+                    moveWindow(&event);
+                    break;
                 default:
                     sprintf(msg,"Event %i ocurred.",event.type);
                     Logger::getInstance()->log(msg);
@@ -74,20 +87,22 @@ void SlideWindowManager::createWindow(XEvent *e)
 }
 
 void SlideWindowManager::focusWindow(XEvent *e)
-{}
+{
+    XMapRaised(disp,e->xbutton.window);
+    XSetInputFocus(disp,e->xbutton.window,RevertToNone,CurrentTime);
+}
 
 void SlideWindowManager::moveWindow(XEvent *e)
 {
     char *wndName;
     if(e->xmotion.window != None)
     {
-        //Hier unbedingt (!!) den ClassHint benutzen!
         XFetchName(disp,e->xmotion.window,&wndName);
-        if(strncmp("TWM__Decoration",wndName,15) == 0)
+        if(strncmp("SlideCmp",wndName,8) == 0)
         {
             XWindowAttributes attr;
             XGetWindowAttributes(disp,e->xmotion.window,&attr);
-            XGrabPointer(disp, e->xmotion.window, False, PointerMotionMask|ButtonReleaseMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime);
+            XGrabButton(disp,1,AnyModifier,DefaultRootWindow(disp),False,ButtonPressMask,GrabModeSync,GrabModeAsync,None,None);
             int start_x = e->xmotion.x_root;
             int start_y = e->xmotion.y_root;
             do
@@ -98,7 +113,7 @@ void SlideWindowManager::moveWindow(XEvent *e)
                 XMoveWindow(disp,e->xmotion.window,attr.x+diff_x,attr.y+diff_y);
             }
             while(e->type == MotionNotify);
-            XUngrabPointer(disp, CurrentTime);
+            XUngrabButton(disp,1,AnyModifier,DefaultRootWindow(disp));
         }
     }
 

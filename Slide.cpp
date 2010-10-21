@@ -30,14 +30,14 @@ bool Slide::startUp(bool debug)
     componentPIDs[0] = fork();
     if(componentPIDs[0] == 0)
     {
-        SlideWindowManager *wm = new SlideWindowManager(true);
+        SlideWindowManager *wm = new SlideWindowManager(debug);
         if(!wm->run() && debug)
         {
             Logger::getInstance()->log((std::string)"FAULT: Windowmanager failed!");
             exit(EXIT_FAILURE);
         }
-    }
 
+    }
     //Setup the local socket:
     ctrlConnection = new SlideConnection((char *)"/tmp/Slide_core.sock",COMP_CORE);
 

@@ -27,10 +27,13 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
         this->width         = attr.width+2;
         this->height        = attr.height+22;
 
-        XSetStandardProperties(d,wndDecoration,t_name,t_name,None,NULL,0,NULL);
-//        XClassHint classHint;
+        XSetStandardProperties(d,wndDecoration,"SlideCmp","SlideCmp",None,NULL,0,NULL);
+        XSelectInput(d,wndDecoration, ButtonPressMask | Button1MotionMask | ButtonReleaseMask);
+        XSelectInput(d,w,ButtonReleaseMask);
+
         XReparentWindow(d,w,wndDecoration,0,20);
         XMapRaised(d,wndDecoration);
+        XSetInputFocus(d,w,RevertToNone,CurrentTime);
 
     }
     else
@@ -38,6 +41,7 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
         this->wndDecoration = None;
         this->width         = attr.width;
         this->height        = attr.height;
+        XLowerWindow(d,w);
     }
 
     this->groupID       = group;
@@ -61,7 +65,9 @@ void SlideWindow::putOnDesk(unsigned char newDesk)
 {}
 
 void SlideWindow::close()
-{}
+{
+    XDestroyWindow(disp,wndDecoration);
+}
 
 void SlideWindow::hide()
 {}
