@@ -46,7 +46,7 @@ class SlideWindow
         * @param The new x-coordinate
         * @param The new y-coordinate
         */
-        void move(int newX, int newY);
+        void move(int newX, int newY,bool updateGeometry = false);
 
         /**
         * Puts the window onto the specified virtual desk
@@ -65,7 +65,7 @@ class SlideWindow
         * @param New Width
         * @param New Height
         */
-        void resize(int w, int h);
+        void resize(int w, int h,bool updateGeometry = false);
 
         /**
         * Add the window to the group with the given ID

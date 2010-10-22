@@ -217,6 +217,15 @@ void SlideWindowManager::moveWindow(XEvent *e)
             XGrabButton(disp,1,AnyModifier,DefaultRootWindow(disp),False,ButtonPressMask,GrabModeSync,GrabModeAsync,None,None);
             int start_x = e->xmotion.x_root;
             int start_y = e->xmotion.y_root;
+            SlideWindow *w;
+            for(unsigned int i=0;i<windows.size();i++)
+            {
+                if(e->xmotion.window == windows[i]->getWindow(true))
+                {
+                    w = windows[i];
+                    break;
+                }
+            }
             do
             {
                 XNextEvent(disp,e);
@@ -224,7 +233,8 @@ void SlideWindowManager::moveWindow(XEvent *e)
                 {
                     int diff_x = e->xmotion.x_root - start_x;
                     int diff_y = e->xmotion.y_root - start_y;
-                    XMoveWindow(disp,e->xmotion.window,attr.x+diff_x,attr.y+diff_y);
+                    w->move(attr.x+diff_x,attr.y+diff_y,true);
+                    //XMoveWindow(disp,e->xmotion.window,attr.x+diff_x,attr.y+diff_y);
                 }
             }
             while(e->type == MotionNotify);
@@ -286,7 +296,15 @@ void SlideWindowManager::untileWindows()
 {
     for(unsigned int i=0;i<windows.size();i++)
     {
-        if(windows[i]->getDesk() == currentWorkspace) windows[i]->restoreGeometry();
+        if(windows[i]->getDesk() == currentWorkspace)
+        {
+            windows[i]->restoreGeometry();
+            if(windows[i]->state & SlideWindow::STATE_MAXIMIZED)
+            {
+                windows[i]->move(0,0);
+                windows[i]->resize(screenWidth,screenHeight-40);
+            }
+        }
     }
 }
 

@@ -69,10 +69,13 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, unsigned char desk
     recentGeometry.height = height;
 }
 
-void SlideWindow::move(int newX, int newY)
+void SlideWindow::move(int newX, int newY, bool updateGeometry)
 {
-    recentGeometry.x = x;
-    recentGeometry.y = y;
+    if(updateGeometry)
+    {
+        recentGeometry.x = x;
+        recentGeometry.y = y;
+    }
 
     x = newX;
     y = newY;
@@ -80,10 +83,13 @@ void SlideWindow::move(int newX, int newY)
     XMoveWindow(disp,wndDecoration,newX,newY);
 }
 
-void SlideWindow::resize(int w, int h)
+void SlideWindow::resize(int w, int h, bool updateGeometry)
 {
-    recentGeometry.width  = width;
-    recentGeometry.height = height;
+    if(updateGeometry)
+    {
+        recentGeometry.width  = width;
+        recentGeometry.height = height;
+    }
 
     width  = w;
     height = h;
