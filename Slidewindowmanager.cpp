@@ -89,29 +89,9 @@ bool SlideWindowManager::run()
                     }
                     break;
                 case DestroyNotify:
-                    Logger::getInstance()->log("Destroy me");
-
-//                    XFetchName(disp,event.xdestroywindow.event,&wnd_name);
-                    sprintf(msg,"[Destroy] Window-ID: %i %i",event.xdestroywindow.window,event.xdestroywindow.event);
-                    Logger::getInstance()->log(msg);
-
-/*                    if(event.xdestroywindow.window != None)
-                    {
-                        if(strncmp(wnd_name,"Slide",5) != 0)
-                        {
-                            Window root,parent,**child;
-                            XQueryTree(disp,event.xdestroywindow.window,&root,&parent,child,0);
-                            XDestroyWindow(disp,parent);
-                        }
-                        XDestroyWindow(disp,event.xdestroywindow.window);
-                    }
-                    else //the application already destroyed the window >:(
-                    {*/
                     closeWindow(&event);
-//                    }
                     break;
                 case MotionNotify:
-                    Logger::getInstance()->log("Motion!");
                     moveWindow(&event);
                     break;
                 default:
@@ -157,17 +137,17 @@ void SlideWindowManager::closeWindow(XEvent *e)
     }
     else
     {
-                        std::vector<SlideWindow *>::iterator iter = windows.begin();
-                        while(iter != windows.end())
-                        {
-                            if((*iter)->getWindow() == e->xdestroywindow.event)
-                            {
-                                (*iter)->close();
-                                windows.erase(iter);
-                                break;
-                            }
-                            iter++;
-                        }
+        std::vector<SlideWindow *>::iterator iter = windows.begin();
+        while(iter != windows.end())
+        {
+            if((*iter)->getWindow() == e->xdestroywindow.event)
+            {
+                (*iter)->close();
+                windows.erase(iter);
+                break;
+            }
+            iter++;
+        }
     }
 }
 
@@ -239,7 +219,7 @@ void SlideWindowManager::maximizeWindow(XEvent *e)
 
 void SlideWindowManager::tileWindows()
 {
-    int x=0,y=0;
+    unsigned int x=0,y=0;
     int widthPerWindow  = screenWidth/(windows.size() < 4 ? windows.size() : 4);
     int screenpart = ceil(windows.size()/4);
     int heightPerWindow = (screenHeight-40)/(screenpart == 0 ? 1 : screenpart);
