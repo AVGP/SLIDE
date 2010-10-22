@@ -9,6 +9,7 @@
 #include "Slideconnection.h"
 #include "./Slidewindow.h"
 #include <vector>
+#include <cmath>
 
 #define RGB(r,g,b) (r << 16 | g << 8 | b)
 
@@ -37,14 +38,18 @@ class SlideWindowManager
         void closeWindow(XEvent *e);
         void moveWindow(XEvent *e);
         void resizeWindow(XEvent *e);
+        void maximizeWindow(XEvent *e);
         void tileWindows();
+        void untileWindows();
+        void drawDeco(XEvent *e);
 
         SlideConnection *ctrl;
         std::vector<SlideWindow *> windows;
         Display *disp;
         Screen *screen;
-        Window desktop;
+        Window *desktop;
         unsigned int screenWidth,screenHeight;
+        unsigned char workspaces,numWorkspaces,currentWorkspace;
 };
 
 #endif // SlideWINDOWMANAGER_H_INCLUDED
