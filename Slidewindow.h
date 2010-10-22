@@ -11,6 +11,14 @@
 
 #define RGB(r,g,b) (r << 16 | g << 8 | b)
 
+typedef struct
+{
+    int x;
+    int y;
+    int width;
+    int height;
+} SLIDEWINDOW_GEOMETRY;
+
 /**
 * @class SlideWindow
 * This class handles the concept of a window in the WindowManager-Component
@@ -28,7 +36,7 @@ class SlideWindow
         * @param (Optional) If the window should be sticky (i.e. present on all virtual desks)
         * @param (Optional) Which virtual desk the window should be created. Defaults to the current one.
         */
-        SlideWindow(Display *d,Window w,Window parent, int group = 0, bool sticky = false, unsigned char desk = 0);
+        SlideWindow(Display *d,Window w,Window parent, unsigned char desk = 0, int group = 0, bool sticky = false);
 
         /**
         * Moves the window to the given new coordinates
@@ -84,11 +92,17 @@ class SlideWindow
         void makeUnsticky();
 
         /**
+        * Moves and resizes the window according to the recent geometry stored for it.
+        */
+        void restoreGeometry();
+
+        /**
         * Draws the window decoration on exposure
         */
         void drawDecoration(bool focus);
 
         Window getWindow(bool subwindow=false);
+        unsigned char getDesk();
     private:
         Display *disp;
         Window wndWindow;
@@ -98,6 +112,7 @@ class SlideWindow
         Window wndMinimize;
         unsigned short groupID;
         int x,y,width,height;
+        SLIDEWINDOW_GEOMETRY recentGeometry;
         bool sticky; //Shows up on all desks
         unsigned char desk; //Which desk this window is on?
 };

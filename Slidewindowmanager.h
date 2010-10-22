@@ -40,6 +40,7 @@ class SlideWindowManager
         void resizeWindow(XEvent *e);
         void maximizeWindow(XEvent *e);
         void tileWindows();
+        void untileWindows();
         void drawDeco(XEvent *e);
 
         SlideConnection *ctrl;

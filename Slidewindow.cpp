@@ -1,6 +1,6 @@
 #include "Slidewindow.h"
 
-SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool sticky, unsigned char desk)
+SlideWindow::SlideWindow(Display *d, Window w, Window parent, unsigned char desk, int group, bool sticky)
 {
     XWindowAttributes attr;
     char *t_name;
@@ -55,15 +55,32 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
     this->disp          = d;
     this->x             = attr.x;
     this->y             = attr.y;
+
+    recentGeometry.x      = x;
+    recentGeometry.y      = y;
+    recentGeometry.width  = width;
+    recentGeometry.height = height;
 }
 
 void SlideWindow::move(int newX, int newY)
 {
+    recentGeometry.x = x;
+    recentGeometry.y = y;
+
+    x = newX;
+    y = newY;
+
     XMoveWindow(disp,wndDecoration,newX,newY);
 }
 
 void SlideWindow::resize(int w, int h)
 {
+    recentGeometry.width  = width;
+    recentGeometry.height = height;
+
+    width  = w;
+    height = h;
+
     XResizeWindow(disp,wndDecoration,w,h);
     XResizeWindow(disp,wndWindow,w,h-20);
 
@@ -125,4 +142,19 @@ Window SlideWindow::getWindow(bool subwindow)
 {
     if(wndDecoration != None && subwindow) return wndDecoration;
     else return wndWindow;
+}
+
+unsigned char SlideWindow::getDesk()
+{
+    return desk;
+}
+
+void SlideWindow::restoreGeometry()
+{
+    x       = recentGeometry.x;
+    y       = recentGeometry.y;
+    width   = recentGeometry.width;
+    height  = recentGeometry.height;
+    move(x,y);
+    resize(width,height);
 }
