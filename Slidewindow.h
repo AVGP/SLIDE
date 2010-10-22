@@ -83,6 +83,11 @@ class SlideWindow
         */
         void makeUnsticky();
 
+        /**
+        * Draws the window decoration on exposure
+        */
+        void drawDecoration(bool focus);
+
         Window getWindow(bool subwindow=false);
     private:
         Display *disp;

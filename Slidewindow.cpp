@@ -28,7 +28,7 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
         this->height        = attr.height+22;
 
         XSetStandardProperties(d,wndDecoration,"SlideDeco","SlideDeco",None,NULL,0,NULL);
-        XSelectInput(d,wndDecoration, ButtonPressMask | Button1MotionMask | ButtonReleaseMask);
+        XSelectInput(d,wndDecoration, ExposureMask | ButtonPressMask | Button1MotionMask | ButtonReleaseMask);
         XSelectInput(d,w, ButtonReleaseMask | SubstructureNotifyMask);
 
         wndClose = XCreateSimpleWindow(d,wndDecoration,attr.width-16,2,14,14,1,RGB(200,0,0),RGB(255,100,100));
@@ -44,7 +44,6 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
         XMapRaised(d,wndClose);
         XMapRaised(d,wndMaximize);
         XSetInputFocus(d,w,RevertToNone,CurrentTime);
-
     }
     else
     {
@@ -101,6 +100,33 @@ void SlideWindow::setGroup(int groupID)
 
 void SlideWindow::show(bool maximized)
 {}
+
+void SlideWindow::drawDecoration(bool focus)
+{
+
+    GC gc = XCreateGC(disp,wndDecoration,0,0);
+    int y=0;
+    int baseColor;
+    if(focus) baseColor = 205;
+    else baseColor = 105;
+
+    for(y=0;y<20;y++)
+    {
+        XSetForeground(disp,gc,RGB((baseColor+y*2),(baseColor+y*2),(baseColor+y*2)));
+        XDrawLine(disp,wndDecoration,gc,0,y,width,y);
+    }
+
+    XTextProperty wnd_name;
+    XGetWMIconName(disp,wndWindow,&wnd_name);
+    char **wnd_name_str;
+    int n_strs = 0;
+    XTextPropertyToStringList(&wnd_name,&wnd_name_str,&n_strs);
+    XSetForeground(disp,gc,RGB(80,80,160));
+    XDrawString(disp,wndDecoration,gc,5,15,wnd_name_str[0],strlen(wnd_name_str[0]));
+
+    XFree(gc);
+    XFreeStringList(wnd_name_str);
+}
 
 Window SlideWindow::getWindow(bool subwindow)
 {

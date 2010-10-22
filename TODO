@@ -6,8 +6,8 @@ WindowManager
 - Virtual Desks (aka workspaces)
 - Switch between virtual desks using CTRL+Left Arrow/Right Arrow
 + CTRL+TAB tiles all windows
-/ Titlebar buttons + text
-- More awesome window deco
++ Titlebar buttons + text
++ More awesome window deco
 - taking over teh world!
 - Window states (Maximized, Shown, Hidden, etc.)
 - Adapting states to the STRG+TAB / ALT+TAB behaviour

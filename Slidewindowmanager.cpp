@@ -15,7 +15,7 @@ SlideWindowManager::SlideWindowManager(bool debug)
         XSynchronize(disp,True);
     }
 
-    XSelectInput(disp, DefaultRootWindow(disp), SubstructureNotifyMask | KeyPressMask );
+    XSelectInput(disp, DefaultRootWindow(disp), SubstructureNotifyMask | ExposureMask | KeyPressMask );
     XGrabKey(disp,0x17,AnyModifier,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+TAB & ALT+TAB
 //    XGrabKey(disp,AnyKey,Mod1Mask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync);
 //    XGrabButton(disp,1,AnyModifier,DefaultRootWindow(disp),True,ButtonPressMask,GrabModeAsync,GrabModeAsync,None,None);
@@ -93,6 +93,17 @@ bool SlideWindowManager::run()
                     break;
                 case MotionNotify:
                     moveWindow(&event);
+                    break;
+                case Expose:
+                    Logger::getInstance()->log("Expose");
+                    for(unsigned int i=0;i<windows.size();i++)
+                    {
+                        if(event.xexpose.window == windows[i]->getWindow(true))
+                        {
+                            windows[i]->drawDecoration(true);
+                            break;
+                        }
+                    }
                     break;
                 default:
                     sprintf(msg,"Event %i ocurred.",event.type);
@@ -193,9 +204,12 @@ void SlideWindowManager::moveWindow(XEvent *e)
             do
             {
                 XNextEvent(disp,e);
-                int diff_x = e->xmotion.x_root - start_x;
-                int diff_y = e->xmotion.y_root - start_y;
-                XMoveWindow(disp,e->xmotion.window,attr.x+diff_x,attr.y+diff_y);
+                if(e->type == MotionNotify)
+                {
+                    int diff_x = e->xmotion.x_root - start_x;
+                    int diff_y = e->xmotion.y_root - start_y;
+                    XMoveWindow(disp,e->xmotion.window,attr.x+diff_x,attr.y+diff_y);
+                }
             }
             while(e->type == MotionNotify);
             XUngrabButton(disp,1,AnyModifier,DefaultRootWindow(disp));
@@ -238,3 +252,27 @@ void SlideWindowManager::tileWindows()
 
 void SlideWindowManager::resizeWindow(XEvent *e)
 {}
+
+void SlideWindowManager::drawDeco(XEvent *e)
+{
+    GC gc = XCreateGC(disp,e->xexpose.window,0,0);
+    int y=0;
+    int baseColor = 235;
+
+    for(y=0;y<20;y++)
+    {
+        XSetForeground(disp,gc,RGB((baseColor+y),(baseColor+y),(baseColor+y)));
+        XDrawLine(disp,e->xexpose.window,gc,0,y,200,y);
+    }
+
+    XTextProperty wnd_name;
+    XGetWMIconName(disp,e->xexpose.window,&wnd_name);
+    char **wnd_name_str;
+    int n_strs = 0;
+    XTextPropertyToStringList(&wnd_name,&wnd_name_str,&n_strs);
+    XSetForeground(disp,gc,RGB(80,80,200));
+    XDrawString(disp,e->xexpose.window,gc,5,10,wnd_name_str[0],strlen(wnd_name_str[0]));
+
+    XFree(gc);
+    XFreeStringList(wnd_name_str);
+}
