@@ -4,6 +4,7 @@ WindowManager
 - Allow Client-Apps to get notified on window destroy
 + Allow ALT+TAB Behaviour
 + Virtual Desks (aka workspaces)
+- Why the fuck I cannot create >2 Workspaces?!
 + Switch between virtual desks using CTRL+Left Arrow/Right Arrow
 + CTRL+TAB tiles all windows
 + Titlebar buttons + text

@@ -27,7 +27,7 @@ bool Slide::startUp(bool debug)
     unsigned int len;
 
     int numDesks = atoi((char *)config->getConfigValue((char *)"VirtualDesks",&len));
-    componentPIDs = (pid_t*)malloc((3+numDesks)*sizeof(pid_t));
+//    componentPIDs = (pid_t*)malloc((4*sizeof(pid_t)));//2+numDesks)*sizeof(pid_t));
     char dbg[255];
     sprintf(dbg,"# workspaces: %i",numDesks);
     Logger::getInstance()->log(dbg);
@@ -67,8 +67,8 @@ bool Slide::startUp(bool debug)
     {
         sprintf(dbg,"Starting Desk #%i",i);
         Logger::getInstance()->log(dbg);
-        componentPIDs[2+i] = fork();
-        if(componentPIDs[2+i] == 0)
+//        componentPIDs[2+i] = fork();
+        if(fork() == 0)//componentPIDs[2+i] == 0)
         {
             execl((char *)config->getConfigValue((char *)"DesktopApp",&len),(char *)"SlideComponent",sw,sh,(char *)config->getConfigValue((char *)"DesktopWallpaper",&len),(char *)0);
         }
@@ -79,7 +79,6 @@ bool Slide::startUp(bool debug)
     {
         execl((char *)config->getConfigValue((char *)"TrayApp",&len),(char *)"SlideComponent",sw,sh,(char *)0);
     }
-
 
     Logger::getInstance()->log((std::string)"STATUS: AWESOME STARTUP.");
 
