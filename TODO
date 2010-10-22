@@ -3,8 +3,8 @@ WindowManager
 - Allow Client-Apps to get notified on new window creation
 - Allow Client-Apps to get notified on window destroy
 + Allow ALT+TAB Behaviour
-- Virtual Desks (aka workspaces)
-- Switch between virtual desks using CTRL+Left Arrow/Right Arrow
++ Virtual Desks (aka workspaces)
++ Switch between virtual desks using CTRL+Left Arrow/Right Arrow
 + CTRL+TAB tiles all windows
 + Titlebar buttons + text
 + More awesome window deco

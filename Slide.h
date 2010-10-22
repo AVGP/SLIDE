@@ -54,7 +54,7 @@ class Slide
     static Slide *instance;
     SlideConnection *ctrlConnection;
     SlideConfig *config;
-    pid_t componentPIDs[3]; // Indices: 0 = WM, 1 = Desktop, 2 = Tray
+    pid_t *componentPIDs; // Indices: 0 = WM, 1 = Tray, 2...n = Desktops
 };
 
 #endif

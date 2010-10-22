@@ -3,11 +3,12 @@
 SlideWindowManager::SlideWindowManager(bool debug)
 {
     ctrl = new SlideConnection((char *)"/tmp/Slide_wm.sock",COMP_WM);
-    disp         = XOpenDisplay(NULL);
-    screen       = DefaultScreenOfDisplay(disp);
-    screenWidth  = WidthOfScreen(screen);
-    screenHeight = HeightOfScreen(screen);
-    desktop      = DefaultRootWindow(disp);
+    disp             = XOpenDisplay(NULL);
+    screen           = DefaultScreenOfDisplay(disp);
+    screenWidth      = WidthOfScreen(screen);
+    screenHeight     = HeightOfScreen(screen);
+    numWorkspaces    = 0;
+    currentWorkspace = 0;
 
 //Just as long as we're debugging!
     if(debug)
@@ -17,7 +18,8 @@ SlideWindowManager::SlideWindowManager(bool debug)
 
     XSelectInput(disp, DefaultRootWindow(disp), SubstructureNotifyMask | ExposureMask | KeyPressMask );
     XGrabKey(disp,0x17,AnyModifier,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+TAB & ALT+TAB
-//    XGrabKey(disp,AnyKey,Mod1Mask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync);
+    XGrabKey(disp,0x64,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+Left
+    XGrabKey(disp,0x66,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+Right
 //    XGrabButton(disp,1,AnyModifier,DefaultRootWindow(disp),True,ButtonPressMask,GrabModeAsync,GrabModeAsync,None,None);
 }
 
@@ -42,8 +44,18 @@ bool SlideWindowManager::run()
                             }
                             else if(event.xkey.state & Mod1Mask)
                             {
-                                XCirculateSubwindows(disp,desktop,RaiseLowest);
+                                XCirculateSubwindows(disp,desktop[currentWorkspace],RaiseLowest);
                             }
+                            break;
+                        case 0x64: //Left-Arrow
+                            if(currentWorkspace == 0) currentWorkspace = numWorkspaces-1;
+                            else currentWorkspace--;
+                            XRaiseWindow(disp,desktop[currentWorkspace]);
+                            break;
+                        case 0x66: //Right-Arrow
+                            if(currentWorkspace == numWorkspaces-1) currentWorkspace = 0;
+                            else currentWorkspace++;
+                            XRaiseWindow(disp,desktop[currentWorkspace]);
                             break;
                         default:
                             sprintf(msg,"Keycode: %i",event.xkey.keycode);
@@ -95,7 +107,6 @@ bool SlideWindowManager::run()
                     moveWindow(&event);
                     break;
                 case Expose:
-                    Logger::getInstance()->log("Expose");
                     for(unsigned int i=0;i<windows.size();i++)
                     {
                         if(event.xexpose.window == windows[i]->getWindow(true))
@@ -168,18 +179,24 @@ void SlideWindowManager::createWindow(XEvent *e)
     XFetchName(disp,e->xmap.window,&wndName);
     if(strncmp(wndName,"__SLIDE__",9) != 0)
     {
-        SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop);
+        SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop[currentWorkspace]);
         windows.push_back(w);
     }
     else if(strncmp(wndName,"__SLIDE__Desktop",16) == 0)
     {
-        SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop);
-        desktop = w->getWindow();
+        numWorkspaces++;
+        desktop = (Window *)realloc((void *)desktop,numWorkspaces*sizeof(Window));
+        SlideWindow *w = new SlideWindow(disp,e->xmap.window,DefaultRootWindow(disp));
+        desktop[numWorkspaces-1] = w->getWindow();
     }
-    else
+/*    else
     {
-//        SlideWindow *w = new SlideWindow(disp,e->xmap.window,DefaultRootWindow(disp));
+        char msg[255];
+        sprintf(msg,"WND %s",wndName);
+        Logger::getInstance()->log(msg);
+        SlideWindow *w = new SlideWindow(disp,e->xmap.window,DefaultRootWindow(disp));
     }
+    */
 }
 
 void SlideWindowManager::focusWindow(XEvent *e)

@@ -25,6 +25,12 @@ bool Slide::startUp(bool debug)
     config = new SlideConfig();
 
     unsigned int len;
+
+    int numDesks = atoi((char *)config->getConfigValue((char *)"VirtualDesks",&len));
+    componentPIDs = (pid_t*)malloc((3+numDesks)*sizeof(pid_t));
+    char dbg[255];
+    sprintf(dbg,"# workspaces: %i",numDesks);
+    Logger::getInstance()->log(dbg);
     //Starting up the components:
     //Start the WM
     componentPIDs[0] = fork();
@@ -48,29 +54,32 @@ bool Slide::startUp(bool debug)
     ctrlConnection->sendMessage(&msg,(char *)"/tmp/Slide_wm.sock");
     struct sockaddr_un addr;
     msg = ctrlConnection->getMessage(&addr);
-    char dbg_out[100];
     int sx,sy;
     memcpy(&sx,msg.msg,sizeof(int));
     memcpy(&sy,msg.msg+sizeof(int),sizeof(int));
-    sprintf(dbg_out,"Geometry: %i x %i",sx,sy);//(int *)(msg.msg)+1);
-    Logger::getInstance()->log(dbg_out);
 
     //Now the Client-Components
     char sw[5],sh[5];
     sprintf(sw,"%d",sx);
     sprintf(sh,"%d",sy);
 
+    for(int i=0;i<numDesks;i++)
+    {
+        sprintf(dbg,"Starting Desk #%i",i);
+        Logger::getInstance()->log(dbg);
+        componentPIDs[2+i] = fork();
+        if(componentPIDs[2+i] == 0)
+        {
+            execl((char *)config->getConfigValue((char *)"DesktopApp",&len),(char *)"SlideComponent",sw,sh,(char *)config->getConfigValue((char *)"DesktopWallpaper",&len),(char *)0);
+        }
+    }
+
     componentPIDs[1] = fork();
     if(componentPIDs[1] == 0)
     {
-        execl((char *)config->getConfigValue((char *)"DesktopApp",&len),(char *)"SlideComponent",sw,sh,(char *)config->getConfigValue((char *)"DesktopWallpaper",&len),(char *)0);
-    }
-
-    componentPIDs[2] = fork();
-    if(componentPIDs[2] == 0)
-    {
         execl((char *)config->getConfigValue((char *)"TrayApp",&len),(char *)"SlideComponent",sw,sh,(char *)0);
     }
+
 
     Logger::getInstance()->log((std::string)"STATUS: AWESOME STARTUP.");
 

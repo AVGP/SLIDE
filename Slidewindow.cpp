@@ -7,12 +7,7 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
 
     XGetWindowAttributes(d,w,&attr);
     XFetchName(d,w,&t_name);
-//Debug
-    char msg[255];
-    sprintf(msg,"Mapping Request for %s",t_name);
-    Logger::getInstance()->log(msg);
-//
-    this->wndWindow     = w;
+    this->wndWindow = w;
     if(strncmp(t_name,"__SLIDE__",9) != 0)
     {
         this->wndDecoration = XCreateSimpleWindow(d,
@@ -40,6 +35,7 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
         XSelectInput(d,wndMaximize,ButtonReleaseMask);
 
         XReparentWindow(d,w,wndDecoration,0,20);
+        XMapRaised(d,w);
         XMapRaised(d,wndDecoration);
         XMapRaised(d,wndClose);
         XMapRaised(d,wndMaximize);
@@ -59,9 +55,6 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, int group, bool st
     this->disp          = d;
     this->x             = attr.x;
     this->y             = attr.y;
-
-    XMapRaised(d,w);
-
 }
 
 void SlideWindow::move(int newX, int newY)

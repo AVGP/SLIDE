@@ -46,8 +46,9 @@ class SlideWindowManager
         std::vector<SlideWindow *> windows;
         Display *disp;
         Screen *screen;
-        Window desktop;
+        Window *desktop;
         unsigned int screenWidth,screenHeight;
+        unsigned char workspaces,numWorkspaces,currentWorkspace;
 };
 
 #endif // SlideWINDOWMANAGER_H_INCLUDED
