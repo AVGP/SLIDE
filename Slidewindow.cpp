@@ -1,5 +1,10 @@
 #include "Slidewindow.h"
 
+const unsigned char SlideWindow::STATE_SHOWN     = 1;
+const unsigned char SlideWindow::STATE_MAXIMIZED = 1 << 1;
+const unsigned char SlideWindow::STATE_FOCUSED   = 1 << 2;
+
+
 SlideWindow::SlideWindow(Display *d, Window w, Window parent, unsigned char desk, int group, bool sticky)
 {
     XWindowAttributes attr;
@@ -32,7 +37,7 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, unsigned char desk
 
         wndMaximize = XCreateSimpleWindow(d,wndDecoration,attr.width-36,2,14,14,1,RGB(0,200,0),RGB(100,255,100));
         XSetStandardProperties(d,wndMaximize,"SlideMaxi","SlideMaxi",None,NULL,0,NULL);
-        XSelectInput(d,wndMaximize,ButtonReleaseMask);
+        //XSelectInput(d,wndMaximize,ButtonReleaseMask);
 
         XReparentWindow(d,w,wndDecoration,0,20);
         XMapRaised(d,w);
@@ -55,6 +60,8 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, unsigned char desk
     this->disp          = d;
     this->x             = attr.x;
     this->y             = attr.y;
+
+    state = 0;
 
     recentGeometry.x      = x;
     recentGeometry.y      = y;

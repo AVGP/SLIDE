@@ -238,11 +238,20 @@ void SlideWindowManager::maximizeWindow(XEvent *e)
 {
     for(unsigned int i=0;i<windows.size();i++)
     {
-        if(e->xbutton.window == windows[i]->getWindow())
+        if(e->xbutton.window == windows[i]->getWindow(true))
         {
-            windows[i]->move(0,0);
-            windows[i]->resize(screenWidth,screenHeight-40);
-            focusWindow(e);
+           if(windows[i]->state & SlideWindow::STATE_MAXIMIZED)
+            {
+                windows[i]->restoreGeometry();
+                windows[i]->state ^= SlideWindow::STATE_MAXIMIZED | SlideWindow::STATE_FOCUSED;
+            }
+            else
+            {
+                windows[i]->move(0,0);
+                windows[i]->resize(screenWidth,screenHeight-40);
+                focusWindow(e);
+                windows[i]->state |= SlideWindow::STATE_MAXIMIZED | SlideWindow::STATE_FOCUSED;
+            }
         }
     }
 }

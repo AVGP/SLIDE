@@ -28,6 +28,9 @@ typedef struct
 class SlideWindow
 {
     public:
+        static const unsigned char STATE_SHOWN;    // = 1,
+        static const unsigned char STATE_MAXIMIZED;// = 1 << 1,
+        static const unsigned char STATE_FOCUSED;  // = 1 << 2,
         /**
         * Creates a new Window from a given X-Window.
         * Internally it adds a decoration window (i.e. titlebar with stuff)
@@ -103,6 +106,8 @@ class SlideWindow
 
         Window getWindow(bool subwindow=false);
         unsigned char getDesk();
+
+        unsigned char state;
     private:
         Display *disp;
         Window wndWindow;
