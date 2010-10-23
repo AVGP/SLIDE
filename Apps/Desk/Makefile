@@ -1,6 +1,6 @@
 BINNAME     = ../../bin/Apps/Desk
 LIBS        = `wx-config --libs`
-CXXFLAGS    = `wx-config --cxxflags`
+CXXFLAGS    = `wx-config --libs`
 CXX         = g++
 
 OBJS        = main.o desk.o
@@ -12,3 +12,7 @@ main.o:
 	$(CXX) $(CXXFLAGS) -c main.cpp
 desk.o:
 	$(CXX) $(CXXFLAGS) -c desk.cpp
+
+clean:
+	rm -f $(OBJS)
+
