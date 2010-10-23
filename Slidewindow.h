@@ -104,7 +104,7 @@ class SlideWindow
         */
         void drawDecoration(bool focus);
 
-        Window getWindow(bool subwindow=false);
+        Window getWindow(bool decoWindow=false);
         unsigned char getDesk();
 
         unsigned char state;

@@ -37,10 +37,9 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, unsigned char desk
 
         wndMaximize = XCreateSimpleWindow(d,wndDecoration,attr.width-36,2,14,14,1,RGB(0,200,0),RGB(100,255,100));
         XSetStandardProperties(d,wndMaximize,"SlideMaxi","SlideMaxi",None,NULL,0,NULL);
-        //XSelectInput(d,wndMaximize,ButtonReleaseMask);
 
         XReparentWindow(d,w,wndDecoration,0,20);
-        XMapRaised(d,w);
+//        XMapRaised(d,w);
         XMapRaised(d,wndDecoration);
         XMapRaised(d,wndClose);
         XMapRaised(d,wndMaximize);
@@ -61,7 +60,7 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, unsigned char desk
     this->x             = attr.x;
     this->y             = attr.y;
 
-    state = 0;
+    state = SlideWindow::STATE_SHOWN;
 
     recentGeometry.x      = x;
     recentGeometry.y      = y;
@@ -151,9 +150,9 @@ void SlideWindow::drawDecoration(bool focus)
     XFreeStringList(wnd_name_str);
 }
 
-Window SlideWindow::getWindow(bool subwindow)
+Window SlideWindow::getWindow(bool decoWindow)
 {
-    if(wndDecoration != None && subwindow) return wndDecoration;
+    if(wndDecoration != None && decoWindow) return wndDecoration;
     else return wndWindow;
 }
 
