@@ -13,7 +13,8 @@ WindowManager
 / Window states (Maximized, Shown, Hidden, etc.)
 + Adapting states to the STRG+TAB / ALT+TAB behaviour
 + Managing "recent geometry" (i.e. saving the previous geometry, to allow "de-maximization", "de-tiling", etc.)
-- Damn it. A bug, when the application destroys the window itself. AGAIN  -.-
++ Damn it. A bug, when the application destroys the window itself. AGAIN  -.-
+- Window groups
 
 Desk
 - Have icons

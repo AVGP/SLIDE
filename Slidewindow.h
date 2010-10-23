@@ -51,8 +51,9 @@ class SlideWindow
         /**
         * Puts the window onto the specified virtual desk
         * @param The number of the virtual desk to put the window onto
+        * @param The new desktop window
         */
-        void putOnDesk(unsigned char newDesk);
+        void putOnDesk(unsigned char newDesk,Window newDesktop);
 
         /**
         * Closes the Window
@@ -104,7 +105,7 @@ class SlideWindow
         */
         void drawDecoration(bool focus);
 
-        Window getWindow(bool subwindow=false);
+        Window getWindow(bool decoWindow=false);
         unsigned char getDesk();
 
         unsigned char state;
@@ -120,6 +121,7 @@ class SlideWindow
         SLIDEWINDOW_GEOMETRY recentGeometry;
         bool sticky; //Shows up on all desks
         unsigned char desk; //Which desk this window is on?
+        char title[255];
 };
 
 #endif // SlideWINDOW_H_INCLUDED

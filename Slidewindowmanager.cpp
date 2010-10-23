@@ -122,6 +122,7 @@ bool SlideWindowManager::run()
                             break;
                         }
                     }
+
                     break;
                 default:
                     sprintf(msg,"Event %i ocurred.",event.type);
@@ -233,7 +234,28 @@ void SlideWindowManager::moveWindow(XEvent *e)
                 {
                     int diff_x = e->xmotion.x_root - start_x;
                     int diff_y = e->xmotion.y_root - start_y;
-                    w->move(attr.x+diff_x,attr.y+diff_y,true);
+                    if(attr.x+diff_x < -100)
+                    {
+                        if(currentWorkspace == 0) currentWorkspace = numWorkspaces-1;
+                        else currentWorkspace--;
+                        w->putOnDesk(currentWorkspace,desktop[currentWorkspace]);
+                        w->move(screenWidth-attr.width,attr.y+diff_y,true);
+                        XWarpPointer(disp,None,desktop[currentWorkspace],0,0,0,0,screenWidth-e->xmotion.x_root,e->xmotion.y_root-40);
+                        XRaiseWindow(disp,desktop[currentWorkspace]);
+                    }
+                    else if(attr.x+attr.width+diff_x > screenWidth+100)
+                    {
+                        if(currentWorkspace == numWorkspaces-1) currentWorkspace = 0;
+                        else currentWorkspace++;
+                        w->putOnDesk(currentWorkspace,desktop[currentWorkspace]);
+                        w->move(0,attr.y+diff_y,true);
+                        XWarpPointer(disp,None,desktop[currentWorkspace],0,0,0,0,screenWidth-e->xmotion.x_root,e->xmotion.y_root-40);
+                        XRaiseWindow(disp,desktop[currentWorkspace]);
+                    }
+                    else
+                    {
+                        w->move(attr.x+diff_x,attr.y+diff_y,true);
+                    }
                     //XMoveWindow(disp,e->xmotion.window,attr.x+diff_x,attr.y+diff_y);
                 }
             }
@@ -271,7 +293,7 @@ void SlideWindowManager::tileWindows()
     unsigned int x=0,y=0,numWindows = 0;
     for(unsigned int i=0;i<windows.size();i++)
     {
-        if(windows[i]->getDesk() == currentWorkspace) numWindows++;
+        if(windows[i]->getDesk() == currentWorkspace && (windows[i]->state & SlideWindow::STATE_SHOWN)) numWindows++;
     }
     int widthPerWindow  = screenWidth/(numWindows < 4 ? numWindows : 4);
     int screenpart = ceil(numWindows/4);
