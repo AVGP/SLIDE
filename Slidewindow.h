@@ -51,8 +51,9 @@ class SlideWindow
         /**
         * Puts the window onto the specified virtual desk
         * @param The number of the virtual desk to put the window onto
+        * @param The new desktop window
         */
-        void putOnDesk(unsigned char newDesk);
+        void putOnDesk(unsigned char newDesk,Window newDesktop);
 
         /**
         * Closes the Window

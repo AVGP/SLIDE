@@ -108,8 +108,11 @@ void SlideWindow::resize(int w, int h, bool updateGeometry)
     XMoveWindow(disp,wndMaximize,w-40,2);
 }
 
-void SlideWindow::putOnDesk(unsigned char newDesk)
-{}
+void SlideWindow::putOnDesk(unsigned char newDesk,Window newDesktop)
+{
+    desk = newDesk;
+    XReparentWindow(disp,wndDecoration,newDesktop,x,y);
+}
 
 void SlideWindow::close()
 {
