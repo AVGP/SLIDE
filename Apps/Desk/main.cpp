@@ -12,8 +12,8 @@ bool DeskApp::OnInit()
 	return false;
     }
 
-    int w = atoi(argv[1]);
-    int h = atoi(argv[2]);
+    int w = (int)argv[1];
+    int h = (int)argv[2];
 
     wxInitAllImageHandlers();
 
