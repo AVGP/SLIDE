@@ -60,6 +60,14 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, unsigned char desk
     this->x             = attr.x;
     this->y             = attr.y;
 
+    char **wnd_name_str;
+    int n_strs = 0;
+    XTextProperty wnd_name;
+    XGetWMIconName(disp,wndWindow,&wnd_name);
+    XTextPropertyToStringList(&wnd_name,&wnd_name_str,&n_strs);
+    if(n_strs > 0) snprintf(title,255,"%s",wnd_name_str[0]);
+    XFreeStringList(wnd_name_str);
+
     state = SlideWindow::STATE_SHOWN;
 
     recentGeometry.x      = x;
@@ -138,16 +146,10 @@ void SlideWindow::drawDecoration(bool focus)
         XDrawLine(disp,wndDecoration,gc,0,y,width,y);
     }
 
-    XTextProperty wnd_name;
-    XGetWMIconName(disp,wndWindow,&wnd_name);
-    char **wnd_name_str;
-    int n_strs = 0;
-    XTextPropertyToStringList(&wnd_name,&wnd_name_str,&n_strs);
     XSetForeground(disp,gc,RGB(80,80,160));
-    XDrawString(disp,wndDecoration,gc,5,15,wnd_name_str[0],strlen(wnd_name_str[0]));
+    XDrawString(disp,wndDecoration,gc,5,15,title,strlen(title));
 
     XFree(gc);
-    XFreeStringList(wnd_name_str);
 }
 
 Window SlideWindow::getWindow(bool decoWindow)

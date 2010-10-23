@@ -120,6 +120,7 @@ class SlideWindow
         SLIDEWINDOW_GEOMETRY recentGeometry;
         bool sticky; //Shows up on all desks
         unsigned char desk; //Which desk this window is on?
+        char title[255];
 };
 
 #endif // SlideWINDOW_H_INCLUDED

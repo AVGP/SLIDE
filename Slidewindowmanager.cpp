@@ -122,6 +122,7 @@ bool SlideWindowManager::run()
                             break;
                         }
                     }
+
                     break;
                 default:
                     sprintf(msg,"Event %i ocurred.",event.type);
@@ -271,7 +272,7 @@ void SlideWindowManager::tileWindows()
     unsigned int x=0,y=0,numWindows = 0;
     for(unsigned int i=0;i<windows.size();i++)
     {
-        if(windows[i]->getDesk() == currentWorkspace) numWindows++;
+        if(windows[i]->getDesk() == currentWorkspace && (windows[i]->state & SlideWindow::STATE_SHOWN)) numWindows++;
     }
     int widthPerWindow  = screenWidth/(numWindows < 4 ? numWindows : 4);
     int screenpart = ceil(numWindows/4);
