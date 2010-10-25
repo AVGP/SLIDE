@@ -1,5 +1,6 @@
 #include "main.h"
 #include "tray.h"
+#include "ctrlthread.h"
 #include <iostream>
 
 IMPLEMENT_APP(TrayApp);
@@ -16,6 +17,11 @@ bool TrayApp::OnInit()
     int h = atoi(argv[2]);
 
     wxInitAllImageHandlers();
+    CtrlThread *ctrl = new CtrlThread();
+    if(ctrl->Create() == wxTHREAD_NO_ERROR)
+    {
+        ctrl->Run();
+    }
 
     Tray *d = new Tray(w,h);
     d->Show(true);

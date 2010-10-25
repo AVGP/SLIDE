@@ -14,3 +14,7 @@ starter.o:
 	$(CXX) $(CXXFLAGS) -c starter.cpp
 icon.o:
 	$(CXX) $(CXXFLAGS) -c icon.cpp
+
+clean:
+	rm -f $(OBJS)
+
