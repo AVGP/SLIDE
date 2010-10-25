@@ -31,6 +31,10 @@ bool Slide::startUp(bool debug)
     char dbg[255];
     sprintf(dbg,"# workspaces: %i",numDesks);
     Logger::getInstance()->log(dbg);
+
+    //Setup the local socket:
+    ctrlConnection = new SlideConnection((char *)"/tmp/Slide_core.sock",COMP_CORE);
+
     //Starting up the components:
     //Start the WM
     componentPIDs[0] = fork();
@@ -44,16 +48,17 @@ bool Slide::startUp(bool debug)
         }
 
     }
-    //Setup the local socket:
-    ctrlConnection = new SlideConnection((char *)"/tmp/Slide_core.sock",COMP_CORE);
 
     //Get resolution from the WM:
-    CTRLMSG msg;
-    msg.type = GEOMETRYREQUEST;
-    msg.len  = 0;
-    ctrlConnection->sendMessage(&msg,(char *)"/tmp/Slide_wm.sock");
     struct sockaddr_un addr;
-    msg = ctrlConnection->getMessage(&addr);
+    CTRLMSG msg;
+    do
+    {
+        msg.type = GEOMETRYREQUEST;
+        msg.len  = 0;
+        ctrlConnection->sendMessage(&msg,(char *)"/tmp/Slide_wm.sock");
+        msg = ctrlConnection->peekMessage(&addr);
+    }while(msg.type == NONE);
     int sx,sy;
     memcpy(&sx,msg.msg,sizeof(int));
     memcpy(&sy,msg.msg+sizeof(int),sizeof(int));
