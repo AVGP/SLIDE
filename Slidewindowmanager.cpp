@@ -144,6 +144,10 @@ bool SlideWindowManager::run()
                 memcpy(msg.msg+sizeof(int),&screenHeight,sizeof(int));
                 ctrl->sendMessage(&msg,msg.addr.sun_path);
             }
+            else if(msg.type == WINDOWLISTINTEREST)
+            {
+                windowChangeListeners.push_back(msg.addr);
+            }
         }
     }
     return true;
@@ -189,6 +193,14 @@ void SlideWindowManager::createWindow(XEvent *e)
     {
         SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop[currentWorkspace],currentWorkspace);
         windows.push_back(w);
+        CTRLMSG msg;
+        msg.type = WINDOWLISTCREATEWND;
+        msg.len = sizeof(*w);
+        memcpy(msg.msg,w,sizeof(*w));
+        for(unsigned int i=0;i<windowChangeListeners.size();i++)
+        {
+            ctrl->sendMessage(&msg,windowChangeListeners[i].sun_path);
+        }
     }
     else if(strncmp(wndName,"__SLIDE__Desktop",16) == 0)
     {
