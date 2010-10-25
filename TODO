@@ -16,6 +16,9 @@ WindowManager
 + Damn it. A bug, when the application destroys the window itself. AGAIN  -.-
 - Window groups
 + Move windows out of the screen to switch the desk they're on.
+- Resize Windows
+- Fix this gruesome bug in Slide.cpp Startup, when it sends the message to WM too early
+- Fix the hardcoded logpath in Logger.h
 
 Desk
 - Have icons
