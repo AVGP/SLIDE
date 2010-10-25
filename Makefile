@@ -1,16 +1,18 @@
 #Makefile for SLIDE
-BINNAME = Slide
+BINNAME = bin/Slide
 
 CXX = g++
 CXXFLAGS = `wx-config --cxxflags`
 LIBS = `wx-config --libs` -lX11
 
-OBJS = Slideconfig.o Slideconnection.o Slide.o Slidewindow.o Slidewindowmanager.o
+OBJS = main.o Slideconfig.o Slideconnection.o Slide.o Slidewindow.o Slidewindowmanager.o Logger.o
 
 
 default: $(OBJS)
 	$(CXX) -o $(BINNAME)  $(CXXFLAGS) $(OBJS) $(LIBS)
 
+main.o:
+	$(CXX) $(CXXFLAGS) -c main.cpp
 
 Slideconfig.o:
 	$(CXX) $(CXXFLAGS) -c Slideconfig.cpp
@@ -27,6 +29,8 @@ Slidewindow.o:
 Slidewindowmanager.o:
 	$(CXX) $(CXXFLAGS) -c Slidewindowmanager.cpp
 
+Logger.o:
+	$(CXX) $(CXXFLAGS) -c Logger.cpp
 
 clean:
 	rm -f $(OBJS)
