@@ -48,7 +48,6 @@ class SlideWindowManager
         Display *disp;
         Screen *screen;
         Window *desktop;
-        std::vector<struct sockaddr_un> windowChangeListeners; //Apps listening for changes in window list (create/destroy)
         unsigned int screenWidth,screenHeight;
         unsigned char workspaces,numWorkspaces,currentWorkspace;
 };

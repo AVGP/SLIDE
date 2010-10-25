@@ -40,9 +40,6 @@ enum CTRLMSG_TYPE
     SHOWWINDOWREQUEST,      //Sent from Clientapplication notifying the wish to show a given window
     GEOMETRYREQUEST,        //Sent from a client or component to notify the WM to send the geometry of the screen
     GEOMETRYREPLY,          //Sent after GEOMETRYREQUEST - contains the dimensions as 2 ints
-    WINDOWLISTINTEREST,     //Sent from a client/component to ask for Window-List changes (Window destroyed/created)
-    WINDOWLISTCREATEWND,    //Sent to the WINDOWLISTINTEREST-Listeners on window creation.
-    WINDOWLISTDESTROYWND,   //Sent to the WINDOWLISTINTEREST-Listeners on window destruction.
     NONE                    //Indicates that no message is available.
 };
 
@@ -52,7 +49,7 @@ typedef struct
     SlideComponent receiver;
     struct sockaddr_un addr;
     int len;
-    char msg[500];
+    char msg[100];
 } CTRLMSG;
 
 #endif

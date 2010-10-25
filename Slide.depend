@@ -2,11 +2,11 @@
 1287464194 source:/home/martin/Dev/C_C++/WM/Slide/Logger.cpp
 	"Logger.h"
 
-1287871608 /home/martin/Dev/C_C++/WM/Slide/Logger.h
+1287464164 /home/martin/Dev/C_C++/WM/Slide/Logger.h
 	<fstream>
 	<string>
 
-1288028998 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
+1287749092 source:/home/martin/Dev/C_C++/WM/Slide/Slide.cpp
 	"Slide.h"
 
 1287749080 /home/martin/Dev/C_C++/WM/Slide/Slide.h
@@ -15,7 +15,7 @@
 	"Slidewindowmanager.h"
 	"Logger.h"
 
-1287925672 /home/martin/Dev/C_C++/WM/Slide/Global.h
+1287408016 /home/martin/Dev/C_C++/WM/Slide/Global.h
 	<cstdlib>
 	<cstdio>
 	<sys/un.h>
@@ -56,7 +56,7 @@
 1287741477 source:/home/martin/Dev/C_C++/WM/Slide/main.cpp
 	"Slide.h"
 
-1288029060 source:/home/martin/Dev/C_C++/WM/Slide/Slideconnection.cpp
+1287464477 source:/home/martin/Dev/C_C++/WM/Slide/Slideconnection.cpp
 	"Slideconnection.h"
 
 1287862039 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindow.cpp
@@ -66,14 +66,14 @@
 	"Global.h"
 	<cstring>
 
-1287925404 /home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.h
+1287749635 /home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.h
 	"Global.h"
 	"Slideconnection.h"
 	"./Slidewindow.h"
 	<vector>
 	<cmath>
 
-1288028714 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.cpp
+1287860220 source:/home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.cpp
 	"Slidewindowmanager.h"
 
 1287266771 source:/home/martin/Dev/C_C++/WM/Slide/Apps/Starter/main.cpp

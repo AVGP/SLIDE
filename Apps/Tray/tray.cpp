@@ -4,7 +4,7 @@ Tray::Tray(int width, int height) : wxFrame(NULL,wxID_ANY,wxT("__SLIDE__Tray"),w
 {
     this->width = width;
     this->startButton = new wxButton(this,wxID_ANY,wxT("Start"),wxPoint(0,0),wxSize(100,40),wxBU_EXACTFIT);
-    this->windowList  = new wxStaticText(this,wxID_ANY,wxT(""),wxPoint(100,0),wxSize(width-100,40));
+    this->windowList  = new wxFrame(this,wxID_ANY,wxT(""),wxPoint(100,0),wxSize(width-100,40));
     Connect(wxEVT_COMMAND_BUTTON_CLICKED,wxCommandEventHandler(Tray::OnClickStart));
 }
 
