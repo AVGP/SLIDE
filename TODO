@@ -11,7 +11,6 @@ WindowManager
 + More awesome window deco
 - taking over teh world!
 / Window states (Maximized, Shown, Hidden, etc.)
-- Resize windows
 + Adapting states to the STRG+TAB / ALT+TAB behaviour
 + Managing "recent geometry" (i.e. saving the previous geometry, to allow "de-maximization", "de-tiling", etc.)
 + Damn it. A bug, when the application destroys the window itself. AGAIN  -.-
