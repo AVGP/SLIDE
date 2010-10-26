@@ -2,7 +2,6 @@
 
 SlideWindowManager::SlideWindowManager(bool debug)
 {
-    ctrl = new SlideConnection((char *)"/tmp/Slide_wm.sock",COMP_WM);
     disp             = XOpenDisplay(NULL);
     screen           = DefaultScreenOfDisplay(disp);
     screenWidth      = WidthOfScreen(screen);
@@ -21,6 +20,7 @@ SlideWindowManager::SlideWindowManager(bool debug)
     XGrabKey(disp,0x64,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+Left
     XGrabKey(disp,0x66,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+Right
 //    XGrabButton(disp,1,AnyModifier,DefaultRootWindow(disp),True,ButtonPressMask,GrabModeAsync,GrabModeAsync,None,None);
+    ctrl = new SlideConnection((char *)"/tmp/Slide_wm.sock",COMP_WM);
 }
 
 bool SlideWindowManager::run()
