@@ -1,4 +1,4 @@
 /usr/share/icons/slide/terminal.png
 xterm
 /usr/share/icons/slide/shutdown.png
-/sbin/shutdown
+/usr/bin/SlideApps/halt

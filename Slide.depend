@@ -15,7 +15,7 @@
 	"Slidewindowmanager.h"
 	"Logger.h"
 
-1288058276 /home/martin/Dev/C_C++/WM/Slide/Global.h
+1288061849 /home/martin/Dev/C_C++/WM/Slide/Global.h
 	<cstdlib>
 	<cstdio>
 	<sys/un.h>
@@ -66,7 +66,7 @@
 	"Global.h"
 	<cstring>
 
-1288059436 /home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.h
+1288061849 /home/martin/Dev/C_C++/WM/Slide/Slidewindowmanager.h
 	"Global.h"
 	"Slideconnection.h"
 	"./Slidewindow.h"
