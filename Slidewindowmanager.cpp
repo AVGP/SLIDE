@@ -120,7 +120,7 @@ bool SlideWindowManager::run()
                     {
                         if(event.xexpose.window == windows[i]->getWindow(true))
                         {
-                            if(focusedWindow == windows[i]) windows[i]->drawDecoration(true);
+                            if(windows[i]->state & SlideWindow::STATE_FOCUSED) windows[i]->drawDecoration(true);
                             else windows[i]->drawDecoration(false);
                             break;
                         }
@@ -230,8 +230,8 @@ void SlideWindowManager::focusWindow(XEvent *e)
     {
         if(windows[i]->getWindow(true) == e->xbutton.window)
         {
-            windows[i]->state |= SlideWindow::STATE_FOCUSED;
             focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
+            windows[i]->state |= SlideWindow::STATE_FOCUSED;
             focusedWindow = windows[i];
         }
     }
@@ -258,6 +258,9 @@ void SlideWindowManager::moveWindow(XEvent *e)
                 if(e->xmotion.window == windows[i]->getWindow(true))
                 {
                     w = windows[i];
+                    focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
+                    w->state |= SlideWindow::STATE_FOCUSED;
+                    focusedWindow = w;
                     break;
                 }
             }
@@ -309,20 +312,15 @@ void SlideWindowManager::maximizeWindow(XEvent *e)
            if(windows[i]->state & SlideWindow::STATE_MAXIMIZED)
             {
                 windows[i]->restoreGeometry();
-                windows[i]->state ^= SlideWindow::STATE_MAXIMIZED | SlideWindow::STATE_FOCUSED;
-                focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
-                focusedWindow = windows[i];
-                XSetInputFocus(disp,focusedWindow->getWindow(),RevertToNone,CurrentTime);
+                windows[i]->state ^= SlideWindow::STATE_MAXIMIZED;
+                focusWindow(e);
             }
             else
             {
                 windows[i]->move(0,0);
                 windows[i]->resize(screenWidth,screenHeight-40);
                 focusWindow(e);
-                windows[i]->state |= SlideWindow::STATE_MAXIMIZED | SlideWindow::STATE_FOCUSED;
-                focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
-                focusedWindow = windows[i];
-                XSetInputFocus(disp,focusedWindow->getWindow(),RevertToNone,CurrentTime);
+                windows[i]->state |= SlideWindow::STATE_MAXIMIZED;
             }
         }
     }
