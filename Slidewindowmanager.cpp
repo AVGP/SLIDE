@@ -8,6 +8,7 @@ SlideWindowManager::SlideWindowManager(bool debug)
     screenHeight     = HeightOfScreen(screen);
     numWorkspaces    = 0;
     currentWorkspace = 0;
+    focusedWindow    = NULL;
 
 //Just as long as we're debugging!
     if(debug)
@@ -111,6 +112,7 @@ bool SlideWindowManager::run()
                     closeWindow(&event);
                     break;
                 case MotionNotify:
+                    focusWindow(&event);
                     moveWindow(&event);
                     break;
                 case Expose:
@@ -118,7 +120,8 @@ bool SlideWindowManager::run()
                     {
                         if(event.xexpose.window == windows[i]->getWindow(true))
                         {
-                            windows[i]->drawDecoration(true);
+                            if(focusedWindow == windows[i]) windows[i]->drawDecoration(true);
+                            else windows[i]->drawDecoration(false);
                             break;
                         }
                     }
@@ -192,6 +195,16 @@ void SlideWindowManager::createWindow(XEvent *e)
     if(strncmp(wndName,"__SLIDE__",9) != 0)
     {
         SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop[currentWorkspace],currentWorkspace);
+        w->state |= SlideWindow::STATE_FOCUSED;
+
+        if(focusedWindow != NULL)
+        {
+            focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
+        }
+        focusedWindow = w;
+
+        XSetInputFocus(disp,focusedWindow->getWindow(),RevertToNone,CurrentTime);
+
         windows.push_back(w);
         CTRLMSG msg;
         msg.type = WINDOWLISTCREATEWND;
@@ -213,6 +226,15 @@ void SlideWindowManager::createWindow(XEvent *e)
 
 void SlideWindowManager::focusWindow(XEvent *e)
 {
+    for(unsigned int i=0;i<windows.size();i++)
+    {
+        if(windows[i]->getWindow(true) == e->xbutton.window)
+        {
+            windows[i]->state |= SlideWindow::STATE_FOCUSED;
+            focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
+            focusedWindow = windows[i];
+        }
+    }
     XMapRaised(disp,e->xbutton.window);
     XSetInputFocus(disp,e->xbutton.window,RevertToNone,CurrentTime);
 }
@@ -288,6 +310,9 @@ void SlideWindowManager::maximizeWindow(XEvent *e)
             {
                 windows[i]->restoreGeometry();
                 windows[i]->state ^= SlideWindow::STATE_MAXIMIZED | SlideWindow::STATE_FOCUSED;
+                focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
+                focusedWindow = windows[i];
+                XSetInputFocus(disp,focusedWindow->getWindow(),RevertToNone,CurrentTime);
             }
             else
             {
@@ -295,6 +320,9 @@ void SlideWindowManager::maximizeWindow(XEvent *e)
                 windows[i]->resize(screenWidth,screenHeight-40);
                 focusWindow(e);
                 windows[i]->state |= SlideWindow::STATE_MAXIMIZED | SlideWindow::STATE_FOCUSED;
+                focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
+                focusedWindow = windows[i];
+                XSetInputFocus(disp,focusedWindow->getWindow(),RevertToNone,CurrentTime);
             }
         }
     }
@@ -344,27 +372,3 @@ void SlideWindowManager::untileWindows()
 
 void SlideWindowManager::resizeWindow(XEvent *e)
 {}
-
-void SlideWindowManager::drawDeco(XEvent *e)
-{
-    GC gc = XCreateGC(disp,e->xexpose.window,0,0);
-    int y=0;
-    int baseColor = 235;
-
-    for(y=0;y<20;y++)
-    {
-        XSetForeground(disp,gc,RGB((baseColor+y),(baseColor+y),(baseColor+y)));
-        XDrawLine(disp,e->xexpose.window,gc,0,y,200,y);
-    }
-
-    XTextProperty wnd_name;
-    XGetWMIconName(disp,e->xexpose.window,&wnd_name);
-    char **wnd_name_str;
-    int n_strs = 0;
-    XTextPropertyToStringList(&wnd_name,&wnd_name_str,&n_strs);
-    XSetForeground(disp,gc,RGB(80,80,200));
-    XDrawString(disp,e->xexpose.window,gc,5,10,wnd_name_str[0],strlen(wnd_name_str[0]));
-
-    XFree(gc);
-    XFreeStringList(wnd_name_str);
-}

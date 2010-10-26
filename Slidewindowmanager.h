@@ -41,13 +41,13 @@ class SlideWindowManager
         void maximizeWindow(XEvent *e);
         void tileWindows();
         void untileWindows();
-        void drawDeco(XEvent *e);
 
         SlideConnection *ctrl;
         std::vector<SlideWindow *> windows;
         Display *disp;
         Screen *screen;
         Window *desktop;
+        SlideWindow *focusedWindow;
         std::vector<struct sockaddr_un> windowChangeListeners; //Apps listening for changes in window list (create/destroy)
         unsigned int screenWidth,screenHeight;
         unsigned char workspaces,numWorkspaces,currentWorkspace;
