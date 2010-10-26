@@ -32,9 +32,6 @@ bool Slide::startUp(bool debug)
     sprintf(dbg,"# workspaces: %i",numDesks);
     Logger::getInstance()->log(dbg);
 
-    //Setup the local socket:
-    ctrlConnection = new SlideConnection((char *)"/tmp/Slide_core.sock",COMP_CORE);
-
     //Starting up the components:
     //Start the WM
     componentPIDs[0] = fork();
@@ -48,6 +45,9 @@ bool Slide::startUp(bool debug)
         }
 
     }
+
+    //Setup the local socket:
+    ctrlConnection = new SlideConnection((char *)"/tmp/Slide_core.sock",COMP_CORE);
 
     //Get resolution from the WM:
     struct sockaddr_un addr;

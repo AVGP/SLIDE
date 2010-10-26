@@ -66,7 +66,7 @@ CTRLMSG SlideConnection::peekMessage(struct sockaddr_un *addr)
     CTRLMSG msg;
     socklen_t addrlen;
     int r = recvfrom(sock,&msg,sizeof(msg),0,(struct sockaddr *)addr,&addrlen);
-    if(r < 1)
+    if(r < 0)
     {
         msg.type = NONE;
     }
