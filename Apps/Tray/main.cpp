@@ -17,14 +17,16 @@ bool TrayApp::OnInit()
     int h = atoi(argv[2]);
 
     wxInitAllImageHandlers();
-    CtrlThread *ctrl = new CtrlThread();
+
+    Tray *d = new Tray(w,h);
+    d->Show(true);
+
+    CtrlThread *ctrl = new CtrlThread(d->windowList,w-100);
     if(ctrl->Create() == wxTHREAD_NO_ERROR)
     {
         ctrl->Run();
     }
 
-    Tray *d = new Tray(w,h);
-    d->Show(true);
     return true;
 }
 

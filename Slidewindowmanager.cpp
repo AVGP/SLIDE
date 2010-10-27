@@ -149,6 +149,9 @@ bool SlideWindowManager::run()
             }
             else if(msg.type == WINDOWLISTINTEREST)
             {
+                char dbg[100];
+                sprintf(dbg,"[WLI] Got msg from %s",msg.addr.sun_path);
+                Logger::getInstance()->log(dbg);
                 windowChangeListeners.push_back(msg.addr);
             }
         }
@@ -208,8 +211,9 @@ void SlideWindowManager::createWindow(XEvent *e)
         windows.push_back(w);
         CTRLMSG msg;
         msg.type = WINDOWLISTCREATEWND;
-        msg.len = sizeof(*w);
-        memcpy(msg.msg,w,sizeof(*w));
+        msg.len = sizeof(SlideWindow);
+        memcpy(msg.msg,w,sizeof(SlideWindow));
+
         for(unsigned int i=0;i<windowChangeListeners.size();i++)
         {
             ctrl->sendMessage(&msg,windowChangeListeners[i].sun_path);

@@ -52,7 +52,7 @@ typedef struct
     SlideComponent receiver;
     struct sockaddr_un addr;
     int len;
-    char msg[500];
+    unsigned char msg[500];
 } CTRLMSG;
 
 #endif

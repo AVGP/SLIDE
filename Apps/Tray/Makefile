@@ -1,5 +1,5 @@
 BINNAME     = ../../bin/Apps/Tray
-LIBS        = `wx-config --libs`
+LIBS        = `wx-config --libs` -lslide
 CXXFLAGS    = `wx-config --cxxflags`
 CXX         = g++
 
