@@ -107,6 +107,7 @@ class SlideWindow
 
         Window getWindow(bool decoWindow=false);
         unsigned char getDesk();
+        char *getTitle();
 
         unsigned char state;
     private:

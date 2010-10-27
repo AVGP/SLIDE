@@ -166,6 +166,11 @@ unsigned char SlideWindow::getDesk()
     return desk;
 }
 
+char *SlideWindow::getTitle()
+{
+    return title;
+}
+
 void SlideWindow::restoreGeometry()
 {
     x       = recentGeometry.x;
