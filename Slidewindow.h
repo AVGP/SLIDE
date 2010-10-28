@@ -8,6 +8,7 @@
 
 #include "Global.h"
 #include <cstring>
+#include <signal.h>
 
 #define RGB(r,g,b) (r << 16 | g << 8 | b)
 

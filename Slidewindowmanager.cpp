@@ -216,6 +216,7 @@ void SlideWindowManager::createWindow(XEvent *e)
 
         for(unsigned int i=0;i<windowChangeListeners.size();i++)
         {
+            Logger::getInstance()->log("Sending WML-Create-Notify");
             ctrl->sendMessage(&msg,windowChangeListeners[i].sun_path);
         }
     }

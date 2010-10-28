@@ -116,6 +116,22 @@ void SlideWindow::putOnDesk(unsigned char newDesk,Window newDesktop)
 
 void SlideWindow::close()
 {
+
+    Atom atom = XInternAtom(disp,"_NET_WM_PID",False);
+
+    pid_t pid;
+    Atom retType;
+    int formatReturned;
+    unsigned long bytesReturned,itemsReturned;
+    unsigned char *values;
+
+    XGetWindowProperty(disp,wndWindow,atom,0,(long)BUFSIZ,False,AnyPropertyType,&retType,&formatReturned,&itemsReturned,&bytesReturned,&values);
+
+    if(itemsReturned > 0)
+    {
+        memcpy(&pid,values,sizeof(pid_t));
+        kill(pid,SIGTERM);
+    }
     XDestroyWindow(disp,wndDecoration);
 }
 
