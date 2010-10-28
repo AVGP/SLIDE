@@ -17,6 +17,7 @@ WindowManager
 + Damn it. A bug, when the application destroys the window itself. AGAIN  -.-
 - Window groups
 + Move windows out of the screen to switch the desk they're on.
+- WM Protocols!
 
 Desk
 - Have icons
@@ -26,6 +27,7 @@ Desk
 Tray
 - Have a systray (for small icons)
 - Have a quickstart-area
+- Have windows appear in the tray (as usual)
 
 Starter
 - Categories for apps
