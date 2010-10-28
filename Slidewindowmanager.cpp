@@ -182,7 +182,7 @@ void SlideWindowManager::closeWindow(XEvent *e)
         {
             if((*iter)->getWindow() == e->xdestroywindow.event)
             {
-                (*iter)->close();
+                (*iter)->close(false);
                 windows.erase(iter);
                 break;
             }

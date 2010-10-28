@@ -114,24 +114,26 @@ void SlideWindow::putOnDesk(unsigned char newDesk,Window newDesktop)
     XReparentWindow(disp,wndDecoration,newDesktop,x,y);
 }
 
-void SlideWindow::close()
+void SlideWindow::close(bool killProcess)
 {
-
-    Atom atom = XInternAtom(disp,"_NET_WM_PID",False);
-
-    pid_t pid;
-    Atom retType;
-    int formatReturned;
-    unsigned long bytesReturned,itemsReturned;
-    unsigned char *values;
-
-    XGetWindowProperty(disp,wndWindow,atom,0,(long)BUFSIZ,False,AnyPropertyType,&retType,&formatReturned,&itemsReturned,&bytesReturned,&values);
-
-    if(itemsReturned > 0)
+    if(killProcess)
     {
-        memcpy(&pid,values,sizeof(pid_t));
-        kill(pid,SIGTERM);
+        Atom atom = XInternAtom(disp,"_NET_WM_PID",False);
+        pid_t pid;
+        Atom retType;
+        int formatReturned;
+        unsigned long bytesReturned,itemsReturned;
+        unsigned char *values;
+
+        XGetWindowProperty(disp,wndWindow,atom,0,(long)BUFSIZ,False,AnyPropertyType,&retType,&formatReturned,&itemsReturned,&bytesReturned,&values);
+
+        if(itemsReturned > 0)
+        {
+            memcpy(&pid,values,sizeof(pid_t));
+            kill(pid,SIGTERM);
+        }
     }
+
     XDestroyWindow(disp,wndDecoration);
 }
 

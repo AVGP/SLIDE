@@ -59,8 +59,10 @@ class SlideWindow
         /**
         * Closes the Window
         * Internally cleans up.
+        * @param killProcess Bool, indicates if the window's process should
+        *        be killed. Defaults to true.
         */
-        void close();
+        void close(bool killProcess = true);
 
         /**
         * Resize the window to the given dimensions
