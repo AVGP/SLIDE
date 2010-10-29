@@ -106,6 +106,7 @@ bool SlideWindowManager::run()
                     if(strncmp(wnd_name,"Slide",5) != 0)
                     {
                         createWindow(&event);
+                        focusWindow(&event);
                     }
                     break;
                 case DestroyNotify:
@@ -231,12 +232,36 @@ void SlideWindowManager::createWindow(XEvent *e)
 
 void SlideWindowManager::focusWindow(XEvent *e)
 {
+    Window evtWnd = None;
+    if(e->type == ButtonPress || ButtonRelease)
+    {
+        evtWnd = e->xbutton.window;
+    }
+    else if(e->type == MapNotify)
+    {
+        evtWnd = e->xmap.window;
+    }
+    else if(e->type == MotionNotify)
+    {
+        evtWnd = e->xmotion.window;
+    }
+
+
     for(unsigned int i=0;i<windows.size();i++)
     {
-        if(windows[i]->getWindow(true) == e->xbutton.window)
+        if(windows[i]->getWindow(true) == evtWnd)
         {
+            XEvent e;
+            e.type = Expose;
+            e.xexpose.window = windows[i]->getWindow(true);
+
             focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
             windows[i]->state |= SlideWindow::STATE_FOCUSED;
+
+            XSendEvent(disp,windows[i]->getWindow(true),True,ExposureMask,&e);
+            e.xexpose.window = focusedWindow->getWindow(true);
+            XSendEvent(disp,focusedWindow->getWindow(true),True,ExposureMask,&e);
+
             focusedWindow = windows[i];
         }
     }
