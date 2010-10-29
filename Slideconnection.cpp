@@ -43,7 +43,14 @@ void SlideConnection::sendMessage(CTRLMSG *msg,char *to)
 	addr.sun_family = AF_UNIX;
 	sprintf(addr.sun_path,"%s",to);
     memcpy(&(msg->addr),&localAddr,sizeof(struct sockaddr_un));
-	sendto(sock,msg,sizeof(CTRLMSG),0,(struct sockaddr *)&addr,sizeof(addr));
+	int sent = 0;
+	do
+	{
+	    sent = sendto(sock,msg,sizeof(CTRLMSG),0,(struct sockaddr *)&addr,sizeof(addr));
+	} while(sent < sizeof(CTRLMSG));
+	char dbg[255];
+	sprintf(dbg,"SENT %i of %i bytes",sent,sizeof(CTRLMSG));
+	Logger::getInstance()->log(dbg);
 }
 
 CTRLMSG SlideConnection::getMessage(struct sockaddr_un *addr)
