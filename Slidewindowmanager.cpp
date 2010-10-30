@@ -363,9 +363,18 @@ void SlideWindowManager::tileWindows()
     {
         if(windows[i]->getDesk() == currentWorkspace && (windows[i]->state & SlideWindow::STATE_SHOWN)) numWindows++;
     }
+
+    char msg[500];
+    sprintf(msg,"We have %i windows to tile!",numWindows);
+    Logger::getInstance()->log(msg);
+
     int widthPerWindow  = screenWidth/(numWindows < 4 ? numWindows : 4);
-    int screenpart = ceil(numWindows/4);
-    int heightPerWindow = (screenHeight-40)/(screenpart == 0 ? 1 : screenpart);
+    int rows = ceil((double)numWindows/4.0);
+    int heightPerWindow = (screenHeight-40)/(rows == 0 ? 1 : rows);
+
+    sprintf(msg,"We have %i rows!",rows);
+    Logger::getInstance()->log(msg);
+
     for(unsigned int i=0;i<windows.size();i++)
     {
         if(windows[i]->getDesk() == currentWorkspace)
