@@ -57,7 +57,7 @@ bool Slide::startUp(bool debug)
         msg.type = GEOMETRYREQUEST;
         msg.len  = 0;
         ctrlConnection->sendMessage(&msg,(char *)"/tmp/Slide_wm.sock");
-        msg = ctrlConnection->peekMessage(&addr);
+        msg = ctrlConnection->getMessage(&addr);
     }while(msg.type == NONE);
     int sx,sy;
     memcpy(&sx,msg.msg,sizeof(int));
