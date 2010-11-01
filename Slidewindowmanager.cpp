@@ -2,6 +2,7 @@
 
 SlideWindowManager::SlideWindowManager(bool debug)
 {
+    Logger::getInstance()->log("WM starting...");
     disp             = XOpenDisplay(NULL);
     screen           = DefaultScreenOfDisplay(disp);
     screenWidth      = WidthOfScreen(screen);
@@ -139,9 +140,6 @@ bool SlideWindowManager::run()
             CTRLMSG msg = ctrl->peekMessage(&addr);
             if(msg.type == GEOMETRYREQUEST)
             {
-                char dbg[100];
-                sprintf(dbg,"Got msg from %s",msg.addr.sun_path);
-                Logger::getInstance()->log(dbg);
                 msg.type = GEOMETRYREPLY;
                 msg.len = sizeof(int)*2;
                 memcpy(msg.msg,&screenWidth,sizeof(int));
@@ -150,9 +148,6 @@ bool SlideWindowManager::run()
             }
             else if(msg.type == WINDOWLISTINTEREST)
             {
-                char dbg[100];
-                sprintf(dbg,"[WLI] Got msg from %s",msg.addr.sun_path);
-                Logger::getInstance()->log(dbg);
                 windowChangeListeners.push_back(msg.addr);
             }
         }
@@ -170,6 +165,7 @@ void SlideWindowManager::closeWindow(XEvent *e)
             if((*iter)->getWindow(true) == e->xbutton.window)
             {
                 (*iter)->close();
+                if(e->xbutton.window == focusedWindow->getWindow(true)) focusedWindow = NULL;
                 windows.erase(iter);
                 break;
             }
@@ -184,6 +180,7 @@ void SlideWindowManager::closeWindow(XEvent *e)
             if((*iter)->getWindow() == e->xdestroywindow.event)
             {
                 (*iter)->close(false);
+                if(e->xdestroywindow.event == focusedWindow->getWindow()) focusedWindow = NULL;
                 windows.erase(iter);
                 break;
             }
@@ -214,12 +211,13 @@ void SlideWindowManager::createWindow(XEvent *e)
         msg.type = WINDOWLISTCREATEWND;
         msg.len = sizeof(SlideWindow);
         memcpy(msg.msg,w,sizeof(SlideWindow));
-
+/*
         for(unsigned int i=0;i<windowChangeListeners.size();i++)
         {
             Logger::getInstance()->log("Sending WML-Create-Notify");
             ctrl->sendMessage(&msg,windowChangeListeners[i].sun_path);
         }
+*/
     }
     else if(strncmp(wndName,"__SLIDE__Desktop",16) == 0)
     {
@@ -254,13 +252,15 @@ void SlideWindowManager::focusWindow(XEvent *e)
             XEvent e;
             e.type = Expose;
             e.xexpose.window = windows[i]->getWindow(true);
-
-            focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
             windows[i]->state |= SlideWindow::STATE_FOCUSED;
-
             XSendEvent(disp,windows[i]->getWindow(true),True,ExposureMask,&e);
-            e.xexpose.window = focusedWindow->getWindow(true);
-            XSendEvent(disp,focusedWindow->getWindow(true),True,ExposureMask,&e);
+
+            if(focusedWindow != NULL)
+            {
+                focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
+                e.xexpose.window = focusedWindow->getWindow(true);
+                XSendEvent(disp,focusedWindow->getWindow(true),True,ExposureMask,&e);
+            }
 
             focusedWindow = windows[i];
         }
