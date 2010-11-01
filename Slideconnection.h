@@ -11,7 +11,10 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/types.h>
+#include <sys/time.h>
+#include <error.h>
 #include <fcntl.h>
+#include <errno.h>
 
 #include "Logger.h"
 #include "Global.h"
@@ -65,10 +68,8 @@ class SlideConnection
     unsigned int bytesReadable();
 
   private:
-    int sock;
+    int sockIn,sockOut;
     struct sockaddr_un localAddr;
-    char *inBuffer;
-    char *outBuffer;
     char *localPath;
     SlideComponent component;
 };
