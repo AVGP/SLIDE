@@ -1,7 +1,10 @@
 #include "Logger.h"
 
 Logger::Logger()
-{}
+{
+	logPath = getenv("HOME");
+	logPath += "/.Slide_debug.log";
+}
 
 Logger *Logger::instance = NULL;
 
