@@ -61,6 +61,8 @@ class SlideConnection
     */
     void sendMessage(CTRLMSG *msg,char *to);
 
+    void putMessage(CTRLMSG *msg,char *to);
+
     /**
     * Returns the number of bytes currently readable from the socket.
     * @todo Currently only a stub, returns 0 anyway.
