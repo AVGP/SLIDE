@@ -122,7 +122,7 @@ void SlideWindow::close(bool killProcess)
         pid_t pid;
         Atom retType;
         int formatReturned;
-        unsigned long bytesReturned,itemsReturned;
+        unsigned long bytesReturned = 0,itemsReturned = 0;
         unsigned char *values;
 
         XGetWindowProperty(disp,wndWindow,atom,0,(long)BUFSIZ,False,AnyPropertyType,&retType,&formatReturned,&itemsReturned,&bytesReturned,&values);
