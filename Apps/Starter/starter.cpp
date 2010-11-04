@@ -1,8 +1,9 @@
 #include "starter.h"
 
-Starter::Starter(int width, int height, const wxString& title) : wxFrame(NULL,wxID_ANY,title,wxPoint(20,20),wxSize(width-40,height-40))
+Starter::Starter(int width, int height, const wxString& title) //: wxWindow(NULL,wxID_ANY,wxPoint(20,20),wxSize(width-40,height-40),0,title)
 {
-	Raise();
+
+	wxTopLevelWindow::Create(NULL,wxID_ANY,title,wxPoint(20,20),wxSize(width-40,height-40));
 
 	//Get the config-file:
 	char filenamebuffer[512];
@@ -34,3 +35,4 @@ Starter::Starter(int width, int height, const wxString& title) : wxFrame(NULL,wx
 		}
 	}
 }
+
