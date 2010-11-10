@@ -52,13 +52,11 @@ bool Slide::startUp(bool debug)
     //Get resolution from the WM:
     struct sockaddr_un addr;
     CTRLMSG msg;
-    do
-    {
-        msg.type = GEOMETRYREQUEST;
-        msg.len  = 0;
-        ctrlConnection->sendMessage(&msg,(char *)"/tmp/Slide_wm.sock");
-        msg = ctrlConnection->peekMessage(&addr);
-    }while(msg.type == NONE);
+    msg.type = GEOMETRYREQUEST;
+    msg.len  = 0;
+    ctrlConnection->sendMessage(&msg,(char *)"/tmp/Slide_wm.sock");
+    msg = ctrlConnection->getMessage(&addr);
+
     int sx,sy;
     memcpy(&sx,msg.msg,sizeof(int));
     memcpy(&sy,msg.msg+sizeof(int),sizeof(int));

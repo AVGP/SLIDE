@@ -11,7 +11,10 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/types.h>
+#include <sys/time.h>
+#include <error.h>
 #include <fcntl.h>
+#include <errno.h>
 
 #include "Logger.h"
 #include "Global.h"
@@ -58,6 +61,8 @@ class SlideConnection
     */
     void sendMessage(CTRLMSG *msg,char *to);
 
+    void putMessage(CTRLMSG *msg,char *to);
+
     /**
     * Returns the number of bytes currently readable from the socket.
     * @todo Currently only a stub, returns 0 anyway.
@@ -65,10 +70,8 @@ class SlideConnection
     unsigned int bytesReadable();
 
   private:
-    int sock;
+    int sockIn,sockOut;
     struct sockaddr_un localAddr;
-    char *inBuffer;
-    char *outBuffer;
     char *localPath;
     SlideComponent component;
 };

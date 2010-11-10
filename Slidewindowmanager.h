@@ -9,6 +9,7 @@
 #include "Slideconnection.h"
 #include "./Slidewindow.h"
 #include <vector>
+#include <string>
 #include <cmath>
 
 #define RGB(r,g,b) (r << 16 | g << 8 | b)
@@ -32,6 +33,8 @@ class SlideWindowManager
         * @return Returns true after regular shutdown, else returns false
         */
         bool run();
+
+        static int *errorHandler(Display *d, XErrorEvent *e);
     private:
         void focusWindow(XEvent *e);
         void createWindow(XEvent *e);
@@ -48,7 +51,7 @@ class SlideWindowManager
         Screen *screen;
         Window *desktop;
         SlideWindow *focusedWindow;
-        std::vector<struct sockaddr_un> windowChangeListeners; //Apps listening for changes in window list (create/destroy)
+        std::vector<std::string> windowChangeListeners; //Apps listening for changes in window list (create/destroy)
         unsigned int screenWidth,screenHeight;
         unsigned char workspaces,numWorkspaces,currentWorkspace;
 };
