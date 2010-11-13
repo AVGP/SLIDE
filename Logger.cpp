@@ -16,7 +16,7 @@ Logger *Logger::getInstance()
 
 void Logger::log(char *msg)
 {
-    std::ofstream logFile(LOG_PATH,std::ios_base::app);
+    std::ofstream logFile(logPath.c_str(),std::ios_base::app);
     if(logFile.is_open())
     {
         logFile << msg << "\n";
@@ -27,7 +27,7 @@ void Logger::log(char *msg)
 
 void Logger::log(std::string msg)
 {
-    std::ofstream logFile(LOG_PATH,std::ios_base::app);
+    std::ofstream logFile(logPath.c_str(),std::ios_base::app);
     if(logFile.is_open())
     {
         logFile << msg << "\n";
