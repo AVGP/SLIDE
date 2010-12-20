@@ -7,7 +7,7 @@
 
 #include <fstream>
 #include <string>
-#define LOG_PATH "/home/master/Slide_debug.log"
+#include <cstdlib>
 
 /**
 * @class Logger
@@ -41,6 +41,7 @@ class Logger
     Logger();
     ~Logger();
     static Logger *instance;
+	std::string logPath;
 };
 
 #endif // LOGGER_H_INCLUDED
