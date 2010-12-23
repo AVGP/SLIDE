@@ -28,13 +28,13 @@ class Logger
 
     /**
     * Writes the message into the logfile.
-    * @param The Message to write out to the log file.
+    * @param msg The Message to write out to the log file.
     */
     void log(char *msg);
 
     /**
     * Writes a C++ std::string into the logfile.
-    * @param The message to write out to the log file.
+    * @param msg The message to write out to the log file.
     */
     void log(std::string msg);
 

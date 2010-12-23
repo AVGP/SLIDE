@@ -32,8 +32,8 @@ class SlideConfig
 
     /**
     * Gets the value of the config key with the given identifier.
-    * @param The string identifier of the desired config value
-    * @param The variable at this address will receive the size of the returned value (in bytes)
+    * @param identifier The string identifier of the desired config value
+    * @param returnSize The variable at this address will receive the size of the returned value (in bytes)
     * @return The matching value is returned - if no value with the given identifier is found, NULL is returned
     *         and the returnSize will be 0
     */
@@ -41,9 +41,9 @@ class SlideConfig
 
     /**
     * Sets the config key with the given identifier to the value given via newValue.
-    * @param The identifier-string, the value will be stored for
-    * @param A pointer to the desired new value.
-    * @param Size of the new value.
+    * @param identifier The identifier-string, the value will be stored for
+    * @param newValue A pointer to the desired new value.
+    * @param valueSize Size of the new value.
     */
     void setConfigValue(char *identifier,void *newValue,unsigned int valueSize);
 

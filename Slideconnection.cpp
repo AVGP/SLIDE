@@ -1,9 +1,8 @@
 #include "Slideconnection.h"
 
-SlideConnection::SlideConnection(char *localPath,SlideComponent component,bool bindTo)
+SlideConnection::SlideConnection(char *localPath, bool bindTo)
 {
     this->localPath  = localPath;
-    this->component  = component;
 
     memset(&localAddr,0,sizeof(localAddr));
     localAddr.sun_family = AF_UNIX;

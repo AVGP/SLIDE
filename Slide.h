@@ -29,8 +29,7 @@ class Slide
 
     /**
     * Is called from main to start the Environment. Blocks.
-    * @ToDo Load Configuration, start WM.
-    * @param Set this to true, to have debug output. Default is false.
+    * @param debug Set this to true, to have debug output. Default is false.
     * @return Returns true, if start up was successful.
     */
     bool startUp(bool debug = false);

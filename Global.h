@@ -17,15 +17,9 @@
 
 #include "Logger.h"
 
-enum SlideComponent
-{
-    COMP_ALL,
-    COMP_CORE,
-    COMP_CLIENTAPPS,
-    COMP_DESKTOP,
-    COMP_WM
-};
-
+/**
+* @enum Enumeration of available Slide-Message-Types to be used when communicating.
+*/
 enum CTRLMSG_TYPE
 {
     CONNECTNOTIFY,          //Sent from every client to notify the CommServer what kind of client it is.
@@ -46,6 +40,9 @@ enum CTRLMSG_TYPE
     NONE                    //Indicates that no message is available.
 };
 
+/**
+* @typedef Structure used for messages sent via SlideConnection
+*/
 typedef struct
 {
     CTRLMSG_TYPE type;

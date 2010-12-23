@@ -47,7 +47,7 @@ bool Slide::startUp(bool debug)
     }
 
     //Setup the local socket:
-    ctrlConnection = new SlideConnection((char *)"/tmp/Slide_core.sock",COMP_CORE);
+    ctrlConnection = new SlideConnection((char *)"/tmp/Slide_core.sock");
 
     //Get resolution from the WM:
     struct sockaddr_un addr;
