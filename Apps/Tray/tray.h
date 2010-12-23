@@ -8,10 +8,9 @@ class Tray : public wxFrame
     public:
         Tray(int width, int height);
         void OnClickStart(wxCommandEvent& WXUNUSED(event));
-
-        wxPanel *windowList;
     private:
         wxButton *startButton;
+	wxFrame *windowList;
         int width,height;
 };
 #endif // Tray_H_INCLUDED

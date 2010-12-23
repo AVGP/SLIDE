@@ -1,6 +1,5 @@
 #include "main.h"
 #include "tray.h"
-#include "ctrlthread.h"
 #include <iostream>
 
 IMPLEMENT_APP(TrayApp);
@@ -20,13 +19,6 @@ bool TrayApp::OnInit()
 
     Tray *d = new Tray(w,h);
     d->Show(true);
-
-    CtrlThread *ctrl = new CtrlThread(d->windowList,w-100);
-    if(ctrl->Create() == wxTHREAD_NO_ERROR)
-    {
-        ctrl->Run();
-    }
-
     return true;
 }
 
