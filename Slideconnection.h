@@ -31,7 +31,7 @@ class SlideConnection
     * @param localPath Path to use for receiving.
     * @param bindTo (Optional) If the local socket shoud be bound, thus turning it to a local server, defaults to true
     */
-    SlideConnection(char *localPathbool bindTo = true);
+    SlideConnection(char *localPathbool,bool bindTo = true);
 
     /**
     * Get the current content of the message buffer or an empty buffer.

@@ -46,7 +46,6 @@ enum CTRLMSG_TYPE
 typedef struct
 {
     CTRLMSG_TYPE type;
-    SlideComponent receiver;
     struct sockaddr_un addr;
     int len;
     unsigned char msg[500];
