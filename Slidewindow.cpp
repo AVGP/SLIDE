@@ -116,8 +116,8 @@ void SlideWindow::resizeBy(double fx, double fy, bool updateGeometry)
         recentGeometry.height = height;
     }
 
-    width  *= fx;
-    height *= fy;
+    width  = (int)(((double)width)*fx);
+    height = (int)(((double)height)*fy);
 
     XResizeWindow(disp,wndDecoration,width,height);
     XResizeWindow(disp,wndWindow,width,height-20);
@@ -216,4 +216,14 @@ void SlideWindow::restoreGeometry()
     height  = recentGeometry.height;
     move(x,y);
     resize(width,height);
+}
+
+unsigned int SlideWindow::getX()
+{
+    return x;
+}
+
+unsigned int SlideWindow::getY()
+{
+    return y;
 }

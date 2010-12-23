@@ -140,6 +140,16 @@ class SlideWindow
         */
         char *getTitle();
 
+        /**
+        * Returns the x-coordinate of the window
+        */
+        unsigned int getX();
+
+        /**
+        * Returns the y-coordinate of the window
+        */
+        unsigned int getY();
+
         unsigned char state;
     private:
         Display *disp;
