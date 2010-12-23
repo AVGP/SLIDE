@@ -17,6 +17,7 @@ WindowManager
 + Managing "recent geometry" (i.e. saving the previous geometry, to allow "de-maximization", "de-tiling", etc.)
 + Damn it. A bug, when the application destroys the window itself. AGAIN  -.-
 - Window groups
++ More awesome workspace switching (CTRL+Space)
 + Move windows out of the screen to switch the desk they're on.
 - WM Protocols!
 
