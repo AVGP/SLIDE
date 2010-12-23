@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -50,29 +51,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><a href="class_slide_window-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#a55a8e75ddbe68aaaa8c558f7c6e92f68">SlideWindow</a> (Window w, int group=0, bool sticky=false, unsigned char desk=0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#aa0e56d3d01816d89dc9ba82ffd5bc154">move</a> (int newX, int newY)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#aab555e322227c090a01608fa3bd6d42f">putOnDesk</a> (unsigned char newDesk)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#a17b9c13d76a9d3aed69dfb4efe924bb4">close</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#a009490810a6fbae8363d7fb3a77d4075">resize</a> (int w, int h)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#a2754a9fb0da0d6a677084b76a9466e26">SlideWindow</a> (Display *d, Window w, Window parent, unsigned char desk=0, int group=0, bool sticky=false)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#a22aa6e4e696ca58448f8e70beedad18f">move</a> (int newX, int newY, bool updateGeometry=false)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#af9951b6cdce4d25b37ae57c842c7fc65">putOnDesk</a> (unsigned char newDesk, Window newDesktop)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#ad880a1ec834c99af35b607f16c827c20">close</a> (bool killProcess=true)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#aa3aa6c5c00d036a8a9465869d18b9478">resize</a> (int w, int h, bool updateGeometry=false)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#a3ab1c2a48a0258d4a65ebf3d68f16d80">setGroup</a> (int groupID)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#a5c2303bf5c9726431aeb2eaf3ab2ae12">show</a> (bool maximized=false)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#ae1ea5fd1c0cf6513973f98d1030baeb2">hide</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#a3685ed271b94a103db2fdd0e1b1e71db">makeSticky</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#aa2ace5b7bea8a1d85945af6793d469f3">makeUnsticky</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#a52cdbb7b45bc252a03d8e0db7440908d">restoreGeometry</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html#af31e832d67113c56a2a593c3781f05a1">drawDecoration</a> (bool focus)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a105be9d535e24ed1dfbae0ce81e9716f"></a><!-- doxytag: member="SlideWindow::getWindow" ref="a105be9d535e24ed1dfbae0ce81e9716f" args="(bool decoWindow=false)" -->
+Window&nbsp;</td><td class="memItemRight" valign="bottom"><b>getWindow</b> (bool decoWindow=false)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a433102426263a35d8a76c8ed35ecf300"></a><!-- doxytag: member="SlideWindow::getDesk" ref="a433102426263a35d8a76c8ed35ecf300" args="()" -->
+unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDesk</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ec24598f5c3f1c886dbdc1ea516d63b"></a><!-- doxytag: member="SlideWindow::getTitle" ref="a6ec24598f5c3f1c886dbdc1ea516d63b" args="()" -->
+char *&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTitle</b> ()</td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa99fb8df16959900438afc1f10bbef8"></a><!-- doxytag: member="SlideWindow::state" ref="aaa99fb8df16959900438afc1f10bbef8" args="" -->
+unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><b>state</b></td></tr>
+<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a162fc3a5ebbeb76594b8eb4b858ccadf"></a><!-- doxytag: member="SlideWindow::STATE_SHOWN" ref="a162fc3a5ebbeb76594b8eb4b858ccadf" args="" -->
+static const unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><b>STATE_SHOWN</b> = 1</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12cd7321d51aa1430401c38c440123e0"></a><!-- doxytag: member="SlideWindow::STATE_MAXIMIZED" ref="a12cd7321d51aa1430401c38c440123e0" args="" -->
+static const unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><b>STATE_MAXIMIZED</b> = 1 &lt;&lt; 1</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f23435c18e6de89ccaf1652fdfbee5e"></a><!-- doxytag: member="SlideWindow::STATE_FOCUSED" ref="a0f23435c18e6de89ccaf1652fdfbee5e" args="" -->
+static const unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><b>STATE_FOCUSED</b> = 1 &lt;&lt; 2</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p><a class="el" href="class_this.html">This</a> class handles the concept of a window in the WindowManager-Component It keeps the decoration (window) belonging to a window and also the methods necessary for managing windows (move, resize, close, etc.) </p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a55a8e75ddbe68aaaa8c558f7c6e92f68"></a><!-- doxytag: member="SlideWindow::SlideWindow" ref="a55a8e75ddbe68aaaa8c558f7c6e92f68" args="(Window w, int group=0, bool sticky=false, unsigned char desk=0)" -->
+<a class="anchor" id="a2754a9fb0da0d6a677084b76a9466e26"></a><!-- doxytag: member="SlideWindow::SlideWindow" ref="a2754a9fb0da0d6a677084b76a9466e26" args="(Display *d, Window w, Window parent, unsigned char desk=0, int group=0, bool sticky=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">SlideWindow::SlideWindow </td>
           <td>(</td>
+          <td class="paramtype">Display *&nbsp;</td>
+          <td class="paramname"> <em>d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">Window&nbsp;</td>
           <td class="paramname"> <em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Window&nbsp;</td>
+          <td class="paramname"> <em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char&nbsp;</td>
+          <td class="paramname"> <em>desk</em> = <code>0</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -84,13 +121,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>sticky</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char&nbsp;</td>
-          <td class="paramname"> <em>desk</em> = <code>0</code></td><td>&nbsp;</td>
+          <td class="paramname"> <em>sticky</em> = <code>false</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -114,14 +145,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a17b9c13d76a9d3aed69dfb4efe924bb4"></a><!-- doxytag: member="SlideWindow::close" ref="a17b9c13d76a9d3aed69dfb4efe924bb4" args="()" -->
+<a class="anchor" id="ad880a1ec834c99af35b607f16c827c20"></a><!-- doxytag: member="SlideWindow::close" ref="ad880a1ec834c99af35b607f16c827c20" args="(bool killProcess=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void SlideWindow::close </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>killProcess</em> = <code>true</code></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -129,6 +161,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="memdoc">
 <p>Closes the Window Internally cleans up. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>killProcess</em>&nbsp;</td><td>Bool, indicates if the window's process should be killed. Defaults to true. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af31e832d67113c56a2a593c3781f05a1"></a><!-- doxytag: member="SlideWindow::drawDecoration" ref="af31e832d67113c56a2a593c3781f05a1" args="(bool focus)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SlideWindow::drawDecoration </td>
+          <td>(</td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>focus</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Draws the window decoration on exposure </p>
 
 </div>
 </div>
@@ -186,7 +243,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 </div>
 </div>
-<a class="anchor" id="aa0e56d3d01816d89dc9ba82ffd5bc154"></a><!-- doxytag: member="SlideWindow::move" ref="aa0e56d3d01816d89dc9ba82ffd5bc154" args="(int newX, int newY)" -->
+<a class="anchor" id="a22aa6e4e696ca58448f8e70beedad18f"></a><!-- doxytag: member="SlideWindow::move" ref="a22aa6e4e696ca58448f8e70beedad18f" args="(int newX, int newY, bool updateGeometry=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -200,7 +257,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>newY</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>newY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>updateGeometry</em> = <code>false</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -221,7 +284,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 </div>
 </div>
-<a class="anchor" id="aab555e322227c090a01608fa3bd6d42f"></a><!-- doxytag: member="SlideWindow::putOnDesk" ref="aab555e322227c090a01608fa3bd6d42f" args="(unsigned char newDesk)" -->
+<a class="anchor" id="af9951b6cdce4d25b37ae57c842c7fc65"></a><!-- doxytag: member="SlideWindow::putOnDesk" ref="af9951b6cdce4d25b37ae57c842c7fc65" args="(unsigned char newDesk, Window newDesktop)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -229,9 +292,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
           <td class="memname">void SlideWindow::putOnDesk </td>
           <td>(</td>
           <td class="paramtype">unsigned char&nbsp;</td>
-          <td class="paramname"> <em>newDesk</em></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramname"> <em>newDesk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Window&nbsp;</td>
+          <td class="paramname"> <em>newDesktop</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
@@ -240,13 +312,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>The</em>&nbsp;</td><td>number of the virtual desk to put the window onto </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>The</em>&nbsp;</td><td>new desktop window </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a009490810a6fbae8363d7fb3a77d4075"></a><!-- doxytag: member="SlideWindow::resize" ref="a009490810a6fbae8363d7fb3a77d4075" args="(int w, int h)" -->
+<a class="anchor" id="aa3aa6c5c00d036a8a9465869d18b9478"></a><!-- doxytag: member="SlideWindow::resize" ref="aa3aa6c5c00d036a8a9465869d18b9478" args="(int w, int h, bool updateGeometry=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -260,7 +333,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>h</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>updateGeometry</em> = <code>false</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -278,6 +357,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a52cdbb7b45bc252a03d8e0db7440908d"></a><!-- doxytag: member="SlideWindow::restoreGeometry" ref="a52cdbb7b45bc252a03d8e0db7440908d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SlideWindow::restoreGeometry </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Moves and resizes the window according to the recent geometry stored for it. </p>
 
 </div>
 </div>
@@ -350,7 +447,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Dec 23 01:17:34 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

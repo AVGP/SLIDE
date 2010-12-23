@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -46,16 +47,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 <span class="preprocessor"></span>
 <a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="_global_8h.html" title="Contains globally useful includes and defines the message-types.">Global.h</a>&quot;</span>
 <a name="l00009"></a>00009 <span class="preprocessor">#include &quot;<a class="code" href="_slideconfig_8h.html" title="Contains the typedef for CONFIGVALUE and the SlideConfig-Class to read&amp;amp;write...">Slideconfig.h</a>&quot;</span>
-<a name="l00010"></a>00010 <span class="preprocessor">#include &quot;<a class="code" href="_slidecommserver_8h.html" title="Contains the declaration for the SlideCommServer-Component.">Slidecommserver.h</a>&quot;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &quot;<a class="code" href="_slidewindowmanager_8h.html" title="Contains the Window Manager for Slide.">Slidewindowmanager.h</a>&quot;</span>
 <a name="l00011"></a>00011 <span class="preprocessor">#include &quot;<a class="code" href="_logger_8h.html" title="Contains declarations for logging debug messages.">Logger.h</a>&quot;</span>
 <a name="l00012"></a>00012 
 <a name="l00020"></a><a class="code" href="class_slide.html">00020</a> <span class="keyword">class </span><a class="code" href="class_slide.html">Slide</a>
 <a name="l00021"></a>00021 {
 <a name="l00022"></a>00022   <span class="keyword">public</span>:
-<a name="l00028"></a>00028     <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="class_slide.html">Slide</a> *<a class="code" href="class_slide.html#a5e83ccab46d6972e3f061072acfa4000">getInstance</a>();
+<a name="l00028"></a>00028     <span class="keyword">static</span> <a class="code" href="class_slide.html">Slide</a> *<a class="code" href="class_slide.html#a0c4cf1d6e8fc698b3fe768b4fb5dc98f">getInstance</a>();
 <a name="l00029"></a>00029 
-<a name="l00036"></a>00036     <span class="keywordtype">bool</span> <a class="code" href="class_slide.html#a63865e0de370f149fd118d4f82428396">startUp</a>(<span class="keywordtype">bool</span> debug = <span class="keyword">false</span>);
-<a name="l00037"></a>00037 
+<a name="l00035"></a>00035     <span class="keywordtype">bool</span> <a class="code" href="class_slide.html#a63865e0de370f149fd118d4f82428396">startUp</a>(<span class="keywordtype">bool</span> debug = <span class="keyword">false</span>);
+<a name="l00036"></a>00036 
 <a name="l00043"></a>00043     <span class="keywordtype">bool</span> <a class="code" href="class_slide.html#ae4516d6333e31e19b9e3440414900a77">shutDown</a>();
 <a name="l00044"></a>00044 
 <a name="l00049"></a>00049     <span class="keywordtype">void</span> <a class="code" href="class_slide.html#a099e35bda519e9cf7cf330888c0d784b">run</a>();
@@ -65,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00053"></a>00053     <span class="keyword">static</span> <a class="code" href="class_slide.html">Slide</a> *instance;
 <a name="l00054"></a>00054     <a class="code" href="class_slide_connection.html">SlideConnection</a> *ctrlConnection;
 <a name="l00055"></a>00055     <a class="code" href="class_slide_config.html">SlideConfig</a> *config;
-<a name="l00056"></a>00056     pid_t componentPIDs[2]; <span class="comment">// Indices: 0 = CommServer, 1 = WM</span>
+<a name="l00056"></a>00056     pid_t componentPIDs[2]; <span class="comment">// Indices: 0 = WM, 1 = Tray</span>
 <a name="l00057"></a>00057 };
 <a name="l00058"></a>00058 
 <a name="l00059"></a>00059 <span class="preprocessor">#endif</span>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Dec 23 01:17:34 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

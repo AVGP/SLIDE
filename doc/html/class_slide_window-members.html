@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -45,16 +46,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <h1>SlideWindow Member List</h1>This is the complete list of members for <a class="el" href="class_slide_window.html">SlideWindow</a>, including all inherited members.<table>
-  <tr class="memlist"><td><a class="el" href="class_slide_window.html#a17b9c13d76a9d3aed69dfb4efe924bb4">close</a>()</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_window.html#ad880a1ec834c99af35b607f16c827c20">close</a>(bool killProcess=true)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_window.html#af31e832d67113c56a2a593c3781f05a1">drawDecoration</a>(bool focus)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getDesk</b>() (defined in <a class="el" href="class_slide_window.html">SlideWindow</a>)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getTitle</b>() (defined in <a class="el" href="class_slide_window.html">SlideWindow</a>)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getWindow</b>(bool decoWindow=false) (defined in <a class="el" href="class_slide_window.html">SlideWindow</a>)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_slide_window.html#ae1ea5fd1c0cf6513973f98d1030baeb2">hide</a>()</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_slide_window.html#a3685ed271b94a103db2fdd0e1b1e71db">makeSticky</a>()</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_slide_window.html#aa2ace5b7bea8a1d85945af6793d469f3">makeUnsticky</a>()</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_slide_window.html#aa0e56d3d01816d89dc9ba82ffd5bc154">move</a>(int newX, int newY)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_slide_window.html#aab555e322227c090a01608fa3bd6d42f">putOnDesk</a>(unsigned char newDesk)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_slide_window.html#a009490810a6fbae8363d7fb3a77d4075">resize</a>(int w, int h)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_window.html#a22aa6e4e696ca58448f8e70beedad18f">move</a>(int newX, int newY, bool updateGeometry=false)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_window.html#af9951b6cdce4d25b37ae57c842c7fc65">putOnDesk</a>(unsigned char newDesk, Window newDesktop)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_window.html#aa3aa6c5c00d036a8a9465869d18b9478">resize</a>(int w, int h, bool updateGeometry=false)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_window.html#a52cdbb7b45bc252a03d8e0db7440908d">restoreGeometry</a>()</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_slide_window.html#a3ab1c2a48a0258d4a65ebf3d68f16d80">setGroup</a>(int groupID)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_slide_window.html#a5c2303bf5c9726431aeb2eaf3ab2ae12">show</a>(bool maximized=false)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_slide_window.html#a55a8e75ddbe68aaaa8c558f7c6e92f68">SlideWindow</a>(Window w, int group=0, bool sticky=false, unsigned char desk=0)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_window.html#a2754a9fb0da0d6a677084b76a9466e26">SlideWindow</a>(Display *d, Window w, Window parent, unsigned char desk=0, int group=0, bool sticky=false)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>state</b> (defined in <a class="el" href="class_slide_window.html">SlideWindow</a>)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>STATE_FOCUSED</b> (defined in <a class="el" href="class_slide_window.html">SlideWindow</a>)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td><code> [static]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>STATE_MAXIMIZED</b> (defined in <a class="el" href="class_slide_window.html">SlideWindow</a>)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td><code> [static]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>STATE_SHOWN</b> (defined in <a class="el" href="class_slide_window.html">SlideWindow</a>)</td><td><a class="el" href="class_slide_window.html">SlideWindow</a></td><td><code> [static]</code></td></tr>
 </table></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -70,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Dec 23 01:17:34 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

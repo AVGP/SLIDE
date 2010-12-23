@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -50,20 +51,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><a href="class_slide_window_manager-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window_manager.html#ac79684a9144dd8ffd04012502cfc4cff">SlideWindowManager</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window_manager.html#a1abb8157930da68972cdd8002697658c">SlideWindowManager</a> (bool debug=false)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window_manager.html#a06954d589ab3aa5e8de253a79fd7e83e">run</a> ()</td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c645ee1b80e435e95f82047938e334f"></a><!-- doxytag: member="SlideWindowManager::errorHandler" ref="a0c645ee1b80e435e95f82047938e334f" args="(Display *d, XErrorEvent *e)" -->
+static int *&nbsp;</td><td class="memItemRight" valign="bottom"><b>errorHandler</b> (Display *d, XErrorEvent *e)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p><a class="el" href="class_this.html">This</a> class encapsules the WindowManager for <a class="el" href="class_slide.html">Slide</a>. It runs in a separate process, communicating via its ctrl-member </p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ac79684a9144dd8ffd04012502cfc4cff"></a><!-- doxytag: member="SlideWindowManager::SlideWindowManager" ref="ac79684a9144dd8ffd04012502cfc4cff" args="()" -->
+<a class="anchor" id="a1abb8157930da68972cdd8002697658c"></a><!-- doxytag: member="SlideWindowManager::SlideWindowManager" ref="a1abb8157930da68972cdd8002697658c" args="(bool debug=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">SlideWindowManager::SlideWindowManager </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>debug</em> = <code>false</code></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -71,6 +76,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="memdoc">
 <p>Creates a new instance of the <a class="el" href="class_slide_window_manager.html">SlideWindowManager</a> </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Specifies,if</em>&nbsp;</td><td>we're in debug-mode. Defaults to false </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -113,7 +124,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Dec 23 01:17:34 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

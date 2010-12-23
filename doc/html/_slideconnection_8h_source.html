@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -44,47 +45,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00005"></a>00005 <span class="preprocessor">#ifndef _SlideCONNECTION_H_</span>
 <a name="l00006"></a>00006 <span class="preprocessor"></span><span class="preprocessor">#define _SlideCONNECTION_H_</span>
 <a name="l00007"></a>00007 <span class="preprocessor"></span>
-<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;sys/types.h&gt;</span>
-<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;sys/socket.h&gt;</span>
-<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;netinet/in.h&gt;</span>
-<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;sys/un.h&gt;</span>
-<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;cstdio&gt;</span>
-<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;signal.h&gt;</span>
-<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;netdb.h&gt;</span>
-<a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="preprocessor">#include &quot;<a class="code" href="_logger_8h.html" title="Contains declarations for logging debug messages.">Logger.h</a>&quot;</span>
-<a name="l00017"></a>00017 
-<a name="l00018"></a>00018 <span class="keyword">enum</span> SlideComponent
-<a name="l00019"></a>00019 {
-<a name="l00020"></a>00020     ALL,
-<a name="l00021"></a>00021     CORE,
-<a name="l00022"></a>00022     CLIENTAPPS,
-<a name="l00023"></a>00023     DESKTOP,
-<a name="l00024"></a>00024     WM
-<a name="l00025"></a>00025 };
-<a name="l00026"></a>00026 
-<a name="l00030"></a><a class="code" href="class_slide_connection.html">00030</a> <span class="keyword">class </span><a class="code" href="class_slide_connection.html">SlideConnection</a>
-<a name="l00031"></a>00031 {
-<a name="l00032"></a>00032   <span class="keyword">public</span>:
-<a name="l00039"></a>00039     <a class="code" href="class_slide_connection.html#a1f7da53c6fa90185f3cce0df39ce76c6">SlideConnection</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *serverPath,<span class="keyword">const</span> <span class="keywordtype">char</span> *clientPath);
-<a name="l00040"></a>00040 
-<a name="l00050"></a>00050     <span class="keywordtype">void</span> <a class="code" href="class_slide_connection.html#a67c3958ce55be357a157514abfed43ea">peekMessages</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer);
-<a name="l00051"></a>00051 
-<a name="l00060"></a>00060     <span class="keywordtype">void</span> <a class="code" href="class_slide_connection.html#ad611bba9340cefbf75c59fd8e4a069f3">getMessages</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer);
-<a name="l00061"></a>00061 
-<a name="l00069"></a>00069     <span class="keywordtype">void</span> <a class="code" href="class_slide_connection.html#a7857e1f8a22c7410ac0aa941bdd3296f">sendMessage</a>(SlideComponent componentType, <span class="keywordtype">char</span> *msg,<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> msglen);
-<a name="l00070"></a>00070 
-<a name="l00074"></a>00074     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_slide_connection.html#a159435bd7a65d71ecc4697623c9d31ad">bytesReadable</a>();
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076   <span class="keyword">private</span>:
-<a name="l00077"></a>00077     <span class="keywordtype">int</span> sock;
-<a name="l00078"></a>00078     <span class="keywordtype">char</span> *inBuffer;
-<a name="l00079"></a>00079     <span class="keywordtype">char</span> *outBuffer;
-<a name="l00080"></a>00080     <span class="keywordtype">char</span> *serverPath;
-<a name="l00081"></a>00081     <span class="keywordtype">char</span> *clientPath;
-<a name="l00082"></a>00082 };
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="preprocessor">#endif</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;cstdio&gt;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;signal.h&gt;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;netdb.h&gt;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;sys/socket.h&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;netinet/in.h&gt;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;sys/types.h&gt;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;sys/time.h&gt;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;error.h&gt;</span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;fcntl.h&gt;</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;errno.h&gt;</span>
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 <span class="preprocessor">#include &quot;<a class="code" href="_logger_8h.html" title="Contains declarations for logging debug messages.">Logger.h</a>&quot;</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include &quot;<a class="code" href="_global_8h.html" title="Contains globally useful includes and defines the message-types.">Global.h</a>&quot;</span>
+<a name="l00021"></a>00021 
+<a name="l00025"></a><a class="code" href="class_slide_connection.html">00025</a> <span class="keyword">class </span><a class="code" href="class_slide_connection.html">SlideConnection</a>
+<a name="l00026"></a>00026 {
+<a name="l00027"></a>00027   <span class="keyword">public</span>:
+<a name="l00034"></a>00034     <a class="code" href="class_slide_connection.html#a42309ce9ebe93e0871c73ecb18617bdb">SlideConnection</a>(<span class="keywordtype">char</span> *localPathbool bindTo = <span class="keyword">true</span>);
+<a name="l00035"></a>00035 
+<a name="l00043"></a>00043     <a class="code" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a> <a class="code" href="class_slide_connection.html#afd9ad7c43dc314728e756bd902f1e874">peekMessage</a>(<span class="keyword">struct</span> sockaddr_un *addr);
+<a name="l00044"></a>00044 
+<a name="l00052"></a>00052     <a class="code" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a> <a class="code" href="class_slide_connection.html#a3d5f44d193ebce538199a800b329a4bc">getMessage</a>(<span class="keyword">struct</span> sockaddr_un *addr);
+<a name="l00053"></a>00053 
+<a name="l00059"></a>00059     <span class="keywordtype">void</span> <a class="code" href="class_slide_connection.html#a59b71280effdfd7c34b59042f12d4bd3">sendMessage</a>(<a class="code" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a> *msg,<span class="keywordtype">char</span> *to);
+<a name="l00060"></a>00060 
+<a name="l00066"></a>00066     <span class="keywordtype">void</span> <a class="code" href="class_slide_connection.html#a6cdfedfa459cff82e542313d11095703">putMessage</a>(<a class="code" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a> *msg,<span class="keywordtype">char</span> *to);
+<a name="l00067"></a>00067 
+<a name="l00072"></a>00072     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_slide_connection.html#a159435bd7a65d71ecc4697623c9d31ad">bytesReadable</a>();
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074   <span class="keyword">private</span>:
+<a name="l00075"></a>00075     <span class="keywordtype">int</span> sockIn,sockOut;
+<a name="l00076"></a>00076     <span class="keyword">struct </span>sockaddr_un localAddr;
+<a name="l00077"></a>00077     <span class="keywordtype">char</span> *localPath;
+<a name="l00078"></a>00078 };
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080 <span class="preprocessor">#endif</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -100,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Dec 23 01:17:34 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

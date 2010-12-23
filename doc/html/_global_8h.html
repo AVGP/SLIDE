@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -46,28 +47,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Contains globally useful includes and defines the message-types.  
 <a href="#_details">More...</a></p>
 <code>#include &lt;cstdlib&gt;</code><br/>
+<code>#include &lt;cstdio&gt;</code><br/>
+<code>#include &lt;sys/un.h&gt;</code><br/>
 <code>#include &lt;X11/Xlib.h&gt;</code><br/>
 <code>#include &lt;X11/Xutil.h&gt;</code><br/>
 <code>#include &lt;X11/Xresource.h&gt;</code><br/>
 <code>#include &lt;X11/Xatom.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="_global_8h_source.html">Logger.h</a>&quot;</code><br/>
 <code>#include &lt;fstream&gt;</code><br/>
+<code>#include &lt;string&gt;</code><br/>
+<code>#include &lt;sstream&gt;</code><br/>
 
 <p><a href="_global_8h_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a></td></tr>
 <tr><td colspan="2"><h2>Enumerations</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>CTRLMSG</b> { <br/>
-&nbsp;&nbsp;<b>STARTREQUEST</b>, 
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>CTRLMSG_TYPE</b> { <br/>
+&nbsp;&nbsp;<b>CONNECTNOTIFY</b>, 
+<b>STARTREQUEST</b>, 
 <b>SHUTDOWNREQUEST</b>, 
 <b>CONFIGRELOADREQUEST</b>, 
-<b>CLOSENOTIFY</b>, 
 <br/>
-&nbsp;&nbsp;<b>MOVEREQUEST</b>, 
+&nbsp;&nbsp;<b>CLOSENOTIFY</b>, 
+<b>MOVEREQUEST</b>, 
 <b>RESIZEREQUEST</b>, 
 <b>CLOSEWINDOWREQUEST</b>, 
-<b>HIDEWINDOWREQUEST</b>, 
 <br/>
-&nbsp;&nbsp;<b>SHOWWINDOWREQUEST</b>
+&nbsp;&nbsp;<b>HIDEWINDOWREQUEST</b>, 
+<b>SHOWWINDOWREQUEST</b>, 
+<b>GEOMETRYREQUEST</b>, 
+<b>GEOMETRYREPLY</b>, 
+<br/>
+&nbsp;&nbsp;<b>WINDOWLISTINTEREST</b>, 
+<b>WINDOWLISTCREATEWND</b>, 
+<b>WINDOWLISTDESTROYWND</b>, 
+<b>NONE</b>
 <br/>
  }</td></tr>
 </table>
@@ -88,7 +103,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Dec 23 01:17:34 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
