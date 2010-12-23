@@ -65,6 +65,7 @@ bool SlideWindowManager::run()
                             break;
                         case 0x41: //CTRL+Space
                             tileWorkspaces();
+                            XUngrabKey(disp,0x41,ControlMask,DefaultRootWindow(disp));
                             break;
                         case 0x66: //Right-Arrow
                             if(currentWorkspace == numWorkspaces-1) currentWorkspace = 0;
@@ -91,6 +92,16 @@ bool SlideWindowManager::run()
                             Logger::getInstance()->log(msg);
                             currentWorkspace = i;
                             XRaiseWindow(disp,desktop[i]);
+                        }
+                        XUngrabButton(disp,1,AnyModifier,desktop[i]);
+                        XGrabKey(disp,0x41,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync);
+                    }
+
+                    for(unsigned int i=0;i<windows.size();i++)
+                    {
+                        if(windows[i]->state & SlideWindow::STATE_SHOWN)
+                        {
+                            windows[i]->restoreGeometry();
                         }
                     }
                     break;
@@ -467,7 +478,7 @@ void SlideWindowManager::tileWorkspaces()
     for(unsigned int i=0;i<numWorkspaces;i++)
     {
         XGrabButton(disp,1,AnyModifier,desktop[i],False,ButtonPressMask,GrabModeAsync,GrabModeAsync,None,None);
-        XSelectInput(disp,desktop[i],ButtonPressMask | ButtonReleaseMask | OwnerGrabButtonMask);
+//        XSelectInput(disp,desktop[i],ButtonPressMask | ButtonReleaseMask | OwnerGrabButtonMask);
         XResizeWindow(disp,desktop[i],widthPerWindow-10,heightPerWindow-10);
         XMoveWindow(disp,desktop[i],x+5,y+5);
         x += widthPerWindow;
@@ -475,6 +486,21 @@ void SlideWindowManager::tileWorkspaces()
         {
             x  = 0;
             y += heightPerWindow;
+        }
+    }
+
+    //Resize the windows accordingly (only shown windows, anyway)
+    double fx = (double)(widthPerWindow-10)/(double)screenWidth,fy = (double)heightPerWindow / (double)(screenHeight-50);
+    char msg[500];
+    sprintf(msg,"Factors: %f %f",fx,fy);
+    Logger::getInstance()->log(msg);
+
+    for(unsigned int i=0;i<windows.size();i++)
+    {
+        if(windows[i]->state & SlideWindow::STATE_SHOWN)
+        {
+            windows[i]->resizeBy(fx,fy);
+            windows[i]->move((int)((double)windows[i]->getX()*fx),(int)((double)windows[i]->getY()*fy));
         }
     }
 }
