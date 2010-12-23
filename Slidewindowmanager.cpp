@@ -19,6 +19,7 @@ SlideWindowManager::SlideWindowManager(bool debug)
     XSetErrorHandler((int (*)(Display *, XErrorEvent *))&SlideWindowManager::errorHandler);
 
     XSelectInput(disp, DefaultRootWindow(disp), SubstructureNotifyMask | ExposureMask | KeyPressMask );
+    XGrabKey(disp,0x41,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+Space
     XGrabKey(disp,0x17,AnyModifier,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+TAB & ALT+TAB
     XGrabKey(disp,0x64,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+Left
     XGrabKey(disp,0x66,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+Right
@@ -62,6 +63,9 @@ bool SlideWindowManager::run()
                             else currentWorkspace--;
                             XRaiseWindow(disp,desktop[currentWorkspace]);
                             break;
+                        case 0x41: //CTRL+Space
+                            tileWorkspaces();
+                            break;
                         case 0x66: //Right-Arrow
                             if(currentWorkspace == numWorkspaces-1) currentWorkspace = 0;
                             else currentWorkspace++;
@@ -73,7 +77,23 @@ bool SlideWindowManager::run()
                             break;
                     }
                     break;
-//                case ButtonPress:
+                case ButtonPress: //Usually thrown on Desktop, when using Tile-Workspaces&Select one
+                    //Restore all desks
+                    sprintf(msg,"Click was on #%i",event.xbutton.window);
+                    Logger::getInstance()->log(msg);
+                    for(unsigned int i=0;i<numWorkspaces;i++)
+                    {
+                        XResizeWindow(disp,desktop[i],screenWidth,screenHeight-40);
+                        XMoveWindow(disp,desktop[i],0,40);
+                        if(desktop[i] == event.xbutton.window)
+                        {
+                            sprintf(msg,"Showing Desk #%i",i);
+                            Logger::getInstance()->log(msg);
+                            currentWorkspace = i;
+                            XRaiseWindow(disp,desktop[i]);
+                        }
+                    }
+                    break;
                 case ButtonRelease:
                     if(event.xbutton.subwindow != None)
                     {
@@ -96,6 +116,7 @@ bool SlideWindowManager::run()
                     }
                     else
                     {
+                        Logger::getInstance()->log("Focus event.");
                         focusWindow(&event);
                     }
                     break;
@@ -435,4 +456,25 @@ int *SlideWindowManager::errorHandler(Display *d,XErrorEvent *e)
 {
     Logger::getInstance()->log("XError.");
     return 0;
+}
+
+void SlideWindowManager::tileWorkspaces()
+{
+    int x=0,y=40;
+    int widthPerWindow  = screenWidth/(numWorkspaces < 4 ? numWorkspaces : 4);
+    int rows = ceil((double)numWorkspaces/4.0);
+    int heightPerWindow = (screenHeight-40)/(rows == 0 ? 1 : rows);
+    for(unsigned int i=0;i<numWorkspaces;i++)
+    {
+        XGrabButton(disp,1,AnyModifier,desktop[i],False,ButtonPressMask,GrabModeAsync,GrabModeAsync,None,None);
+        XSelectInput(disp,desktop[i],ButtonPressMask | ButtonReleaseMask | OwnerGrabButtonMask);
+        XResizeWindow(disp,desktop[i],widthPerWindow-10,heightPerWindow-10);
+        XMoveWindow(disp,desktop[i],x+5,y+5);
+        x += widthPerWindow;
+        if(x >= screenWidth)
+        {
+            x  = 0;
+            y += heightPerWindow;
+        }
+    }
 }

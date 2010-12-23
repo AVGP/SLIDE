@@ -44,6 +44,7 @@ class SlideWindowManager
         void maximizeWindow(XEvent *e);
         void tileWindows();
         void untileWindows();
+        void tileWorkspaces();
 
         SlideConnection *ctrl;
         std::vector<SlideWindow *> windows;
