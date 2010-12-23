@@ -8,6 +8,7 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <sstream>
 
 /**
 * @class Logger
@@ -42,6 +43,7 @@ class Logger
     ~Logger();
     static Logger *instance;
 	std::string logPath;
+    std::ostringstream pathstream;
 };
 
 #endif // LOGGER_H_INCLUDED

@@ -2,8 +2,16 @@
 
 Logger::Logger()
 {
-	logPath = getenv("HOME");
-	logPath += "/.Slide_debug.log";
+	char *home = getenv("HOME");
+    if(home != NULL)
+    {
+        pathstream << home << "/.Slide_debug.log";
+        logPath = pathstream.str();
+    }
+    else
+    {
+        logPath = "/tmp/Slide_debug.log";
+    }
 }
 
 Logger *Logger::instance = NULL;
@@ -20,9 +28,9 @@ void Logger::log(char *msg)
     if(logFile.is_open())
     {
         logFile << msg << "\n";
+        logFile.flush();
+        logFile.close();
     }
-    logFile.flush();
-    logFile.close();
 }
 
 void Logger::log(std::string msg)
@@ -31,7 +39,7 @@ void Logger::log(std::string msg)
     if(logFile.is_open())
     {
         logFile << msg << "\n";
+        logFile.flush();
+        logFile.close();
     }
-    logFile.flush();
-    logFile.close();
 }
