@@ -12,4 +12,5 @@ Desk::Desk(int width, int height,QString bgFile) : QWidget()
     this->wallpaper = new QLabel(this);
     this->wallpaper->setPixmap(pixmap->scaled(this->size()));
     this->wallpaper->resize(this->size());
+    show();
 }
