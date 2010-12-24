@@ -1,6 +1,6 @@
 /**
 * @file Slidewindow.h
-* @brief Contains the declarations for the Slidewindow-Class
+* @brief Contains the declarations for the Slidewindow-Class an SLIDEWINDOW-GEOMETRY type.
 */
 
 #ifndef SlideWINDOW_H_INCLUDED
@@ -12,16 +12,23 @@
 
 #define RGB(r,g,b) (r << 16 | g << 8 | b)
 
+/**
+* This type is used for storing the "recent geometry"
+* (i.e. the window's geometry before a certain
+* transformating action took place.
+* @brief Used to store information about a window's geometry
+*/
 typedef struct
 {
-    int x;
-    int y;
-    int width;
-    int height;
+    int x;      /**< The x-coordinate of the window*/
+    int y;      /**< The y-coordinate of the window*/
+    int width;  /**< The window's width*/
+    int height; /**< The window's height*/
 } SLIDEWINDOW_GEOMETRY;
 
 /**
 * @class SlideWindow
+* @brief Defines the Window-Object used in the WM
 * This class handles the concept of a window in the WindowManager-Component
 * It keeps the decoration (window) belonging to a window and also the methods necessary
 * for managing windows (move, resize, close, etc.)
@@ -150,6 +157,9 @@ class SlideWindow
         */
         unsigned int getY();
 
+        /**
+        * The current state of the window
+        */
         unsigned char state;
     private:
         Display *disp;

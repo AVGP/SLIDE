@@ -12,6 +12,7 @@
 
 /**
 * @class Logger
+* @brief Class for logging debug-messages
 * This class provides you with the possibility to log messages
 * to a log file. Yes, it is THAT easy.
 * You should be aware, that Logger is a singleton!
