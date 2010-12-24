@@ -1,24 +1,20 @@
-#include "main.h"
 #include "desk.h"
+#include <QApplication>
 #include <iostream>
 
-IMPLEMENT_APP(DeskApp);
+using namespace std;
 
-bool DeskApp::OnInit()
+int main(int argc, char **argv)
 {
     if(argc < 4)
     {
-	std::cout << "Error: Not enough parameters given." << std::endl;
-	return false;
+        cout << "Too few arguments. Usage: Desk <Width> <Height> <Wallpaper>" << endl;
+        return 1;
     }
+    QApplication app(argc,argv);
 
-	int w = atoi(argv[1]);
-	int h = atoi(argv[2]);
+    Desk d(atoi(argv[1]),atoi(argv[2]),argv[3]);
+    
+    return app.exec();
 
-    wxInitAllImageHandlers();
-
-    Desk *d = new Desk(w,h,argv[3]);
-    d->Show(true);
-    return true;
 }
-
