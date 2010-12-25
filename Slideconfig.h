@@ -10,16 +10,22 @@
 #include <cstring>
 
 #pragma pack(0)
+/**
+* Structure of a single Config-Value for SlideConfig (written to /etc/Slide.conf)
+* @brief Structure to hold a key-value pair for SlideConfig
+*/
 typedef struct
 {
-    char identifier[50];
-    unsigned int valueSize;
-    char *value;
+    char identifier[50];        /**< The string-identifier, the value will be accessable later on*/
+    unsigned int valueSize;     /**< The Size (in bytes) the value itself will need*/
+    char *value;                /**< Pointer to the value.*/
 } CONFIGVALUE;
 #pragma pack(1)
 
 /**
-* @class This class contains the configuration values and provides functionality to read and write these.
+* @class SlideConfig
+* @brief Class for reading&writing config values
+* This class contains the configuration values and provides functionality to read and write these.
 */
 class SlideConfig
 {
@@ -32,8 +38,8 @@ class SlideConfig
 
     /**
     * Gets the value of the config key with the given identifier.
-    * @param The string identifier of the desired config value
-    * @param The variable at this address will receive the size of the returned value (in bytes)
+    * @param identifier The string identifier of the desired config value
+    * @param returnSize The variable at this address will receive the size of the returned value (in bytes)
     * @return The matching value is returned - if no value with the given identifier is found, NULL is returned
     *         and the returnSize will be 0
     */
@@ -41,9 +47,9 @@ class SlideConfig
 
     /**
     * Sets the config key with the given identifier to the value given via newValue.
-    * @param The identifier-string, the value will be stored for
-    * @param A pointer to the desired new value.
-    * @param Size of the new value.
+    * @param identifier The identifier-string, the value will be stored for
+    * @param newValue A pointer to the desired new value.
+    * @param valueSize Size of the new value.
     */
     void setConfigValue(char *identifier,void *newValue,unsigned int valueSize);
 

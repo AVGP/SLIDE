@@ -8,9 +8,11 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <sstream>
 
 /**
 * @class Logger
+* @brief Class for logging debug-messages
 * This class provides you with the possibility to log messages
 * to a log file. Yes, it is THAT easy.
 * You should be aware, that Logger is a singleton!
@@ -27,13 +29,13 @@ class Logger
 
     /**
     * Writes the message into the logfile.
-    * @param The Message to write out to the log file.
+    * @param msg The Message to write out to the log file.
     */
     void log(char *msg);
 
     /**
     * Writes a C++ std::string into the logfile.
-    * @param The message to write out to the log file.
+    * @param msg The message to write out to the log file.
     */
     void log(std::string msg);
 
@@ -42,6 +44,7 @@ class Logger
     ~Logger();
     static Logger *instance;
 	std::string logPath;
+    std::ostringstream pathstream;
 };
 
 #endif // LOGGER_H_INCLUDED

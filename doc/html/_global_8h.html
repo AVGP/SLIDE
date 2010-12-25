@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -38,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
+      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
 </div>
@@ -46,40 +48,118 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Contains globally useful includes and defines the message-types.  
 <a href="#_details">More...</a></p>
 <code>#include &lt;cstdlib&gt;</code><br/>
+<code>#include &lt;cstdio&gt;</code><br/>
+<code>#include &lt;sys/un.h&gt;</code><br/>
 <code>#include &lt;X11/Xlib.h&gt;</code><br/>
 <code>#include &lt;X11/Xutil.h&gt;</code><br/>
 <code>#include &lt;X11/Xresource.h&gt;</code><br/>
 <code>#include &lt;X11/Xatom.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="_global_8h_source.html">Logger.h</a>&quot;</code><br/>
 <code>#include &lt;fstream&gt;</code><br/>
+<code>#include &lt;string&gt;</code><br/>
+<code>#include &lt;sstream&gt;</code><br/>
 
 <p><a href="_global_8h_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used for sending messages via <a class="el" href="class_slide_connection.html" title="Class to conveniently intercommunicate between processes in Slide (i.e. Apps, Slide...">SlideConnection</a>.  <a href="struct_c_t_r_l_m_s_g.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2>Enumerations</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>CTRLMSG</b> { <br/>
-&nbsp;&nbsp;<b>STARTREQUEST</b>, 
-<b>SHUTDOWNREQUEST</b>, 
-<b>CONFIGRELOADREQUEST</b>, 
-<b>CLOSENOTIFY</b>, 
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553">CTRLMSG_TYPE</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553ae70a31ce2a3c2bf296b113f8c64125e5">STARTREQUEST</a>, 
+<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553a75fef80bccc3d4ffc55749fc14128791">SHUTDOWNREQUEST</a>, 
+<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553ab3d819d43f6cec0b7f037f2f878bea99">CONFIGRELOADREQUEST</a>, 
+<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553a768d37a95cf5a9de2f47116719f04177">MOVEREQUEST</a>, 
 <br/>
-&nbsp;&nbsp;<b>MOVEREQUEST</b>, 
-<b>RESIZEREQUEST</b>, 
-<b>CLOSEWINDOWREQUEST</b>, 
-<b>HIDEWINDOWREQUEST</b>, 
+&nbsp;&nbsp;<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553a9c5b87eba0377fae1ff42f453f48a45c">RESIZEREQUEST</a>, 
+<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553aee9e3a8017db8ad81f53c52f12ce1d37">CLOSEWINDOWREQUEST</a>, 
+<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553a4fbc3d8764f3e7a68e02bb390e121b36">HIDEWINDOWREQUEST</a>, 
+<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553a1fb803411041fca5998d7cecfa9dd974">SHOWWINDOWREQUEST</a>, 
 <br/>
-&nbsp;&nbsp;<b>SHOWWINDOWREQUEST</b>
+&nbsp;&nbsp;<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553a5d6bb75ae7529da38232206efe28e1f6">GEOMETRYREQUEST</a>, 
+<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553a521121b5e42a60c4952d5d822cd8e5ea">GEOMETRYREPLY</a>, 
+<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553ac3fadc35cd159d4c0ed033e44b801658">WINDOWLISTINTEREST</a>, 
+<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553a8ab3dd76ef268049aa0b1a20070ef817">WINDOWLISTCREATEWND</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553accbc31ef50f1cff711bc7d603ae282eb">WINDOWLISTDESTROYWND</a>, 
+<a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553ac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a>
 <br/>
  }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Defines the possible type of a <a class="el" href="struct_c_t_r_l_m_s_g.html" title="Used for sending messages via SlideConnection.">CTRLMSG</a> sent through <a class="el" href="class_slide_connection.html" title="Class to conveniently intercommunicate between processes in Slide (i.e. Apps, Slide...">SlideConnection</a>. </p>
+ <a href="_global_8h.html#a766531e7bf83f76132b374584ccb4553">More...</a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Contains globally useful includes and defines the message-types. </p>
+<hr/><h2>Enumeration Type Documentation</h2>
+<a class="anchor" id="a766531e7bf83f76132b374584ccb4553"></a><!-- doxytag: member="Global.h::CTRLMSG_TYPE" ref="a766531e7bf83f76132b374584ccb4553" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553">CTRLMSG_TYPE</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Defines the possible type of a <a class="el" href="struct_c_t_r_l_m_s_g.html" title="Used for sending messages via SlideConnection.">CTRLMSG</a> sent through <a class="el" href="class_slide_connection.html" title="Class to conveniently intercommunicate between processes in Slide (i.e. Apps, Slide...">SlideConnection</a>. </p>
+<p>Enumeration of available Slide-Message-Types to be used when communicating. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553ae70a31ce2a3c2bf296b113f8c64125e5"></a><!-- doxytag: member="STARTREQUEST" ref="a766531e7bf83f76132b374584ccb4553ae70a31ce2a3c2bf296b113f8c64125e5" args="" -->STARTREQUEST</em>&nbsp;</td><td>
+<p>Requesting component to start </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553a75fef80bccc3d4ffc55749fc14128791"></a><!-- doxytag: member="SHUTDOWNREQUEST" ref="a766531e7bf83f76132b374584ccb4553a75fef80bccc3d4ffc55749fc14128791" args="" -->SHUTDOWNREQUEST</em>&nbsp;</td><td>
+<p>Requesting environment shutdown </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553ab3d819d43f6cec0b7f037f2f878bea99"></a><!-- doxytag: member="CONFIGRELOADREQUEST" ref="a766531e7bf83f76132b374584ccb4553ab3d819d43f6cec0b7f037f2f878bea99" args="" -->CONFIGRELOADREQUEST</em>&nbsp;</td><td>
+<p><a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a> is wishing to refresh the config </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553a768d37a95cf5a9de2f47116719f04177"></a><!-- doxytag: member="MOVEREQUEST" ref="a766531e7bf83f76132b374584ccb4553a768d37a95cf5a9de2f47116719f04177" args="" -->MOVEREQUEST</em>&nbsp;</td><td>
+<p>Sent from Client-Application notifying WM to move a given window </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553a9c5b87eba0377fae1ff42f453f48a45c"></a><!-- doxytag: member="RESIZEREQUEST" ref="a766531e7bf83f76132b374584ccb4553a9c5b87eba0377fae1ff42f453f48a45c" args="" -->RESIZEREQUEST</em>&nbsp;</td><td>
+<p>Sent from Client-Application notifying WM to resize a given window </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553aee9e3a8017db8ad81f53c52f12ce1d37"></a><!-- doxytag: member="CLOSEWINDOWREQUEST" ref="a766531e7bf83f76132b374584ccb4553aee9e3a8017db8ad81f53c52f12ce1d37" args="" -->CLOSEWINDOWREQUEST</em>&nbsp;</td><td>
+<p>Sent from Client-Application notifying the wish to close a given window </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553a4fbc3d8764f3e7a68e02bb390e121b36"></a><!-- doxytag: member="HIDEWINDOWREQUEST" ref="a766531e7bf83f76132b374584ccb4553a4fbc3d8764f3e7a68e02bb390e121b36" args="" -->HIDEWINDOWREQUEST</em>&nbsp;</td><td>
+<p>Sent from Client-Application notifying the wish to hide a given window </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553a1fb803411041fca5998d7cecfa9dd974"></a><!-- doxytag: member="SHOWWINDOWREQUEST" ref="a766531e7bf83f76132b374584ccb4553a1fb803411041fca5998d7cecfa9dd974" args="" -->SHOWWINDOWREQUEST</em>&nbsp;</td><td>
+<p>Sent from Client-Application notifying the wish to show a given window </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553a5d6bb75ae7529da38232206efe28e1f6"></a><!-- doxytag: member="GEOMETRYREQUEST" ref="a766531e7bf83f76132b374584ccb4553a5d6bb75ae7529da38232206efe28e1f6" args="" -->GEOMETRYREQUEST</em>&nbsp;</td><td>
+<p>Sent from a client to notify the WM to send the geometry of the screen </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553a521121b5e42a60c4952d5d822cd8e5ea"></a><!-- doxytag: member="GEOMETRYREPLY" ref="a766531e7bf83f76132b374584ccb4553a521121b5e42a60c4952d5d822cd8e5ea" args="" -->GEOMETRYREPLY</em>&nbsp;</td><td>
+<p>Sent after GEOMETRYREQUEST - contains the dimensions as 2 ints </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553ac3fadc35cd159d4c0ed033e44b801658"></a><!-- doxytag: member="WINDOWLISTINTEREST" ref="a766531e7bf83f76132b374584ccb4553ac3fadc35cd159d4c0ed033e44b801658" args="" -->WINDOWLISTINTEREST</em>&nbsp;</td><td>
+<p>Sent from a client to ask for Window-List changes (Window destroyed/created) </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553a8ab3dd76ef268049aa0b1a20070ef817"></a><!-- doxytag: member="WINDOWLISTCREATEWND" ref="a766531e7bf83f76132b374584ccb4553a8ab3dd76ef268049aa0b1a20070ef817" args="" -->WINDOWLISTCREATEWND</em>&nbsp;</td><td>
+<p>Sent to the WINDOWLISTINTEREST-Listeners on window creation. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553accbc31ef50f1cff711bc7d603ae282eb"></a><!-- doxytag: member="WINDOWLISTDESTROYWND" ref="a766531e7bf83f76132b374584ccb4553accbc31ef50f1cff711bc7d603ae282eb" args="" -->WINDOWLISTDESTROYWND</em>&nbsp;</td><td>
+<p>Sent to the WINDOWLISTINTEREST-Listeners on window destruction. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a766531e7bf83f76132b374584ccb4553ac157bdf0b85a40d2619cbc8bc1ae5fe2"></a><!-- doxytag: member="NONE" ref="a766531e7bf83f76132b374584ccb4553ac157bdf0b85a40d2619cbc8bc1ae5fe2" args="" -->NONE</em>&nbsp;</td><td>
+<p>Indicates that no message is available. </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+</div>
+</div>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,7 +168,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Dec 24 01:32:05 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

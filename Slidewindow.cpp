@@ -108,6 +108,25 @@ void SlideWindow::resize(int w, int h, bool updateGeometry)
     XMoveWindow(disp,wndMaximize,w-40,2);
 }
 
+void SlideWindow::resizeBy(double fx, double fy, bool updateGeometry)
+{
+    if(updateGeometry)
+    {
+        recentGeometry.width  = width;
+        recentGeometry.height = height;
+    }
+
+    width  = (int)(((double)width)*fx);
+    height = (int)(((double)height)*fy);
+
+    XResizeWindow(disp,wndDecoration,width,height);
+    XResizeWindow(disp,wndWindow,width,height-20);
+
+    XMoveWindow(disp,wndClose,width-18,2);
+    XMoveWindow(disp,wndMaximize,width-40,2);
+}
+
+
 void SlideWindow::putOnDesk(unsigned char newDesk,Window newDesktop)
 {
     desk = newDesk;
@@ -197,4 +216,14 @@ void SlideWindow::restoreGeometry()
     height  = recentGeometry.height;
     move(x,y);
     resize(width,height);
+}
+
+unsigned int SlideWindow::getX()
+{
+    return x;
+}
+
+unsigned int SlideWindow::getY()
+{
+    return y;
 }

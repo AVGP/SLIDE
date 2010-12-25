@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -38,29 +39,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
+      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
 </div>
 <div class="contents">
 <h1>Slidewindow.h File Reference</h1>
-<p>Contains the declarations for the Slidewindow-Class.  
+<p>Contains the declarations for the Slidewindow-Class an SLIDEWINDOW-GEOMETRY type.  
 <a href="#_details">More...</a></p>
 <code>#include &quot;<a class="el" href="_global_8h_source.html">Global.h</a>&quot;</code><br/>
+<code>#include &lt;cstring&gt;</code><br/>
+<code>#include &lt;signal.h&gt;</code><br/>
 
 <p><a href="_slidewindow_8h_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_l_i_d_e_w_i_n_d_o_w___g_e_o_m_e_t_r_y.html">SLIDEWINDOW_GEOMETRY</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to store information about a window's geometry.  <a href="struct_s_l_i_d_e_w_i_n_d_o_w___g_e_o_m_e_t_r_y.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_window.html">SlideWindow</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Defines the Window-Object used in the WM This class handles the concept of a window in the WindowManager-Component It keeps the decoration (window) belonging to a window and also the methods necessary for managing windows (move, resize, close, etc.).  <a href="class_slide_window.html#_details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2>Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a118ad3ee36468a3fa616977a64864e"></a><!-- doxytag: member="Slidewindow.h::RGB" ref="a4a118ad3ee36468a3fa616977a64864e" args="(r, g, b)" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><b>RGB</b>(r, g, b)&nbsp;&nbsp;&nbsp;(r &lt;&lt; 16 | g &lt;&lt; 8 | b)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Contains the declarations for the Slidewindow-Class. </p>
+<p>Contains the declarations for the Slidewindow-Class an SLIDEWINDOW-GEOMETRY type. </p>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -69,7 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Dec 24 01:32:05 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

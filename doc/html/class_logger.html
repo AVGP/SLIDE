@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -45,17 +46,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <h1>Logger Class Reference</h1><!-- doxytag: class="Logger" -->
+<p>Class for logging debug-messages This class provides you with the possibility to log messages to a log file. Yes, it is THAT easy. You should be aware, that <a class="el" href="class_logger.html" title="Class for logging debug-messages This class provides you with the possibility to...">Logger</a> is a singleton!  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_logger_8h_source.html">Logger.h</a>&gt;</code></p>
 
 <p><a href="class_logger-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#a0fdd62db9d30cf0ac11477eddb088200">log</a> (char *msg)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#a2aa660e693bcd2688c239d8f8a76f8f0">log</a> (std::string msg)</td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_logger.html">Logger</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#afec28ae6d7bdf8f6a0734cb20756de10">getInstance</a> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p><a class="el" href="class_this.html">This</a> class provides you with the possibility to log messages to a log file. Yes, it is THAT easy. You should be aware, that <a class="el" href="class_logger.html">Logger</a> is a singleton! </p>
+<p>Class for logging debug-messages This class provides you with the possibility to log messages to a log file. Yes, it is THAT easy. You should be aware, that <a class="el" href="class_logger.html" title="Class for logging debug-messages This class provides you with the possibility to...">Logger</a> is a singleton! </p>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="afec28ae6d7bdf8f6a0734cb20756de10"></a><!-- doxytag: member="Logger::getInstance" ref="afec28ae6d7bdf8f6a0734cb20756de10" args="()" -->
 <div class="memitem">
@@ -71,8 +76,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </table>
 </div>
 <div class="memdoc">
-<p>Returns an instance of <a class="el" href="class_logger.html">Logger</a>. Either it creates one or it returns the existing instance. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>An instance of <a class="el" href="class_logger.html">Logger</a>. </dd></dl>
+<p>Returns an instance of <a class="el" href="class_logger.html" title="Class for logging debug-messages This class provides you with the possibility to...">Logger</a>. Either it creates one or it returns the existing instance. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>An instance of <a class="el" href="class_logger.html" title="Class for logging debug-messages This class provides you with the possibility to...">Logger</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2aa660e693bcd2688c239d8f8a76f8f0"></a><!-- doxytag: member="Logger::log" ref="a2aa660e693bcd2688c239d8f8a76f8f0" args="(std::string msg)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Logger::log </td>
+          <td>(</td>
+          <td class="paramtype">std::string&nbsp;</td>
+          <td class="paramname"> <em>msg</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Writes a C++ std::string into the logfile. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>msg</em>&nbsp;</td><td>The message to write out to the log file. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -94,7 +124,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Writes the message into the logfile. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>The</em>&nbsp;</td><td>Message to write out to the log file. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>msg</em>&nbsp;</td><td>The Message to write out to the log file. </td></tr>
   </table>
   </dd>
 </dl>
@@ -111,7 +141,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -120,7 +150,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Dec 24 01:32:05 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -45,31 +46,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <h1>SlideConnection Class Reference</h1><!-- doxytag: class="SlideConnection" -->
+<p>Class to conveniently intercommunicate between processes in <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a> (i.e. Apps, <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a>, WM,..) This class contains the functionality for a Connection between the processes involved in <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a> (Apps, <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a>, WM).  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_slideconnection_8h_source.html">Slideconnection.h</a>&gt;</code></p>
+
 <p><a href="class_slide_connection-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_connection.html#a1f7da53c6fa90185f3cce0df39ce76c6">SlideConnection</a> (const char *serverPath, const char *clientPath)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_connection.html#a67c3958ce55be357a157514abfed43ea">peekMessages</a> (const char *buffer)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_connection.html#ad611bba9340cefbf75c59fd8e4a069f3">getMessages</a> (const char *buffer)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_connection.html#a7857e1f8a22c7410ac0aa941bdd3296f">sendMessage</a> (SlideComponent componentType, char *msg, unsigned int msglen)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_connection.html#aec774ef65bc4f01fa30d056ace21f52b">SlideConnection</a> (char *localPathbool, bool bindTo=true)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_connection.html#afd9ad7c43dc314728e756bd902f1e874">peekMessage</a> (struct sockaddr_un *addr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_connection.html#a3d5f44d193ebce538199a800b329a4bc">getMessage</a> (struct sockaddr_un *addr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_connection.html#a59b71280effdfd7c34b59042f12d4bd3">sendMessage</a> (<a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a> *msg, char *to)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_connection.html#a6cdfedfa459cff82e542313d11095703">putMessage</a> (<a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a> *msg, char *to)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slide_connection.html#a159435bd7a65d71ecc4697623c9d31ad">bytesReadable</a> ()</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Class to conveniently intercommunicate between processes in <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a> (i.e. Apps, <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a>, WM,..) This class contains the functionality for a Connection between the processes involved in <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a> (Apps, <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a>, WM). </p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a1f7da53c6fa90185f3cce0df39ce76c6"></a><!-- doxytag: member="SlideConnection::SlideConnection" ref="a1f7da53c6fa90185f3cce0df39ce76c6" args="(const char *serverPath, const char *clientPath)" -->
+<a class="anchor" id="aec774ef65bc4f01fa30d056ace21f52b"></a><!-- doxytag: member="SlideConnection::SlideConnection" ref="aec774ef65bc4f01fa30d056ace21f52b" args="(char *localPathbool, bool bindTo=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">SlideConnection::SlideConnection </td>
           <td>(</td>
-          <td class="paramtype">const char *&nbsp;</td>
-          <td class="paramname"> <em>serverPath</em>, </td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>localPathbool</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *&nbsp;</td>
-          <td class="paramname"> <em>clientPath</em></td><td>&nbsp;</td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>bindTo</em> = <code>true</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -79,11 +88,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </table>
 </div>
 <div class="memdoc">
-<p>Constructs a new <a class="el" href="class_slide_connection.html">SlideConnection</a>, which is basically a UNIX-Domain socket connected to a running server-process (SlideIPCServer) </p>
+<p>Constructs a new <a class="el" href="class_slide_connection.html" title="Class to conveniently intercommunicate between processes in Slide (i.e. Apps, Slide...">SlideConnection</a>, which is basically a UNIX-Domain socket connected to a running server-process (SlideIPCServer) </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Path</em>&nbsp;</td><td>of the socket to be created on </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Path</em>&nbsp;</td><td>of the server to connect to </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>localPath</em>&nbsp;</td><td>Path to use for receiving. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>bindTo</em>&nbsp;</td><td>(Optional) If the local socket shoud be bound, thus turning it to a local server, defaults to true </td></tr>
   </table>
   </dd>
 </dl>
@@ -106,80 +115,77 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="memdoc">
 <p>Returns the number of bytes currently readable from the socket. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Currently only a stub, returns 0 anyway. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ad611bba9340cefbf75c59fd8e4a069f3"></a><!-- doxytag: member="SlideConnection::getMessages" ref="ad611bba9340cefbf75c59fd8e4a069f3" args="(const char *buffer)" -->
+<a class="anchor" id="a3d5f44d193ebce538199a800b329a4bc"></a><!-- doxytag: member="SlideConnection::getMessage" ref="a3d5f44d193ebce538199a800b329a4bc" args="(struct sockaddr_un *addr)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SlideConnection::getMessages </td>
+          <td class="memname"><a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a> SlideConnection::getMessage </td>
           <td>(</td>
-          <td class="paramtype">const char *&nbsp;</td>
-          <td class="paramname"> <em>buffer</em></td>
+          <td class="paramtype">struct sockaddr_un *&nbsp;</td>
+          <td class="paramname"> <em>addr</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Get the content of the message buffer or wait until something has arrived <a class="el" href="class_this.html">This</a> method blocks in case of an empty buffer, until something has been received. If there is something in the buffer, it gets returned. </p>
+<p>Get the content of the message buffer or wait until something has arrived This method blocks in case of an empty buffer, until something has been received. If there is something in the buffer, it gets returned. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>A</em>&nbsp;</td><td>pointer to your buffer receiving the contents. You need to allocate it on your own. <a class="el" href="class_this.html">This</a> is because the internal buffer will be cleared after this call. The contents passed will be NULL-terminated </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>addr</em>&nbsp;</td><td>Pointer to a sockaddr_un structure to receive the sender's address. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a CTRLMSG-Structure </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a67c3958ce55be357a157514abfed43ea"></a><!-- doxytag: member="SlideConnection::peekMessages" ref="a67c3958ce55be357a157514abfed43ea" args="(const char *buffer)" -->
+<a class="anchor" id="afd9ad7c43dc314728e756bd902f1e874"></a><!-- doxytag: member="SlideConnection::peekMessage" ref="afd9ad7c43dc314728e756bd902f1e874" args="(struct sockaddr_un *addr)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SlideConnection::peekMessages </td>
+          <td class="memname"><a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a> SlideConnection::peekMessage </td>
           <td>(</td>
-          <td class="paramtype">const char *&nbsp;</td>
-          <td class="paramname"> <em>buffer</em></td>
+          <td class="paramtype">struct sockaddr_un *&nbsp;</td>
+          <td class="paramname"> <em>addr</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Get the current content of the message buffer or an empty buffer. <a class="el" href="class_this.html">This</a> method returns immediately, even if the buffer is empty. The internal buffer will be cleared then. </p>
+<p>Get the current content of the message buffer or an empty buffer. This method returns immediately, even if the buffer is empty. The internal buffer will be cleared then. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>A</em>&nbsp;</td><td>pointer to your buffer receiving the contents. You need to allocate it on your own. <a class="el" href="class_this.html">This</a> is because the internal buffer will be cleared after this call. The contents passed will be NULL-terminated </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>addr</em>&nbsp;</td><td>Pointer to a sockaddr_un structure to receive the sender's address. Undefined, when no message was received. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a CTRLMSG-Structure. If no message was available, the type-field will be NONE </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a7857e1f8a22c7410ac0aa941bdd3296f"></a><!-- doxytag: member="SlideConnection::sendMessage" ref="a7857e1f8a22c7410ac0aa941bdd3296f" args="(SlideComponent componentType, char *msg, unsigned int msglen)" -->
+<a class="anchor" id="a6cdfedfa459cff82e542313d11095703"></a><!-- doxytag: member="SlideConnection::putMessage" ref="a6cdfedfa459cff82e542313d11095703" args="(CTRLMSG *msg, char *to)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SlideConnection::sendMessage </td>
+          <td class="memname">void SlideConnection::putMessage </td>
           <td>(</td>
-          <td class="paramtype">SlideComponent&nbsp;</td>
-          <td class="paramname"> <em>componentType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a> *&nbsp;</td>
           <td class="paramname"> <em>msg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int&nbsp;</td>
-          <td class="paramname"> <em>msglen</em></td><td>&nbsp;</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>to</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -189,12 +195,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </table>
 </div>
 <div class="memdoc">
-<p>Send a message to the server to be redirected to all known clients from the given type </p>
+<p>Send a message to the given receipient (non-blocking) </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Component</em>&nbsp;</td><td>to send message to </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Message</em>&nbsp;</td><td>to send - has to be NULL-terminated! </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Length</em>&nbsp;</td><td>of the message to send. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>msg</em>&nbsp;</td><td>Message to send - has to be NULL-terminated! </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>to</em>&nbsp;</td><td>Receipient for the message (Path of the socket-file) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a59b71280effdfd7c34b59042f12d4bd3"></a><!-- doxytag: member="SlideConnection::sendMessage" ref="a59b71280effdfd7c34b59042f12d4bd3" args="(CTRLMSG *msg, char *to)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SlideConnection::sendMessage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a> *&nbsp;</td>
+          <td class="paramname"> <em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>to</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Send a message to the given receipient (blocking) </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>msg</em>&nbsp;</td><td>Message to send - has to be NULL-terminated! </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>to</em>&nbsp;</td><td>Receipient for the message (Path of the socket-file) </td></tr>
   </table>
   </dd>
 </dl>
@@ -211,7 +251,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -220,7 +260,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Dec 24 01:32:05 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

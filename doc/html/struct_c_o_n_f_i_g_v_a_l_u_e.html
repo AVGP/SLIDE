@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -45,16 +46,64 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <h1>CONFIGVALUE Struct Reference</h1><!-- doxytag: class="CONFIGVALUE" -->
+<p>Structure to hold a key-value pair for <a class="el" href="class_slide_config.html" title="Class for reading&amp;writing config values This class contains the configuration...">SlideConfig</a>.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_slideconfig_8h_source.html">Slideconfig.h</a>&gt;</code></p>
+
 <p><a href="struct_c_o_n_f_i_g_v_a_l_u_e-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0dcde0d5fdd38d6b174f2a67aa2e7dba"></a><!-- doxytag: member="CONFIGVALUE::identifier" ref="a0dcde0d5fdd38d6b174f2a67aa2e7dba" args="[50]" -->
-char&nbsp;</td><td class="memItemRight" valign="bottom"><b>identifier</b> [50]</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac170f10037b95f2cc8fa8095ced59dc8"></a><!-- doxytag: member="CONFIGVALUE::valueSize" ref="ac170f10037b95f2cc8fa8095ced59dc8" args="" -->
-unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><b>valueSize</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca83ae5be680c2a92858975d9f3380fd"></a><!-- doxytag: member="CONFIGVALUE::value" ref="aca83ae5be680c2a92858975d9f3380fd" args="" -->
-void *&nbsp;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_o_n_f_i_g_v_a_l_u_e.html#a0dcde0d5fdd38d6b174f2a67aa2e7dba">identifier</a> [50]</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_o_n_f_i_g_v_a_l_u_e.html#ac170f10037b95f2cc8fa8095ced59dc8">valueSize</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_o_n_f_i_g_v_a_l_u_e.html#aca502ddc48a7219c789366faeea3eb15">value</a></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Structure to hold a key-value pair for <a class="el" href="class_slide_config.html" title="Class for reading&amp;writing config values This class contains the configuration...">SlideConfig</a>. </p>
+<p>Structure of a single Config-Value for <a class="el" href="class_slide_config.html" title="Class for reading&amp;writing config values This class contains the configuration...">SlideConfig</a> (written to /etc/Slide.conf) </p>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a0dcde0d5fdd38d6b174f2a67aa2e7dba"></a><!-- doxytag: member="CONFIGVALUE::identifier" ref="a0dcde0d5fdd38d6b174f2a67aa2e7dba" args="[50]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="struct_c_o_n_f_i_g_v_a_l_u_e.html#a0dcde0d5fdd38d6b174f2a67aa2e7dba">CONFIGVALUE::identifier</a>[50]</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The string-identifier, the value will be accessable later on </p>
+
+</div>
+</div>
+<a class="anchor" id="aca502ddc48a7219c789366faeea3eb15"></a><!-- doxytag: member="CONFIGVALUE::value" ref="aca502ddc48a7219c789366faeea3eb15" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="struct_c_o_n_f_i_g_v_a_l_u_e.html#aca502ddc48a7219c789366faeea3eb15">CONFIGVALUE::value</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Pointer to the value. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac170f10037b95f2cc8fa8095ced59dc8"></a><!-- doxytag: member="CONFIGVALUE::valueSize" ref="ac170f10037b95f2cc8fa8095ced59dc8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="struct_c_o_n_f_i_g_v_a_l_u_e.html#ac170f10037b95f2cc8fa8095ced59dc8">CONFIGVALUE::valueSize</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The Size (in bytes) the value itself will need </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li><a class="el" href="_slideconfig_8h_source.html">Slideconfig.h</a></li>
 </ul>
@@ -64,7 +113,7 @@ void *&nbsp;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -73,7 +122,7 @@ void *&nbsp;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Dec 24 01:32:05 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

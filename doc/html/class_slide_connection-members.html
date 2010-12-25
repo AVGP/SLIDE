@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -46,17 +47,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <h1>SlideConnection Member List</h1>This is the complete list of members for <a class="el" href="class_slide_connection.html">SlideConnection</a>, including all inherited members.<table>
   <tr class="memlist"><td><a class="el" href="class_slide_connection.html#a159435bd7a65d71ecc4697623c9d31ad">bytesReadable</a>()</td><td><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_slide_connection.html#ad611bba9340cefbf75c59fd8e4a069f3">getMessages</a>(const char *buffer)</td><td><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_slide_connection.html#a67c3958ce55be357a157514abfed43ea">peekMessages</a>(const char *buffer)</td><td><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_slide_connection.html#a7857e1f8a22c7410ac0aa941bdd3296f">sendMessage</a>(SlideComponent componentType, char *msg, unsigned int msglen)</td><td><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_slide_connection.html#a1f7da53c6fa90185f3cce0df39ce76c6">SlideConnection</a>(const char *serverPath, const char *clientPath)</td><td><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_connection.html#a3d5f44d193ebce538199a800b329a4bc">getMessage</a>(struct sockaddr_un *addr)</td><td><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_connection.html#afd9ad7c43dc314728e756bd902f1e874">peekMessage</a>(struct sockaddr_un *addr)</td><td><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_connection.html#a6cdfedfa459cff82e542313d11095703">putMessage</a>(CTRLMSG *msg, char *to)</td><td><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_connection.html#a59b71280effdfd7c34b59042f12d4bd3">sendMessage</a>(CTRLMSG *msg, char *to)</td><td><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_slide_connection.html#aec774ef65bc4f01fa30d056ace21f52b">SlideConnection</a>(char *localPathbool, bool bindTo=true)</td><td><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td></td></tr>
 </table></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -65,7 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Oct 16 19:46:27 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Dec 24 01:32:05 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

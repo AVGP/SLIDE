@@ -12,6 +12,7 @@
 
 /**
 * @class Slide
+* @brief Core-Class of Slide. Its like the entry point.
 * This class is the core of Slide. It provides an interface to the
 * core of the environment. Its responsible for starting and stopping
 * everything and watches over the other processes (or threads) and
@@ -29,15 +30,14 @@ class Slide
 
     /**
     * Is called from main to start the Environment. Blocks.
-    * @ToDo Load Configuration, start WM.
-    * @param Set this to true, to have debug output. Default is false.
+    * @param debug Set this to true, to have debug output. Default is false.
     * @return Returns true, if start up was successful.
     */
     bool startUp(bool debug = false);
 
     /**
     * Shuts down the instance of Slide. Usually this is triggered from the internal event-loop
-    * on behalf of a SHUTDOWNREQUEST-message received via the connection to the CommServer.
+    * on behalf of a SHUTDOWNREQUEST-message received via the SlideConnection.
     * @return Returns true, if the shutdown was successfully completed.
     * @todo Just a stub yet
     */
