@@ -2,7 +2,7 @@
 
 Starter::Starter(int width, int height) : QWidget()
 {
-    this->resize(width-20,height-20);
+    this->resize(500,500);//width-20,height-20);
     this->move(10,10);
     //Get the config-file:
     char filenamebuffer[512];
