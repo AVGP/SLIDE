@@ -73,7 +73,7 @@ bool Slide::startUp(bool debug)
 //        componentPIDs[2+i] = fork();
         if(fork() == 0)//componentPIDs[2+i] == 0)
         {
-            execl((char *)config->getConfigValue((char *)"DesktopApp",&len),(char *)"SlideComponent",sw,sh,(char *)config->getConfigValue((char *)"DesktopWallpaper",&len),(char *)0);
+            execl((char *)config->getConfigValue((char *)"DesktopApp",&len),(char *)"Desk",sw,sh,(char *)config->getConfigValue((char *)"DesktopWallpaper",&len),NULL);
         }
     }
 
