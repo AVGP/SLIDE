@@ -131,10 +131,10 @@ bool SlideWindowManager::run()
                         focusWindow(&event);
                     }
                     break;
-                case MapNotify:
+                case CreateNotify:
                     //if(event.xmap.event != None) break;
                     Logger::getInstance()->log((std::string)"MapNotify");
-                    XFetchName(disp,event.xmap.window,&wnd_name);
+                    XFetchName(disp,event.xcreate.window,&wnd_name);
                     sprintf(msg,"Window-Title: %s",wnd_name);
                     Logger::getInstance()->log(msg);
 
@@ -242,10 +242,10 @@ void SlideWindowManager::closeWindow(XEvent *e)
 void SlideWindowManager::createWindow(XEvent *e)
 {
     char *wndName;
-    XFetchName(disp,e->xmap.window,&wndName);
+    XFetchName(disp,e->xcreate.window,&wndName);
     if(strncmp(wndName,"__SLIDE__",9) != 0)
     {
-        SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop[currentWorkspace],currentWorkspace);
+        SlideWindow *w = new SlideWindow(disp,e->xcreate.window,desktop[currentWorkspace],currentWorkspace);
         w->state |= SlideWindow::STATE_FOCUSED;
 
         if(focusedWindow != NULL)
@@ -273,7 +273,7 @@ void SlideWindowManager::createWindow(XEvent *e)
     {
         numWorkspaces++;
         desktop = (Window *)realloc((void *)desktop,numWorkspaces*sizeof(Window));
-        SlideWindow *w = new SlideWindow(disp,e->xmap.window,DefaultRootWindow(disp));
+        SlideWindow *w = new SlideWindow(disp,e->xcreate.window,DefaultRootWindow(disp));
         desktop[numWorkspaces-1] = w->getWindow();
     }
 }
