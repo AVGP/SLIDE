@@ -239,10 +239,11 @@ void SlideWindowManager::createWindow(XEvent *e)
     }
     else if(strncmp(wndName,"__SLIDE__Desktop",16) == 0)
     {
+        Logger::getInstance()->log("Creating desktop");
         numWorkspaces++;
         desktop = (Window *)realloc((void *)desktop,numWorkspaces*sizeof(Window));
-        SlideWindow *w = new SlideWindow(disp,e->xmap.window,DefaultRootWindow(disp));
-        desktop[numWorkspaces-1] = w->getWindow();
+        //SlideWindow *w = new SlideWindow(disp,e->xmap.window,DefaultRootWindow(disp));
+        desktop[numWorkspaces-1] = e->xmap.window;//w->getWindow();
     }
 }
 
