@@ -60,14 +60,6 @@ SlideWindow::SlideWindow(Display *d, Window w, Window parent, unsigned char desk
     this->x             = attr.x;
     this->y             = attr.y;
 
-    char **wnd_name_str;
-    int n_strs = 0;
-    XTextProperty wnd_name;
-    XGetWMIconName(disp,wndWindow,&wnd_name);
-    XTextPropertyToStringList(&wnd_name,&wnd_name_str,&n_strs);
-    if(n_strs > 0) snprintf(title,255,"%s",wnd_name_str[0]);
-    XFreeStringList(wnd_name_str);
-
     state = SlideWindow::STATE_SHOWN;
 
     recentGeometry.x      = x;

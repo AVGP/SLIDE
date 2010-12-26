@@ -36,6 +36,12 @@ bool SlideWindowManager::run()
         {
             XNextEvent(disp,&event);
             char msg[255],*wnd_name;
+            //Debug only
+        Atom atom,retType;
+        int formatReturned;
+        unsigned long bytesReturned = 0,itemsReturned = 0;
+        unsigned char *values;
+        //May be removed any time!
             switch(event.type)
             {
                 case KeyPress:
@@ -78,7 +84,7 @@ bool SlideWindowManager::run()
                             break;
                     }
                     break;
-                case ButtonPress: //Usually thrown on Desktop, when using Tile-Workspaces&Select one
+                case ButtonPress: //Usually thrown on Desktop, when using Tile-Workspaces & then select one
                     //Restore all desks
                     sprintf(msg,"Click was on #%i",event.xbutton.window);
                     Logger::getInstance()->log(msg);
@@ -131,18 +137,15 @@ bool SlideWindowManager::run()
                         focusWindow(&event);
                     }
                     break;
-                case CreateNotify:
+                case MapNotify:
                     //if(event.xmap.event != None) break;
                     Logger::getInstance()->log((std::string)"MapNotify");
-                    XFetchName(disp,event.xcreatewindow.window,&wnd_name);
-                    sprintf(msg,"Window-Title: %s",wnd_name);
+                    atom = XInternAtom(disp,"WM_CLASS",False);
+                    XGetWindowProperty(disp,event.xmap.window,atom,0,500,False,AnyPropertyType,&retType,&formatReturned,&itemsReturned,&bytesReturned,&values);
+                    sprintf(msg,"Window-Title: %s",values);
                     Logger::getInstance()->log(msg);
-
-                    if(strncmp(wnd_name,"Slide",5) != 0)
-                    {
-                        createWindow(&event);
-                        focusWindow(&event);
-                    }
+                    createWindow(&event);
+//                    focusWindow(&event);
                     break;
                 case DestroyNotify:
                     closeWindow(&event);
@@ -241,11 +244,15 @@ void SlideWindowManager::closeWindow(XEvent *e)
 
 void SlideWindowManager::createWindow(XEvent *e)
 {
-    char *wndName;
-    XFetchName(disp,e->xcreatewindow.window,&wndName);
-    if(strncmp(wndName,"__SLIDE__",9) != 0)
+    Atom atom,retType;
+    int formatReturned;
+    unsigned long bytesReturned = 0,itemsReturned = 0;
+    unsigned char *values;
+    atom = XInternAtom(disp,"WM_CLASS",False);
+    XGetWindowProperty(disp,e->xmap.window,atom,0,500,False,AnyPropertyType,&retType,&formatReturned,&itemsReturned,&bytesReturned,&values);
+    if(strncmp((const char *)values,"Desk",4) != 0)
     {
-        SlideWindow *w = new SlideWindow(disp,e->xcreatewindow.window,desktop[currentWorkspace],currentWorkspace);
+        SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop[currentWorkspace],currentWorkspace);
         w->state |= SlideWindow::STATE_FOCUSED;
 
         if(focusedWindow != NULL)
@@ -269,13 +276,13 @@ void SlideWindowManager::createWindow(XEvent *e)
         }
 
     }
-    else if(strncmp(wndName,"__SLIDE__Desktop",16) == 0)
+    else// if(strncmp(wndName,"__SLIDE__Desktop",16) == 0)
     {
         Logger::getInstance()->log("Creating desktop");
         numWorkspaces++;
         desktop = (Window *)realloc((void *)desktop,numWorkspaces*sizeof(Window));
-//        SlideWindow *w = new SlideWindow(disp,e->xcreatewindow.window,DefaultRootWindow(disp));
-        desktop[numWorkspaces-1] = e->xcreatewindow.window; //w->getWindow();
+//        SlideWindow *w = new SlideWindow(disp,e->xmap.window,DefaultRootWindow(disp));
+        desktop[numWorkspaces-1] = e->xmap.window; //w->getWindow();
     }
 }
 
