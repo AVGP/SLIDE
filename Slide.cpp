@@ -73,14 +73,15 @@ bool Slide::startUp(bool debug)
 //        componentPIDs[2+i] = fork();
         if(fork() == 0)//componentPIDs[2+i] == 0)
         {
-            execl((char *)config->getConfigValue((char *)"__SLIDE__DesktopApp",&len),(char *)"Desk",sw,sh,(char *)config->getConfigValue((char *)"DesktopWallpaper",&len),NULL);
+            execl((char *)config->getConfigValue((char *)"DesktopApp",&len),(char *)"__SLIDE__Desktop",sw,sh,(char *)config->getConfigValue((char *)"DesktopWallpaper",&len),NULL);
         }
     }
+    
 
     componentPIDs[1] = fork();
     if(componentPIDs[1] == 0)
     {
-        execl((char *)config->getConfigValue((char *)"TrayApp",&len),(char *)"SlideComponent",sw,sh,(char *)0);
+        execl((char *)config->getConfigValue((char *)"TrayApp",&len),(char *)"__SLIDE__Tray",sw,sh,(char *)0);
     }
 
     Logger::getInstance()->log((std::string)"STATUS: AWESOME STARTUP.");
