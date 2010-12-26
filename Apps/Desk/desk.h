@@ -3,10 +3,10 @@
 
 #include <QPixmap>
 #include <QLabel>
-#include <QWidget>
+#include <QMainWindow>
 #include <QString>
 
-class Desk : public QWidget
+class Desk : public QMainWindow
 {
     public:
         Desk(int width, int height, QString bgFile);

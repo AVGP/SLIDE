@@ -4,6 +4,7 @@ Starter::Starter(int width, int height) : QWidget()
 {
     this->resize(500,500);//width-20,height-20);
     this->move(10,10);
+    setWindowTitle("Starter");
     //Get the config-file:
     char filenamebuffer[512];
     snprintf(filenamebuffer,512,"%s/.slidestarter",getenv("HOME"));

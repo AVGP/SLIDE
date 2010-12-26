@@ -1,6 +1,6 @@
 #include "desk.h"
 
-Desk::Desk(int width, int height,QString bgFile) : QWidget()
+Desk::Desk(int width, int height,QString bgFile)
 {
     this->setWindowTitle("__SLIDE__Desktop");
     this->move(0,40);
