@@ -260,7 +260,7 @@ void SlideWindowManager::createWindow(XEvent *e)
 
     if(strncmp(t_name,"__SLIDE__",9) != 0)
     {
-        SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop[0]);//desktop[currentWorkspace],currentWorkspace);
+        SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop[currentWorkspace],currentWorkspace);
         w->state |= SlideWindow::STATE_FOCUSED;
 
         if(focusedWindow != NULL)
