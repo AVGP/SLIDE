@@ -270,7 +270,7 @@ void SlideWindowManager::createWindow(XEvent *e)
         }
 
     }
-    else if(strncmp(t_name,"__SLIDE__Desktop",16) == 0)
+    else if(strncmp(wndName,"__SLIDE__Desktop",16) == 0)
     {
         Logger::getInstance()->log("Creating desktop");
         numWorkspaces++;
