@@ -7,6 +7,7 @@
 
 class Tray : public QMainWindow
 {
+  Q_OBJECT
   public:
     Tray(int width, int height);
   public slots:
