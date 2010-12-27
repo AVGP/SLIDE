@@ -36,6 +36,12 @@ bool SlideWindowManager::run()
         {
             XNextEvent(disp,&event);
             char msg[255],*wnd_name;
+            //Debug only
+        Atom atom,retType;
+        int formatReturned;
+        unsigned long bytesReturned = 0,itemsReturned = 0;
+        unsigned char *values;
+        //May be removed any time!
             switch(event.type)
             {
                 case KeyPress:
@@ -78,7 +84,7 @@ bool SlideWindowManager::run()
                             break;
                     }
                     break;
-                case ButtonPress: //Usually thrown on Desktop, when using Tile-Workspaces&Select one
+                case ButtonPress: //Usually thrown on Desktop, when using Tile-Workspaces & then select one
                     //Restore all desks
                     sprintf(msg,"Click was on #%i",event.xbutton.window);
                     Logger::getInstance()->log(msg);
@@ -112,11 +118,11 @@ bool SlideWindowManager::run()
                         sprintf(msg,"[Press] Window-Title: %s",wnd_name);
                         Logger::getInstance()->log(msg);
 
-                        if(strncmp(wnd_name,"SlideClose",10) == 0)
+                        if(strncmp(wnd_name,"__SLIDE__Close",10) == 0)
                         {
                             closeWindow(&event);
                         }
-                        else if(strncmp(wnd_name,"SlideMaxi",9) == 0)
+                        else if(strncmp(wnd_name,"__SLIDE__Maxi",9) == 0)
                         {
                             maximizeWindow(&event);
                         }
@@ -132,23 +138,30 @@ bool SlideWindowManager::run()
                     }
                     break;
                 case MapNotify:
+<<<<<<< HEAD
                     //if(event.xmap.event != None) break;
                     Logger::getInstance()->log((std::string)"MapNotify");
+=======
+                    //if(event.xmap.window == None) break;
+                    Logger::getInstance()->log((std::string)"MapNotify");
+                    /*
+                    atom = XInternAtom(disp,"WM_CLASS",False);
+                    XGetWindowProperty(disp,event.xmap.window,atom,0,500,False,AnyPropertyType,&retType,&formatReturned,&itemsReturned,&bytesReturned,&values);
+                    if(values == NULL) break;
+                    sprintf(msg,"Window-Title: %s",values);
+                    Logger::getInstance()->log(msg);
+                    */
+>>>>>>> qt
                     XFetchName(disp,event.xmap.window,&wnd_name);
                     sprintf(msg,"Window-Title: %s",wnd_name);
                     Logger::getInstance()->log(msg);
-
-                    if(strncmp(wnd_name,"Slide",5) != 0)
-                    {
-                        createWindow(&event);
-                        focusWindow(&event);
-                    }
+                    createWindow(&event);
+//                    focusWindow(&event);
                     break;
                 case DestroyNotify:
                     closeWindow(&event);
                     break;
                 case MotionNotify:
-                    //focusWindow(&event);
                     moveWindow(&event);
                     break;
                 case Expose:
@@ -161,7 +174,6 @@ bool SlideWindowManager::run()
                             break;
                         }
                     }
-
                     break;
                 default:
                     sprintf(msg,"Event %i ocurred.",event.type);
@@ -257,6 +269,7 @@ void SlideWindowManager::createWindow(XEvent *e)
         XSetInputFocus(disp,w->getWindow(),RevertToNone,CurrentTime);
 
         windows.push_back(w);
+        
         CTRLMSG msg;
         msg.type = WINDOWLISTCREATEWND;
         msg.len = sizeof(SlideWindow);
@@ -269,8 +282,9 @@ void SlideWindowManager::createWindow(XEvent *e)
         }
 
     }
-    else if(strncmp(wndName,"__SLIDE__Desktop",16) == 0)
+    else if(strncmp(t_name,"__SLIDE__Desktop",16) == 0)
     {
+        Logger::getInstance()->log("Creating desktop");
         numWorkspaces++;
         desktop = (Window *)realloc((void *)desktop,numWorkspaces*sizeof(Window));
         SlideWindow *w = new SlideWindow(disp,e->xmap.window,DefaultRootWindow(disp));
@@ -326,7 +340,7 @@ void SlideWindowManager::moveWindow(XEvent *e)
     if(e->xmotion.window != None)
     {
         XFetchName(disp,e->xmotion.window,&wndName);
-        if(strncmp("SlideDeco",wndName,9) == 0)
+        if(strncmp("__SLIDE__Deco",wndName,9) == 0)
         {
             XWindowAttributes attr;
             XGetWindowAttributes(disp,e->xmotion.window,&attr);

@@ -1,17 +1,13 @@
-#ifndef Starter_H_INCLUDED
-#define Starter_H_INCLUDED
-#include <wx/wx.h>
+#include <QWidget>
 #include <vector>
+#include <string>
 #include <fstream>
-#include "icon.h"
+#include "item.h"
 
-class Starter : public wxTopLevelWindow
+class Starter : public QWidget
 {
-    public:
-        Starter(int width, int height, const wxString& title);
-//    	void Show(bool b);
-    private:
-	wxTopLevelWindow *wnd;
-	std::vector<Icon *> icons;
+  public:
+    Starter(int width, int height);
+  private:
+    std::vector<Item *> items;
 };
-#endif // Starter_H_INCLUDED

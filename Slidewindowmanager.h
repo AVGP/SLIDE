@@ -16,6 +16,7 @@
 
 /**
 * @class SlideWindowManager
+* @brief The Window-Manager, handling all the windows and virtual desks
 * This class encapsules the WindowManager for Slide.
 * It runs in a separate process, communicating via its ctrl-member
 */
@@ -34,6 +35,10 @@ class SlideWindowManager
         */
         bool run();
 
+        /**
+        * This method allows the Window-Manager to receive X11-Error-Notifications.
+        * It also prevents the X-Server to crash, when some of those errors occur.
+        */
         static int *errorHandler(Display *d, XErrorEvent *e);
     private:
         void focusWindow(XEvent *e);

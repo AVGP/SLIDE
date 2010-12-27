@@ -1,16 +1,19 @@
 #ifndef Tray_H_INCLUDED
 #define Tray_H_INCLUDED
 
-#include <wx/wx.h>
+#include <QPushButton>
+#include <QMainWindow>
+#include <cstdio>
 
-class Tray : public wxFrame
+class Tray : public QMainWindow
 {
-    public:
-        Tray(int width, int height);
-        void OnClickStart(wxCommandEvent& WXUNUSED(event));
-    private:
-        wxButton *startButton;
-	wxFrame *windowList;
-        int width,height;
+  Q_OBJECT
+  public:
+    Tray(int width, int height);
+  public slots:
+    void startClicked();  
+  private:
+    QPushButton *startButton;
+    int width,height;
 };
 #endif // Tray_H_INCLUDED

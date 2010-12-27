@@ -20,7 +20,9 @@
 #include "Global.h"
 
 /**
-* @class This class contains the functionality for a Connection between the CommServer and a component or a client.
+* @class SlideConnection
+* @brief Class to conveniently intercommunicate between processes in Slide (i.e. Apps, Slide, WM,..)
+* This class contains the functionality for a Connection between the processes involved in Slide (Apps, Slide, WM).
 */
 class SlideConnection
 {

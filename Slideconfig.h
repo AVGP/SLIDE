@@ -10,16 +10,22 @@
 #include <cstring>
 
 #pragma pack(0)
+/**
+* Structure of a single Config-Value for SlideConfig (written to /etc/Slide.conf)
+* @brief Structure to hold a key-value pair for SlideConfig
+*/
 typedef struct
 {
-    char identifier[50];
-    unsigned int valueSize;
-    char *value;
+    char identifier[50];        /**< The string-identifier, the value will be accessable later on*/
+    unsigned int valueSize;     /**< The Size (in bytes) the value itself will need*/
+    char *value;                /**< Pointer to the value.*/
 } CONFIGVALUE;
 #pragma pack(1)
 
 /**
-* @class This class contains the configuration values and provides functionality to read and write these.
+* @class SlideConfig
+* @brief Class for reading&writing config values
+* This class contains the configuration values and provides functionality to read and write these.
 */
 class SlideConfig
 {

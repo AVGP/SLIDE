@@ -46,20 +46,79 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <h1>CTRLMSG Struct Reference</h1><!-- doxytag: class="CTRLMSG" -->
+<p>Used for sending messages via <a class="el" href="class_slide_connection.html" title="Class to conveniently intercommunicate between processes in Slide (i.e. Apps, Slide...">SlideConnection</a>.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_global_8h_source.html">Global.h</a>&gt;</code></p>
+
 <p><a href="struct_c_t_r_l_m_s_g-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a8cdbd8c56dd095cd7b994af56f7e74"></a><!-- doxytag: member="CTRLMSG::type" ref="a8a8cdbd8c56dd095cd7b994af56f7e74" args="" -->
-CTRLMSG_TYPE&nbsp;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1341f382988c5f84397a3de60226b57b"></a><!-- doxytag: member="CTRLMSG::receiver" ref="a1341f382988c5f84397a3de60226b57b" args="" -->
-SlideComponent&nbsp;</td><td class="memItemRight" valign="bottom"><b>receiver</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5632e7ea5cc560d958f58461f921c45"></a><!-- doxytag: member="CTRLMSG::addr" ref="ad5632e7ea5cc560d958f58461f921c45" args="" -->
-struct sockaddr_un&nbsp;</td><td class="memItemRight" valign="bottom"><b>addr</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf12f7e41da9f16d38465cc78d7265d0"></a><!-- doxytag: member="CTRLMSG::len" ref="acf12f7e41da9f16d38465cc78d7265d0" args="" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><b>len</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade023e4b6f6d54cf8b7662786b4e0723"></a><!-- doxytag: member="CTRLMSG::msg" ref="ade023e4b6f6d54cf8b7662786b4e0723" args="[500]" -->
-unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><b>msg</b> [500]</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553">CTRLMSG_TYPE</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_t_r_l_m_s_g.html#a8a8cdbd8c56dd095cd7b994af56f7e74">type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct sockaddr_un&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_t_r_l_m_s_g.html#ad5632e7ea5cc560d958f58461f921c45">addr</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_t_r_l_m_s_g.html#acf12f7e41da9f16d38465cc78d7265d0">len</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_t_r_l_m_s_g.html#ade023e4b6f6d54cf8b7662786b4e0723">msg</a> [500]</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Used for sending messages via <a class="el" href="class_slide_connection.html" title="Class to conveniently intercommunicate between processes in Slide (i.e. Apps, Slide...">SlideConnection</a>. </p>
+<p>Structure used for messages sent via <a class="el" href="class_slide_connection.html" title="Class to conveniently intercommunicate between processes in Slide (i.e. Apps, Slide...">SlideConnection</a> </p>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="ad5632e7ea5cc560d958f58461f921c45"></a><!-- doxytag: member="CTRLMSG::addr" ref="ad5632e7ea5cc560d958f58461f921c45" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct sockaddr_un <a class="el" href="struct_c_t_r_l_m_s_g.html#ad5632e7ea5cc560d958f58461f921c45">CTRLMSG::addr</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The address of the sender's socket </p>
+
+</div>
+</div>
+<a class="anchor" id="acf12f7e41da9f16d38465cc78d7265d0"></a><!-- doxytag: member="CTRLMSG::len" ref="acf12f7e41da9f16d38465cc78d7265d0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="struct_c_t_r_l_m_s_g.html#acf12f7e41da9f16d38465cc78d7265d0">CTRLMSG::len</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The length of the msg-field </p>
+
+</div>
+</div>
+<a class="anchor" id="ade023e4b6f6d54cf8b7662786b4e0723"></a><!-- doxytag: member="CTRLMSG::msg" ref="ade023e4b6f6d54cf8b7662786b4e0723" args="[500]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned char <a class="el" href="struct_c_t_r_l_m_s_g.html#ade023e4b6f6d54cf8b7662786b4e0723">CTRLMSG::msg</a>[500]</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The message's content. Without any trailing NUL chars! </p>
+
+</div>
+</div>
+<a class="anchor" id="a8a8cdbd8c56dd095cd7b994af56f7e74"></a><!-- doxytag: member="CTRLMSG::type" ref="a8a8cdbd8c56dd095cd7b994af56f7e74" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_global_8h.html#a766531e7bf83f76132b374584ccb4553">CTRLMSG_TYPE</a> <a class="el" href="struct_c_t_r_l_m_s_g.html#a8a8cdbd8c56dd095cd7b994af56f7e74">CTRLMSG::type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Type of the message; see <a class="el" href="">CTRLMSG_TYPE </a></p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li><a class="el" href="_global_8h_source.html">Global.h</a></li>
 </ul>
@@ -69,7 +128,7 @@ unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><b>msg</b> [500
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -78,7 +137,7 @@ unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><b>msg</b> [500
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Dec 23 01:17:34 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Dec 24 01:32:05 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

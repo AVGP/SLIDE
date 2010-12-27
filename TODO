@@ -12,6 +12,7 @@ WindowManager
 + More awesome window deco
 - taking over teh world!
 / Window states (Maximized, Shown, Hidden, etc.)
+- Bring window to ALL desks (desk=-1)
 - Resize windows
 + Adapting states to the STRG+TAB / ALT+TAB behaviour
 + Managing "recent geometry" (i.e. saving the previous geometry, to allow "de-maximization", "de-tiling", etc.)
@@ -20,6 +21,12 @@ WindowManager
 + More awesome workspace switching (CTRL+Space)
 + Move windows out of the screen to switch the desk they're on.
 - WM Protocols!
+
+---
++ Port Desk to Qt
+- Port Starter to Qt
+- Port Tray to Qt
+---
 
 Desk
 - Have icons

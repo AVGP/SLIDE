@@ -46,16 +46,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <h1>Class List</h1>Here are the classes, structs, unions and interfaces with brief descriptions:<table>
-  <tr><td class="indexkey"><a class="el" href="struct_c_o_n_f_i_g_v_a_l_u_e.html">CONFIGVALUE</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_logger.html">Logger</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_slide.html">Slide</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_slide_config.html">SlideConfig</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_slide_window.html">SlideWindow</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="struct_s_l_i_d_e_w_i_n_d_o_w___g_e_o_m_e_t_r_y.html">SLIDEWINDOW_GEOMETRY</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_slide_window_manager.html">SlideWindowManager</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_this.html">This</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="struct_c_o_n_f_i_g_v_a_l_u_e.html">CONFIGVALUE</a></td><td class="indexvalue">Structure to hold a key-value pair for <a class="el" href="class_slide_config.html" title="Class for reading&amp;writing config values This class contains the configuration...">SlideConfig</a> </td></tr>
+  <tr><td class="indexkey"><a class="el" href="struct_c_t_r_l_m_s_g.html">CTRLMSG</a></td><td class="indexvalue">Used for sending messages via <a class="el" href="class_slide_connection.html" title="Class to conveniently intercommunicate between processes in Slide (i.e. Apps, Slide...">SlideConnection</a> </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_logger.html">Logger</a></td><td class="indexvalue">Class for logging debug-messages This class provides you with the possibility to log messages to a log file. Yes, it is THAT easy. You should be aware, that <a class="el" href="class_logger.html" title="Class for logging debug-messages This class provides you with the possibility to...">Logger</a> is a singleton! </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_slide.html">Slide</a></td><td class="indexvalue">Core-Class of <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a>. Its like the entry point. This class is the core of <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a>. It provides an interface to the core of the environment. Its responsible for starting and stopping everything and watches over the other processes (or threads) and does the regeneration if neccessary </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_slide_config.html">SlideConfig</a></td><td class="indexvalue">Class for reading&amp;writing config values This class contains the configuration values and provides functionality to read and write these </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_slide_connection.html">SlideConnection</a></td><td class="indexvalue">Class to conveniently intercommunicate between processes in <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a> (i.e. Apps, <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a>, WM,..) This class contains the functionality for a Connection between the processes involved in <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a> (Apps, <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a>, WM) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_slide_window.html">SlideWindow</a></td><td class="indexvalue">Defines the Window-Object used in the WM This class handles the concept of a window in the WindowManager-Component It keeps the decoration (window) belonging to a window and also the methods necessary for managing windows (move, resize, close, etc.) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="struct_s_l_i_d_e_w_i_n_d_o_w___g_e_o_m_e_t_r_y.html">SLIDEWINDOW_GEOMETRY</a></td><td class="indexvalue">Used to store information about a window's geometry </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_slide_window_manager.html">SlideWindowManager</a></td><td class="indexvalue">The Window-Manager, handling all the windows and virtual desks This class encapsules the WindowManager for <a class="el" href="class_slide.html" title="Core-Class of Slide. Its like the entry point. This class is the core of Slide. It...">Slide</a>. It runs in a separate process, communicating via its ctrl-member </td></tr>
 </table>
 </div>
 <!--- window showing the filter options -->
@@ -63,7 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -72,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Dec 23 01:17:34 2010 for Slide by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Dec 24 01:32:05 2010 for Slide by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
