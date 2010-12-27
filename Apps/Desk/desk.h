@@ -1,16 +1,18 @@
 #ifndef Desk_H_INCLUDED
 #define Desk_H_INCLUDED
 
-#include <wx/wx.h>
+#include <QPixmap>
+#include <QLabel>
+#include <QMainWindow>
+#include <QString>
 
-class Desk : public wxFrame
+class Desk : public QMainWindow
 {
     public:
-        Desk(int width, int height, wxString bgFile);
-        void OnPaint(wxPaintEvent& WXUNUSED(event));
+        Desk(int width, int height, QString bgFile);
     private:
-        wxImage bg;
-        DECLARE_EVENT_TABLE();
         int width,height;
+        QPixmap *pixmap;
+        QLabel  *wallpaper;
 };
 #endif // Desk_H_INCLUDED

@@ -1,15 +1,18 @@
 #include "tray.h"
 
-Tray::Tray(int width, int height) : wxFrame(NULL,wxID_ANY,wxT("__SLIDE__Tray"),wxPoint(0,0),wxSize(width,40))
+Tray::Tray(int width, int height)
 {
-    this->width = width;
-    this->startButton = new wxButton(this,wxID_ANY,wxT("Start"),wxPoint(0,0),wxSize(100,40),wxBU_EXACTFIT);
-    this->windowList  = new wxPanel(this,wxID_ANY,wxPoint(100,0),wxSize(width-100,40));
-
-    Connect(wxEVT_COMMAND_BUTTON_CLICKED,wxCommandEventHandler(Tray::OnClickStart));
+    this->setWindowTitle("__SLIDE__Tray");
+    this->width  = width;
+    this->height = height;
+    this->startButton = new QPushButton("Start",this);
+    
+    connect(startButton,SIGNAL(clicked(bool)),this,SLOT(startClicked()));
+    resize(width,40);
+    show();
 }
 
-void Tray::OnClickStart(wxCommandEvent& WXUNUSED(event))
+void Tray::startClicked()
 {
     char sw[5],sh[5];
     snprintf(sw,5,"%d",width);

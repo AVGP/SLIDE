@@ -22,6 +22,12 @@ WindowManager
 + Move windows out of the screen to switch the desk they're on.
 - WM Protocols!
 
+---
++ Port Desk to Qt
+- Port Starter to Qt
+- Port Tray to Qt
+---
+
 Desk
 - Have icons
 - Allow creation of folders on the desk
