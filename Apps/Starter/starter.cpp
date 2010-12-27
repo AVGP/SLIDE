@@ -2,7 +2,7 @@
 
 Starter::Starter(int width, int height) : QWidget()
 {
-    this->resize(500,500);//width-20,height-20);
+    this->resize(width-20,height-20);
     this->move(10,10);
     setWindowTitle("Starter");
     //Get the config-file:
