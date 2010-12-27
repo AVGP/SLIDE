@@ -138,20 +138,8 @@ bool SlideWindowManager::run()
                     }
                     break;
                 case MapNotify:
-<<<<<<< HEAD
                     //if(event.xmap.event != None) break;
                     Logger::getInstance()->log((std::string)"MapNotify");
-=======
-                    //if(event.xmap.window == None) break;
-                    Logger::getInstance()->log((std::string)"MapNotify");
-                    /*
-                    atom = XInternAtom(disp,"WM_CLASS",False);
-                    XGetWindowProperty(disp,event.xmap.window,atom,0,500,False,AnyPropertyType,&retType,&formatReturned,&itemsReturned,&bytesReturned,&values);
-                    if(values == NULL) break;
-                    sprintf(msg,"Window-Title: %s",values);
-                    Logger::getInstance()->log(msg);
-                    */
->>>>>>> qt
                     XFetchName(disp,event.xmap.window,&wnd_name);
                     sprintf(msg,"Window-Title: %s",wnd_name);
                     Logger::getInstance()->log(msg);
