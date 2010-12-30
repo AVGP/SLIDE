@@ -138,10 +138,6 @@ bool SlideWindowManager::run()
                     }
                     break;
                 case MapNotify:
-<<<<<<< HEAD
-                    //if(event.xmap.event != None) break;
-                    Logger::getInstance()->log((std::string)"MapNotify");
-=======
                     //if(event.xmap.window == None) break;
                     Logger::getInstance()->log((std::string)"MapNotify");
                     /*
@@ -151,7 +147,6 @@ bool SlideWindowManager::run()
                     sprintf(msg,"Window-Title: %s",values);
                     Logger::getInstance()->log(msg);
                     */
->>>>>>> qt
                     XFetchName(disp,event.xmap.window,&wnd_name);
                     sprintf(msg,"Window-Title: %s",wnd_name);
                     Logger::getInstance()->log(msg);
@@ -282,7 +277,7 @@ void SlideWindowManager::createWindow(XEvent *e)
         }
 
     }
-    else if(strncmp(t_name,"__SLIDE__Desktop",16) == 0)
+    else if(strncmp(wndName,"__SLIDE__Desktop",16) == 0)
     {
         Logger::getInstance()->log("Creating desktop");
         numWorkspaces++;
