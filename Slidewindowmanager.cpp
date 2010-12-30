@@ -236,6 +236,16 @@ void SlideWindowManager::closeWindow(XEvent *e)
         {
             if((*iter)->getWindow() == e->xdestroywindow.event)
             {
+                CTRLMSG msg;
+                msg.type = WINDOWLISTDESTROYWND;
+                msg.len = sizeof(SlideWindow);
+                memcpy(msg.msg,(*iter),sizeof(SlideWindow));
+
+                for(unsigned int i=0;i<windowChangeListeners.size();i++)
+                {
+                    ctrl->putMessage(&msg,(char *)windowChangeListeners[i].c_str());
+                }
+
                 (*iter)->close(false);
                 if(focusedWindow != NULL && e->xdestroywindow.event == focusedWindow->getWindow()) focusedWindow = NULL;
                 windows.erase(iter);
