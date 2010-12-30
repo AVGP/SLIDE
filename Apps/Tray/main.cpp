@@ -1,4 +1,5 @@
 #include "tray.h"
+#include "ctrlthread.h"
 #include <QApplication>
 #include <iostream>
 
@@ -14,6 +15,8 @@ int main(int argc, char **argv)
     QApplication app(argc,argv);
 
     Tray t(atoi(argv[1]),atoi(argv[2]));
+    CtrlThread ctrl(&t);
+    ctrl.start();
     
     return app.exec();
 

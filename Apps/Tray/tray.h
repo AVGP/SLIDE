@@ -3,6 +3,7 @@
 
 #include <QPushButton>
 #include <QMainWindow>
+#include <QLabel>
 #include <cstdio>
 
 class Tray : public QMainWindow
@@ -12,6 +13,7 @@ class Tray : public QMainWindow
     Tray(int width, int height);
   public slots:
     void startClicked();  
+    void setLabel(QString str);
   private:
     QPushButton *startButton;
     int width,height;
