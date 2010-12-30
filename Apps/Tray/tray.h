@@ -3,8 +3,16 @@
 
 #include <QPushButton>
 #include <QMainWindow>
-#include <QLabel>
+#include <QHBoxLayout>
 #include <cstdio>
+#include <vector>
+#include <Slide/Global.h>
+
+typedef struct
+{
+    Window window;
+    QPushButton *button;
+} WindowButton;
 
 class Tray : public QMainWindow
 {
@@ -13,9 +21,12 @@ class Tray : public QMainWindow
     Tray(int width, int height);
   public slots:
     void startClicked();  
-    void setLabel(QString str);
+    void addWindowButton(unsigned long window, QString str);
+    void deleteWindowButton(unsigned long window);
   private:
     QPushButton *startButton;
+    QHBoxLayout *layout;
+    std::vector<WindowButton> windows;
     int width,height;
 };
 #endif // Tray_H_INCLUDED
