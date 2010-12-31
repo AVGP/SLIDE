@@ -1,0 +1,12 @@
+Feature                 |   Status
+WM_NAME                 | implemented
+WM_NORMAL_HINTS         |     -
+WM_HINTS                |     -
+WM_CLASS                |     -
+WM_STATE                |     -
+WM_CLIENT_MACHINE       |     -
+WM_PROTOCOLS            |     -
+WM_TRANSIENT_FOR        |     -
+WM_COLORMAP_WINDOWS     |     -
+WM_ICON_NAME            |     -
+WM_ICON_SIZE            |     -
