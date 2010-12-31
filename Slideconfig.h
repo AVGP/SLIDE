@@ -50,11 +50,13 @@ class SlideConfig
     * @param identifier The identifier-string, the value will be stored for
     * @param newValue A pointer to the desired new value.
     * @param valueSize Size of the new value.
+    * @todo Stub yet.
     */
     void setConfigValue(char *identifier,void *newValue,unsigned int valueSize);
 
     /**
     * Writes the current config values to the config file.
+    * @todo Stub yet.
     */
     void writeConfigToFile();
   private:
