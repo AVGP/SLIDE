@@ -9,13 +9,19 @@ SlideConfig::SlideConfig()
     {
         Logger::getInstance()->log((std::string)"Reading...");
         CONFIGVALUE val;
+        int line = 1;
         while(!conf.eof())
         {
-            conf >> val.identifier;
-            conf >> val.valueSize;
-            val.value = (char *)malloc(val.valueSize);
-            conf >> val.value;
+            conf.getline(val.identifier,50);
+            
+            if(strncmp(val.identifier,"#",1) == 0) continue;
+            char t[5];
+            conf.getline(t,5);
+            val.valueSize = atoi(t);
+            val.value = (char *)malloc(val.valueSize+1);
+            conf.getline(val.value,val.valueSize+1);
             configValues.push_back(val);
+            line++;
         }
     }
     else exit(EXIT_FAILURE);
