@@ -23,7 +23,6 @@ SlideWindowManager::SlideWindowManager(bool debug)
     XGrabKey(disp,0x17,AnyModifier,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+TAB & ALT+TAB
     XGrabKey(disp,0x64,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+Left
     XGrabKey(disp,0x66,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+Right
-//    XGrabButton(disp,1,AnyModifier,DefaultRootWindow(disp),True,ButtonPressMask,GrabModeAsync,GrabModeAsync,None,None);
     ctrl = new SlideConnection((char *)"/tmp/Slide_wm.sock");
 }
 
@@ -263,17 +262,38 @@ void SlideWindowManager::createWindow(XEvent *e)
     if(strncmp(wndName,"__SLIDE__",9) != 0)
     {
         SlideWindow *w = new SlideWindow(disp,e->xmap.window,desktop[currentWorkspace],currentWorkspace);
-        w->state |= SlideWindow::STATE_FOCUSED;
-
-        if(focusedWindow != NULL)
+        
+        XWMHints *wmhints = XGetWMHints(disp,e->xmap.window);
+        
+        if(wmhints != NULL)
         {
-            focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
+            Logger::getInstance()->log("WMHints specified:");
+            char msg[500];
+            sprintf(msg,"Initial State: %i",wmhints->initial_state);
+            Logger::getInstance()->log(msg);
+            sprintf(msg,"Input: %s",(wmhints->input == True ? "yes" : "no"));
+            Logger::getInstance()->log(msg);
         }
-        focusedWindow = w;
+        
+        if(wmhints == NULL || (wmhints->initial_state == NormalState && wmhints->input == True))
+        {
+            w->state |= SlideWindow::STATE_FOCUSED;
 
-        XSetInputFocus(disp,w->getWindow(),RevertToNone,CurrentTime);
+            if(focusedWindow != NULL)
+            {
+                focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
+            }
+            focusedWindow = w;
 
+            XSetInputFocus(disp,w->getWindow(),RevertToNone,CurrentTime);
+        }
+        else if(wmhints != NULL && wmhints->initial_state != NormalState)
+        {
+          w->state = SlideWindow::STATE_HIDDEN;
+        }
         windows.push_back(w);
+        
+        if(wmhints != NULL) XFree(wmhints);
         
         CTRLMSG msg;
         msg.type = WINDOWLISTCREATEWND;
