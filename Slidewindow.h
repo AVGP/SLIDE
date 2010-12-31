@@ -36,6 +36,7 @@ typedef struct
 class SlideWindow
 {
     public:
+        static const unsigned char STATE_HIDDEN;   // = 0,
         static const unsigned char STATE_SHOWN;    // = 1,
         static const unsigned char STATE_MAXIMIZED;// = 1 << 1,
         static const unsigned char STATE_FOCUSED;  // = 1 << 2,
@@ -95,27 +96,32 @@ class SlideWindow
         /**
         * Add the window to the group with the given ID
         * @param groupID ID of the WindowGroup to assign the window to.
+        * @todo Stub yet.
         */
         void setGroup(int groupID);
 
         /**
         * Shows the window (on top)
         * @param maximized (Optional) Tells, if the window should be shown maximized. Defaults to false.
+        * @todo Stub yet.
         */
         void show(bool maximized = false);
 
         /**
         * Hides the window
+        * @todo Stub yet.
         */
         void hide();
 
         /**
         * Makes the window "sticky" - i.e. appear on all virtual desks!
+        * @todo Stub yet.
         */
         void makeSticky();
 
         /**
         * Remove "stickyness" from a window - i.e. make it appear only on its virtual desk.
+        * @todo Stub yet.
         */
         void makeUnsticky();
 

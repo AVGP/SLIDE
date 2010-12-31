@@ -1,5 +1,6 @@
 #include "Slidewindow.h"
 
+const unsigned char SlideWindow::STATE_HIDDEN    = 0;
 const unsigned char SlideWindow::STATE_SHOWN     = 1;
 const unsigned char SlideWindow::STATE_MAXIMIZED = 1 << 1;
 const unsigned char SlideWindow::STATE_FOCUSED   = 1 << 2;
