@@ -8,6 +8,7 @@
 #include "Global.h"
 #include <vector>
 #include <cstring>
+#include <string>
 
 #pragma pack(0)
 /**
@@ -16,9 +17,8 @@
 */
 typedef struct
 {
-    char identifier[50];        /**< The string-identifier, the value will be accessable later on*/
-    unsigned int valueSize;     /**< The Size (in bytes) the value itself will need*/
-    char *value;                /**< Pointer to the value.*/
+    std::string identifier;
+    std::string value;
 } CONFIGVALUE;
 #pragma pack(1)
 
