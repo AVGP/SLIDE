@@ -150,20 +150,11 @@ bool SlideWindowManager::run()
                     }
                     break;
                 case MapNotify:
-                    //if(event.xmap.window == None) break;
                     Logger::getInstance()->log((std::string)"MapNotify");
-                    /*
-                    atom = XInternAtom(disp,"WM_CLASS",False);
-                    XGetWindowProperty(disp,event.xmap.window,atom,0,500,False,AnyPropertyType,&retType,&formatReturned,&itemsReturned,&bytesReturned,&values);
-                    if(values == NULL) break;
-                    sprintf(msg,"Window-Title: %s",values);
-                    Logger::getInstance()->log(msg);
-                    */
                     XFetchName(disp,event.xmap.window,&wnd_name);
                     sprintf(msg,"Window-Title: %s",wnd_name);
                     Logger::getInstance()->log(msg);
                     createWindow(&event);
-//                    focusWindow(&event);
                     break;
                 case DestroyNotify:
                     closeWindow(&event);
@@ -322,7 +313,6 @@ void SlideWindowManager::createWindow(XEvent *e)
     }
     else if(strncmp(wndName,"__SLIDE__Desktop",16) == 0)
     {
-        Logger::getInstance()->log("Creating desktop");
         numWorkspaces++;
         desktop = (Window *)realloc((void *)desktop,numWorkspaces*sizeof(Window));
         SlideWindow *w = new SlideWindow(disp,e->xmap.window,DefaultRootWindow(disp));
@@ -476,16 +466,9 @@ void SlideWindowManager::tileWindows()
         if(windows[i]->getDesk() == currentWorkspace && (windows[i]->state & SlideWindow::STATE_SHOWN)) numWindows++;
     }
 
-    char msg[500];
-    sprintf(msg,"We have %i windows to tile!",numWindows);
-    Logger::getInstance()->log(msg);
-
     int widthPerWindow  = screenWidth/(numWindows < 4 ? numWindows : 4);
     int rows = ceil((double)numWindows/4.0);
     int heightPerWindow = (screenHeight-40)/(rows == 0 ? 1 : rows);
-
-    sprintf(msg,"We have %i rows!",rows);
-    Logger::getInstance()->log(msg);
 
     for(unsigned int i=0;i<windows.size();i++)
     {
@@ -550,9 +533,6 @@ void SlideWindowManager::tileWorkspaces()
 
     //Resize the windows accordingly (only shown windows, anyway)
     double fx = (double)(widthPerWindow-10)/(double)screenWidth,fy = (double)heightPerWindow / (double)(screenHeight-50);
-    char msg[500];
-    sprintf(msg,"Factors: %f %f",fx,fy);
-    Logger::getInstance()->log(msg);
 
     for(unsigned int i=0;i<windows.size();i++)
     {
