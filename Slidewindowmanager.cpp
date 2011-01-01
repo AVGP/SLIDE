@@ -19,6 +19,7 @@ SlideWindowManager::SlideWindowManager(bool debug)
     XSetErrorHandler((int (*)(Display *, XErrorEvent *))&SlideWindowManager::errorHandler);
 
     XSelectInput(disp, DefaultRootWindow(disp), SubstructureNotifyMask | ExposureMask | KeyPressMask );
+    XGrabKey(disp,0x61,AnyModifier,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //Pos1/Home
     XGrabKey(disp,0x41,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+Space
     XGrabKey(disp,0x17,AnyModifier,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+TAB & ALT+TAB
     XGrabKey(disp,0x64,ControlMask,DefaultRootWindow(disp),True,GrabModeAsync,GrabModeAsync); //CTRL+Left
@@ -61,6 +62,18 @@ bool SlideWindowManager::run()
                             else if(event.xkey.state & Mod1Mask)
                             {
                                 XCirculateSubwindows(disp,desktop[currentWorkspace],RaiseLowest);
+                            }
+                            break;
+                            
+                        case 0x61: //Pos1/Home
+                            if(fork() == 0)
+                            {
+                                char sh[5],sw[5];
+                                sprintf(sh,"%i",screenHeight);
+                                sprintf(sw,"%i",screenWidth);
+                                SlideConfig config;
+                                unsigned int len;
+                                execl((char *)config.getConfigValue((char *)"StarterApp",&len),"Starter",sw,sh,NULL);
                             }
                             break;
                         case 0x64: //Left-Arrow
@@ -275,16 +288,16 @@ void SlideWindowManager::createWindow(XEvent *e)
             Logger::getInstance()->log(msg);
         }
         
+        w->state |= SlideWindow::STATE_FOCUSED;
+
+        if(focusedWindow != NULL)
+        {
+            focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
+        }
+        focusedWindow = w;
+
         if(wmhints == NULL || (wmhints->initial_state == NormalState && wmhints->input == True))
         {
-            w->state |= SlideWindow::STATE_FOCUSED;
-
-            if(focusedWindow != NULL)
-            {
-                focusedWindow->state ^= SlideWindow::STATE_FOCUSED;
-            }
-            focusedWindow = w;
-
             XSetInputFocus(disp,w->getWindow(),RevertToNone,CurrentTime);
         }
         else if(wmhints != NULL && wmhints->initial_state != NormalState)
@@ -333,7 +346,6 @@ void SlideWindowManager::focusWindow(XEvent *e)
         evtWnd = e->xmotion.window;
     }
 
-
     for(unsigned int i=0;i<windows.size();i++)
     {
         if(windows[i]->getWindow(true) == evtWnd || windows[i]->getWindow() == evtWnd)
@@ -349,6 +361,7 @@ void SlideWindowManager::focusWindow(XEvent *e)
 
             e.xexpose.window = windows[i]->getWindow(true);
             windows[i]->state |= SlideWindow::STATE_FOCUSED;
+            
             XSendEvent(disp,windows[i]->getWindow(true),True,ExposureMask,&e);
 
             focusedWindow = windows[i];
@@ -356,7 +369,14 @@ void SlideWindowManager::focusWindow(XEvent *e)
         }
     }
     XMapRaised(disp,evtWnd);
-    XSetInputFocus(disp,evtWnd,RevertToNone,CurrentTime);
+
+    XWMHints *wmhints = XGetWMHints(disp,evtWnd);
+    if(wmhints == NULL || wmhints->input == True)
+    {
+        XSetInputFocus(disp,evtWnd,RevertToNone,CurrentTime);
+    }
+    
+    if(wmhints != NULL) XFree(wmhints);
 }
 
 void SlideWindowManager::moveWindow(XEvent *e)

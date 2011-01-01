@@ -7,7 +7,8 @@
 
 #include "Global.h"
 #include "Slideconnection.h"
-#include "./Slidewindow.h"
+#include "Slideconfig.h"
+#include "Slidewindow.h"
 #include <vector>
 #include <string>
 #include <cmath>
