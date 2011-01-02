@@ -8,4 +8,4 @@ INCLUDEPATH += .
 # Input
 HEADERS += ctrlthread.h tray.h
 SOURCES += ctrlthread.cpp main.cpp tray.cpp
-LIBS += ../../bin/libslide.so
+LIBS += -lslide
